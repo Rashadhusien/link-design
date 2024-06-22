@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+/* 
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
@@ -30,4 +30,40 @@ body {
   .text-balance {
     text-wrap: balance;
   }
+} */
+
+html {
+  scroll-behavior: smooth;
+}
+
+.btn {
+  animation: btn 0.3s ease;
+}
+
+@keyframes btn {
+  0% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* body {
+  height: 10000px;
+} */
+
+/* active nav large screen */
+.active {
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  color: #e5e3e3;
+  background-color: #0052da;
+  transition-duration: 200ms;
+}
+
+/* active nav small screen */
+
+.active-small {
+  color: #253041 !important;
 }

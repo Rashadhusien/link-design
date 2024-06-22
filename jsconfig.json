@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./*", "./(src/)i18n.{js,jsx,ts,tsx}"]
     }
   }
 }
