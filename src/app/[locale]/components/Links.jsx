@@ -12,24 +12,6 @@ import { v4 as uuid } from "uuid";
 import { useTranslation } from "react-i18next";
 import LanguageChanger from "./LanguageChanger";
 
-{
-  /* <li>
-<a href="/" title="twitter">
-  <XIcon className="hover:scale-105 duration-300 text-[20px]" />
-</a>
-</li>
-<li>
-<a href="/" title="instagram">
-  <InstagramIcon className="hover:scale-105 duration-300" />
-</a>
-</li>
-<li>
-<a href="/" title="LinkedIn">
-  <LinkedIn className="hover:scale-105 duration-300" />
-</a>
-</li> */
-}
-
 // className="hover:scale-105 duration-300"
 
 const soceial = [
@@ -81,7 +63,11 @@ function Links() {
         <div className="mail-location-social text-[13px] lg:text-[16px] flex flex-1 flex-col sm:flex-row items-center gap-1 ">
           <div className="location flex  items-center">
             <PlaceIcon className="text-[15px] md:text-[17px] hover:scale-105 duration-300" />
-            <a href="https://maps.app.goo.gl/mbaWaiQkMJw5WaKx9" target="_blank">
+            <a
+              href="https://maps.app.goo.gl/mbaWaiQkMJw5WaKx9"
+              target="_blank"
+              className="text-sm "
+            >
               {/* {"3 شارع حسن فخري الزهراء مصر القديمة"} */}
               {t("address")}
             </a>

@@ -1,4 +1,4 @@
-import { Cairo } from "next/font/google";
+import { Cairo, Manrope } from "next/font/google";
 import "./globals.css";
 import Links from "./components/Links";
 import Header from "./components/Header";
@@ -12,6 +12,8 @@ import TranslationsProvider from "./contexts/TranslationsProvider";
 
 import { dir } from "i18next";
 
+const manrope = Manrope({ subsets: ["latin"], weight: "500" });
+const cairo = Cairo({ subsets: ["latin"], weight: "500" });
 const i18nNamespces = [
   "default",
   "services",
@@ -21,9 +23,8 @@ const i18nNamespces = [
   "header",
   "swipper",
   "footer",
+  "contact",
 ];
-
-const cairo = Cairo({ subsets: ["latin"], weight: "400" });
 
 export const metadata = {
   title: "Create Next App",
@@ -31,11 +32,13 @@ export const metadata = {
 };
 
 export default async function RootLayout({ params: { locale }, children }) {
-  const { t, resources } = await initTranslations(locale, i18nNamespces);
+  const { resources } = await initTranslations(locale, i18nNamespces);
+
+  const lang = locale == "ar" ? cairo.className : manrope.className;
 
   return (
     <html lang={locale} dir={dir(locale)}>
-      <body className={cairo.className}>
+      <body className={lang}>
         <TranslationsProvider
           resources={resources}
           locale={locale}

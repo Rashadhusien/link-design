@@ -32,7 +32,7 @@ function ScrollTop(props) {
   };
 
   return (
-    <Fade in={trigger}>
+    <Fade in={trigger} className=" z-50">
       <Box
         onClick={handleClick}
         role="presentation"

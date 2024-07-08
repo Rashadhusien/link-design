@@ -28,6 +28,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { headerNav } from "../data/data";
 
 import { useTranslation } from "react-i18next";
+import LanguageChanger from "./LanguageChanger";
 
 function Header() {
   const { t, i18n } = useTranslation(["common"]);
@@ -57,7 +58,7 @@ function Header() {
 
   const navData = [
     {
-      href: "/",
+      href: currentLang === "ar" ? "/ar" : "/",
       icon: <HomeIcon />,
       text: t("home"),
     },
@@ -99,18 +100,21 @@ function Header() {
         {navData.map((nav) => {
           const { href, icon, text } = nav;
 
+          const ref =
+            currentLang === "ar" && href !== "/ar" ? `/ar${href}` : href;
+
           return (
             <List key={text} disablePadding className="group" dir="ltr">
               {/* li */}
               <Link
                 href={href}
-                className={`${pathname === href ? "active-small" : ""} `}
+                className={`${pathname === ref ? "active-small" : ""} `}
               >
                 <ListItem>
                   <ListItemButton>
                     <ListItemIcon
                       className={`${
-                        pathname === href ? "active-small" : ""
+                        pathname === ref ? "active-small" : ""
                       } group-hover:text-darkBlue`}
                     >
                       {icon}
@@ -118,7 +122,7 @@ function Header() {
                     <ListItemText
                       primary={text}
                       className={`${
-                        pathname === href ? "active-small" : ""
+                        pathname === ref ? "active-small" : ""
                       } group-hover:text-darkBlue capitalize text-[#757575]`}
                     />
                   </ListItemButton>
@@ -136,12 +140,14 @@ function Header() {
   const lgList = navData.map((li) => {
     const { text, href } = li;
 
+    const ref = currentLang === "ar" && href !== "/ar" ? `/ar${href}` : href;
+
     return (
       <li key={text}>
         <Link
           href={href}
           className={`${
-            pathname === href ? "active" : ""
+            pathname === ref ? "active" : ""
           } py-3 px-5 rounded-lg  hover:text-whitep hover:bg-primary duration-200 cursor-pointer capitalize`}
         >
           {text}
@@ -152,7 +158,9 @@ function Header() {
 
   return (
     <div className=" bg-slate shadow-md">
-      <div className="container mx-auto flex flex-row-reverse lg:flex-row justify-between items-center p-2 ">
+      <div
+        className={` container mx-auto flex  lg:flex-row justify-between items-center p-2 `}
+      >
         <div className="block lg:hidden">
           <Button onClick={toggleDrawer(navToggle, true)}>
             <MenuIcon className="text-black text-[25px] " />
@@ -171,6 +179,7 @@ function Header() {
             />
 
             {list(navToggle)}
+            <LanguageChanger />
           </Drawer>
         </div>
         <Link href={"/"}>

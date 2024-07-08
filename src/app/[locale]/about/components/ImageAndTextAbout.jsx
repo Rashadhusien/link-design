@@ -9,7 +9,7 @@ function ImageAndTextAbout() {
 
   return (
     <div>
-      <div className="container mx-auto flex flex-col lg:flex-row gap-10  ">
+      <div className="flex flex-col xl:flex-row gap-10 relative ">
         <Image
           src={"/master.jpg"} // about-img-2
           alt="about-Image-2"
@@ -28,15 +28,15 @@ function ImageAndTextAbout() {
           </Typography>
           <Typography
             variant="h3"
-            className="text-gray font-bold mb-9 text-4xl sm:text-6xl lg:text-4xl xl:text-6xl"
+            className="text-gray font-bold mb-9 text-3xl sm:text-4xl"
           >
             {t("aboutTitle")}
           </Typography>
-          <p className="text-gray mb-6 max-w-[680px]  tracking-wider leading-6 text-sm sm:text-md xl:text-lg">
+          <p className="text-gray mb-6 max-w-[680px]  tracking-wider leading-7 text-sm sm:text-md lg:text-lg xl:text-xl">
             {t("aboutDescFirstOne")} <strong>{t("aboutDescFirstTwo")}</strong>
             {t("aboutDescFirstThree")}
           </p>
-          <p className="text-gray  max-w-[680px] tracking-wider leading-6 text-sm sm:text-md xl:text-lg">
+          <p className="text-gray  max-w-[680px] tracking-wider  leading-7 text-sm sm:text-md lg:text-lg xl:text-xl">
             {t("aboutDescSecondOne")} <strong>{t("aboutDescSecondTwo")}</strong>
             {t("aboutDescSecondThree")}
           </p>

@@ -1,6 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 /* 
 :root {
   --foreground-rgb: 0, 0, 0;
@@ -66,4 +67,84 @@ html {
 
 .active-small {
   color: #253041 !important;
+}
+
+/* arrow down */
+
+.arrow-down::after {
+  content: "";
+  position: absolute;
+  left: 30px;
+  bottom: -48px;
+  border: 25px solid;
+  border-color: #f5f8fe transparent transparent transparent;
+}
+
+.arrow-down-ar::after {
+  content: "";
+  position: absolute;
+  right: 30px;
+  bottom: -48px;
+  border: 25px solid;
+  border-color: #f5f8fe transparent transparent transparent;
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.notfound {
+  font-size: 30px;
+  color: red;
+}
+
+div.image {
+  background-image: url("/discount-background1.jpg");
+  background-size: cover;
+  color: white;
+  flex-basis: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  animation: change-background 20s linear infinite;
+}
+div.image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background-color: #0054dae0;
+}
+@keyframes change-background {
+  0%,
+  100% {
+    background-image: url("/discount-background1.jpg");
+  }
+  50% {
+    background-image: url("/discount-background2.jpg");
+  }
 }

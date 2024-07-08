@@ -29,10 +29,46 @@ function Swippe() {
           modules={[Navigation, Autoplay]}
           className="mySwiper mb-20"
           autoplay={{
-            delay: 5000,
+            delay: 8000,
             disableOnInteraction: false,
           }}
         >
+          <SwiperSlide className="text-center text-lg relative">
+            <Image
+              src={"/slide-2.jpg"}
+              alt="slide"
+              width={1000}
+              height={1000}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute top-1/2 left-1/2 -translate-x-[80%] -translate-y-1/2  text-start text-whitep  ">
+              <Typography
+                variant="h2"
+                className=" font-bold mt-2 mb-1 sm:mb-10 text-xl sm:text-2xl md:text-5xl lg:text-6xl"
+              >
+                {t("fireHead")}
+              </Typography>
+              <p>{t("firedesc")}</p>
+            </div>
+          </SwiperSlide>
+          <SwiperSlide className="text-center text-lg relative">
+            <Image
+              src={"/slide-3.jpg"}
+              alt="slide-3"
+              width={1000}
+              height={1000}
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute top-1/2 left-1/2 -translate-x-[80%] -translate-y-1/2  text-start text-whitep  ">
+              <Typography
+                variant="h2"
+                className="  font-bold mt-2 mb-1 sm:mb-10 text-xl sm:text-2xl md:text-5xl lg:text-6xl"
+              >
+                {t("plumbHead")}
+              </Typography>
+              <p>{t("plumbDesc")}</p>
+            </div>
+          </SwiperSlide>
           <SwiperSlide className="text-center text-lg relative">
             <Image
               src={"/slide-2.jpg"}

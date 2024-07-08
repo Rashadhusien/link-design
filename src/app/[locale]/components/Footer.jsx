@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
@@ -7,12 +7,85 @@ import XIcon from "@mui/icons-material/X";
 import InstagramIcon from "@mui/icons-material/Instagram";
 import { LinkedIn } from "@mui/icons-material";
 import { Typography } from "@mui/material";
+import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import Link from "next/link";
 
 import { useTranslation } from "react-i18next";
+
+import axiosInstance from "../config/axios.config";
+
+import { v4 as uuid } from "uuid";
+
 function Footer() {
-  const { t } = useTranslation(["footer", "common"]);
+  const { t, i18n } = useTranslation(["footer", "common"]);
+  // data
+
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await axiosInstance.get(
+          `/services?locale=${i18n.language}`
+        );
+        const servicesAPI = res?.data?.data;
+        setServices(servicesAPI);
+      } catch (error) {
+        console.log(error);
+      }
+    })();
+  }, [i18n.language]);
+
+  const quickLinks = [
+    {
+      id: uuid(),
+      href: "/about",
+      content: t("common:about"),
+    },
+    {
+      id: uuid(),
+      href: "/services",
+      content: t("common:services"),
+    },
+    {
+      id: uuid(),
+      href: "/contact",
+      content: t("common:contact"),
+    },
+    {
+      id: uuid(),
+      href: "/projects",
+      content: t("common:projects"),
+    },
+  ];
+
+  const soceial = [
+    {
+      id: uuid(),
+      href: "https://www.facebook.com/enghusseinrashad/",
+      title: "facebook",
+      icon: <FacebookRoundedIcon className=" group-hover:text-gray" />,
+    },
+    {
+      id: uuid(),
+      href: "/",
+      title: "twitter",
+      icon: <XIcon className=" group-hover:text-gray" />,
+    },
+    {
+      id: uuid(),
+      href: "/",
+      title: "instagram",
+      icon: <InstagramIcon className=" group-hover:text-gray" />,
+    },
+    {
+      id: uuid(),
+      href: "/",
+      title: "LinkedIn",
+      icon: <LinkedIn className=" group-hover:text-gray" />,
+    },
+  ];
 
   return (
     <>
@@ -30,26 +103,19 @@ function Footer() {
             />
             <p className="leading-7 md:max-w-[250px] mb-6">{t("footerHead")}</p>
             <ul className="flex gap-5  justify-center md:justify-start">
-              <li className="group  bg-grayHover hover:bg-slate p-1 rounded-full flex items-center justify-center">
-                <a href="/">
-                  <FacebookRoundedIcon className="text-whitep group-hover:text-gray duration-300 text-md " />
-                </a>
-              </li>
-              <li className="group bg-grayHover hover:bg-slate p-1 px-[6px] rounded-full flex items-center justify-center">
-                <a href="/">
-                  <XIcon className="text-whitep group-hover:text-gray duration-300 text-[20px]" />
-                </a>
-              </li>
-              <li className="group bg-grayHover hover:bg-slate p-1 rounded-full flex items-center justify-center">
-                <a href="/">
-                  <InstagramIcon className="text-whitep group-hover:text-gray duration-300" />
-                </a>
-              </li>
-              <li className="group bg-grayHover hover:bg-slate p-1 rounded-full flex items-center justify-center">
-                <a href="/">
-                  <LinkedIn className="text-whitep group-hover:text-gray duration-300" />
-                </a>
-              </li>
+              {soceial.map((link) => {
+                const { id, href, icon, title } = link;
+                return (
+                  <li
+                    key={id}
+                    className="group  bg-grayHover hover:bg-slate p-1 rounded-full flex items-center justify-center"
+                  >
+                    <a href={href} target="_blank" title={title}>
+                      {icon}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
           {/* part 1 */}
@@ -62,30 +128,26 @@ function Footer() {
               {t("quicklinks")}
             </Typography>
             <ul className="flex flex-col md:pl-3 gap-5">
-              <Link href={"/about"}>
-                <li className="flex gap-2 items-center hover:pl-2 duration-300">
-                  <KeyboardDoubleArrowRightIcon />
-                  {t("common:about")}
-                </li>
-              </Link>
-              <Link href={"/services"}>
-                <li className="flex gap-2 items-center hover:pl-2 duration-300">
-                  <KeyboardDoubleArrowRightIcon />
-                  {t("common:services")}
-                </li>
-              </Link>
-              <Link href={"/Contact"}>
-                <li className="flex gap-2 items-center hover:pl-2 duration-300">
-                  <KeyboardDoubleArrowRightIcon />
-                  {t("common:contact")}
-                </li>
-              </Link>
-              <Link href={"/projects"}>
-                <li className="flex gap-2 items-center hover:pl-2 duration-300">
-                  <KeyboardDoubleArrowRightIcon />
-                  {t("common:projects")}
-                </li>
-              </Link>
+              {quickLinks.map((link) => {
+                const { id, href, content } = link;
+
+                return (
+                  <Link href={href} key={id}>
+                    <li
+                      className={`  ${
+                        i18n.language === "en" ? "hover:pl-2" : "hover:pr-2"
+                      } flex gap-2 items-center hover:pl-2 duration-300`}
+                    >
+                      {i18n.language === "en" ? (
+                        <KeyboardDoubleArrowRightIcon />
+                      ) : (
+                        <KeyboardDoubleArrowLeftIcon />
+                      )}
+                      {content}
+                    </li>
+                  </Link>
+                );
+              })}
             </ul>
           </div>
           {/* part 2 */}
@@ -98,36 +160,29 @@ function Footer() {
               {t("ourservices")}
             </Typography>
             <ul className="flex flex-col md:pl-3 gap-4">
-              <Link href={"/"}>
-                <li className="flex gap-2 items-center hover:pl-2 duration-300">
-                  <KeyboardDoubleArrowRightIcon />
-                  {t("common:RemodelingService")}
-                </li>
-              </Link>
-              <Link href={"/"}>
-                <li className="flex gap-2 items-center hover:pl-2 duration-300">
-                  <KeyboardDoubleArrowRightIcon />
-                  {t("common:BasementPlumbing")}
-                </li>
-              </Link>
-              <Link href={"/"}>
-                <li className="flex gap-2 items-center hover:pl-2 duration-300">
-                  <KeyboardDoubleArrowRightIcon />
-                  {t("common:BathroomPlumbing")}
-                </li>
-              </Link>
-              <Link href={"/"}>
-                <li className="flex gap-2 items-center hover:pl-2 duration-300">
-                  <KeyboardDoubleArrowRightIcon />
-                  {t("common:GasLineServices")}
-                </li>
-              </Link>
-              <Link href={"/"}>
-                <li className="flex gap-2 items-center hover:pl-2 duration-300">
-                  <KeyboardDoubleArrowRightIcon />
-                  {t("common:KitchenPlumbing")}
-                </li>
-              </Link>
+              {services.map((serv) => {
+                const {
+                  id,
+                  attributes: { title },
+                } = serv;
+
+                return (
+                  <Link href={`/services/${id}`} key={id}>
+                    <li
+                      className={`flex gap-2 items-center ${
+                        i18n.language === "en" ? "hover:pl-2" : "hover:pr-2"
+                      } duration-300`}
+                    >
+                      {i18n.language === "en" ? (
+                        <KeyboardDoubleArrowRightIcon />
+                      ) : (
+                        <KeyboardDoubleArrowLeftIcon />
+                      )}
+                      {title}
+                    </li>
+                  </Link>
+                );
+              })}
             </ul>
           </div>
           {/* part 3 */}

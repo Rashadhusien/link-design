@@ -8,7 +8,7 @@ function Layout({ children }) {
 
   return (
     <div>
-      <PageTitle title={t("services")} />
+      {/* <PageTitle title={t("services")} /> */}
       {children}
     </div>
   );

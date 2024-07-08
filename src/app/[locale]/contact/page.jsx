@@ -1,7 +1,13 @@
 import React from "react";
 
-function Book() {
-  return <div></div>;
+import Book from "./components/Book";
+
+function Contact() {
+  return (
+    <>
+      <Book />
+    </>
+  );
 }
 
-export default Book;
+export default Contact;

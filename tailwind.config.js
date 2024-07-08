@@ -5,6 +5,7 @@ module.exports = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./src/app/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -17,7 +18,6 @@ module.exports = {
     container: {
       padding: {
         DEFAULT: "0.5rem",
-
         sm: "1.5rem",
         lg: "4rem",
         xl: "5rem",
@@ -33,6 +33,9 @@ module.exports = {
       gray: "#253041",
       grayHover: "#3b4554",
       grayp: "#4c5165",
+      bgtestemonial: "#f5f8fe",
+      inputgray: "#384559",
+      btnhover: "#0041ac",
     },
   },
   plugins: [],

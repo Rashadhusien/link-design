@@ -1,9 +1,10 @@
 import React from "react";
-
+import TestemonialsCards from "./components/TestemonialsCards";
 
 function Testemonial() {
   return (
-    <div>
+    <div className="py-40">
+      <TestemonialsCards />
     </div>
   );
 }
