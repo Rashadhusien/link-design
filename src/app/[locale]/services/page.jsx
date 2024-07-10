@@ -1,13 +1,16 @@
+"use client";
 import React from "react";
-import Service from "./components/ServiceSkeleton";
 import ServiceCard from "./components/ServiceCard";
 import PageTitle from "../components/PageTitle";
-import Image from "next/image";
+
+import { useTranslation } from "react-i18next";
 
 function Services() {
+  const { t } = useTranslation(["common"]);
+
   return (
     <>
-      <PageTitle title={"service"} />
+      <PageTitle title={t("services")} />
       <div className="py-32 bg-[#F5F8FE] ">
         <div className="container mx-auto  ">
           <ServiceCard />

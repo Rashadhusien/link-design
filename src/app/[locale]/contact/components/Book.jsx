@@ -11,7 +11,7 @@ function Book() {
 
   return (
     <div className="bg-gray flex  justify-center items-center md:h-lvh text-slate ">
-      <div className="basis-full md:basis-3/6  h-full px-5 md:p-14  relative ">
+      <div className="basis-full md:basis-3/6  h-full py-10 px-5 md:p-14  relative ">
         <ContactForm t={t} />
         <Image
           src={"/contact-shape.png"}
