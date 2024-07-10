@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import initTranslations from "../i18n";
 
 import TranslationsProvider from "./contexts/TranslationsProvider";
-
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { dir } from "i18next";
 
 const manrope = Manrope({ subsets: ["latin"], weight: "500" });
@@ -44,6 +44,7 @@ export default async function RootLayout({ params: { locale }, children }) {
           locale={locale}
           namespaces={i18nNamespces}
         >
+          <SpeedInsights />
           <Links />
           <Header />
           {children}
