@@ -29,6 +29,8 @@ function ServiceCard() {
         setServices(servicesContent);
       } catch (error) {
         console.log(error);
+        console.log(process.env.NEXT_PUBLIC_STRAPI_API_URL)
+        
       } finally {
         setIsLoading(false);
       }
