@@ -10,7 +10,6 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination } from "swiper/modules";
-import { useState, useEffect } from "react";
 
 
 function Service({ service }) {
@@ -31,8 +30,8 @@ function Service({ service }) {
             <Image
               src={img}
               alt={img}
-              width={500} 
-              height={500} 
+              width={2000} 
+              height={2000} 
               className="w-[500px] h-[500px] object-cover rounded-sm height-500"
             />
           </SwiperSlide>
