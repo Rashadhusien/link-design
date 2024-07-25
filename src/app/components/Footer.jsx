@@ -57,14 +57,14 @@ function Footer() {
           {/* part 1 */}
           <div className="">
             <Image
-              src={"/footer-logo.png"}
+              src={"/logo.png"}
               alt="logo"
-              width={250}
-              height={250}
-              className=" mb-9"
+              width={1000}
+              height={1000}
+              className=" mx-auto mb-5 lg:mx-0 w-[130px] h-[100px] "
               priority={true}
             />
-            <p className="leading-7 md:max-w-[250px] mb-6">
+            <p className="leading-7 mb-6">
             تتضمن إدارة السباكة مجموعة واسعة من الأنشطة، وغالبًا ما تحدد العديد من الشركات وأعضائها هذه الممارسات.</p>
             <ul className="flex gap-5  justify-center md:justify-start">
               {soceial.map((link) => {

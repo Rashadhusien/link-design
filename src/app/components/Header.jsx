@@ -151,7 +151,7 @@ function Header() {
             alt="logo"
             width={1000}
             height={1000}
-            className="w-[100px] lg:w-[150px]"
+            className="w-[70px] lg:w-[100px]"
             priority={true}
           />
           {/* <span className="text-[#ff0000] text-5xl">Link <span className="text-primary">Design</span></span> */}
