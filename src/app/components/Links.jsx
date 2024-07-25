@@ -73,7 +73,7 @@ function Links() {
           <span className="hidden sm:block mx-3">|</span>
           <div className="mail flex gap-2 items-center">
             <EmailIcon className="text-[15px] md:text-[17px] hover:scale-105 duration-300" />
-            <a href="mailto:rashadhusein440@gmail.com " target="_blank">
+            <a href="mailto:0linkdesign0@gmail.com" target="_blank">
               0linkdesign0@gmail.com
             </a>
           </div>

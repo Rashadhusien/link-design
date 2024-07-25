@@ -101,7 +101,6 @@ function Header() {
   const lgList = navData?.map((li) => {
     const { text, href } = li;
 
-    // const ref = currentLang === "ar" && href !== "/ar" ? `/ar${href}` : href;
 
     return (
       <li key={text} className="relative">
@@ -121,7 +120,7 @@ function Header() {
   return (
     <div className=" bg-slate shadow-md">
       <div
-        className={` container mx-auto flex  lg:flex-row justify-between items-center p-2 `}
+        className={` container mx-auto flex  lg:flex-row justify-between items-center p-2  h-[70px] lg:h-[90px] overflow-hidden `}
       >
         <div className="block lg:hidden">
           <Button onClick={toggleDrawer("right", true)}>
@@ -147,13 +146,15 @@ function Header() {
 
         <Link href={"/"}>
           <Image
-            src={"/tr-logo.svg"}
+            // src={"/tr-logo.svg"}
+            src={'/logo.png'}
             alt="logo"
-            width={100}
-            height={100}
-            className="w-36 md:w-44 lg:w-52"
+            width={1000}
+            height={1000}
+            className="w-[100px] lg:w-[150px]"
             priority={true}
           />
+          {/* <span className="text-[#ff0000] text-5xl">Link <span className="text-primary">Design</span></span> */}
         </Link>
 
         <div className="hidden lg:block">

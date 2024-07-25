@@ -21,6 +21,9 @@ export default async function RootLayout({  children }) {
 
   return (
     <html lang={'ar'} dir={'rtl'}>
+      <head>
+      <link rel="icon" href="/linkdesign-icon.png" sizes="any" />
+      </head>
       <body className={cairo.className}>
 
           <SpeedInsights />

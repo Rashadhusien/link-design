@@ -116,14 +116,14 @@ function Footer() {
             >
               الخدمات
             </Typography>
-            <ul className="flex flex-col md:pl-3 gap-4">
+            <ul className="flex flex-col md:pl-3 gap-4 max-h-[400px] flex-wrap">
               {services.map((serv) => {
                
 
                 return (
-                  <Link href={`/services/${serv.id}`} key={serv.id}>
+                  <Link href={`/services/${serv.id}`} key={serv.id} >
                     <li
-                      className={`flex gap-2 items-center hover:pr-2 duration-300`}
+                      className={` hover:pr-2 duration-300`}
                     >
                      
                         <KeyboardDoubleArrowLeftIcon />
