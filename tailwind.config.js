@@ -27,6 +27,7 @@ module.exports = {
     colors: {
       primary: "#0052da",
       darkBlue: "#253041",
+      white: "#fff",
       whitep: "#e5e3e3",
       slate: "#f8fafc",
       black: "#000000",
@@ -36,6 +37,7 @@ module.exports = {
       bgtestemonial: "#f5f8fe",
       inputgray: "#384559",
       btnhover: "#0041ac",
+      PaleBlue: "#e4f0ff",
     },
   },
   plugins: [],

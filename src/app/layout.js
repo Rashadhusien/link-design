@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-const cairo = Cairo({ subsets: ["latin"], weight: "500" });
+const cairo = Cairo({ subsets: ["latin"], weight: "600" });
 
 export const metadata = {
   title: "Link Design",

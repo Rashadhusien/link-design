@@ -7,21 +7,40 @@ import ServiceCard from "./services/components/ServiceCard";
 import TestemonialsCards from "./testemonials/components/TestemonialsCards";
 import Book from "./contact/components/Book";
 import { headerNav } from "./data/data";
+import ElementorSection from "./components/ElementorSection";
 
 
 export default async function Home() {
 
   return (
-
-      <div className="">
+    <div className="">
+       {/* Hero section  */}
         <Swippe />
+          {/* // Hero section // */}
+
+    {/* elementor section */}
+    <div className="container mx-auto pt-24">
+
+    <ElementorSection />
+
+    </div>
+
+    {/* elementor section */}
+
+
+          {/* about section */}
         <div className="container mx-auto py-24">
         <HomePageTitle
               title={headerNav.about}
               style={`text-darkBlue`}
-            />
+              />
           <ImageAndTextAbout />
         </div>
+              {/* about section */}
+
+
+
+
         <div className="bg-[#F5F8FE] py-24">
           <div className="container mx-auto ">
             <HomePageTitle
