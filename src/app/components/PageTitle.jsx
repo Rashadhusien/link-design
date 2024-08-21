@@ -18,6 +18,7 @@ function PageTitle({ title }) {
       >
         {title}
       </Typography>
+   
     </div>
   );
 }

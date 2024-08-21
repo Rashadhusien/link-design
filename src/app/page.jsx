@@ -8,6 +8,8 @@ import TestemonialsCards from "./testemonials/components/TestemonialsCards";
 import Book from "./contact/components/Book";
 import { headerNav } from "./data/data";
 import ElementorSection from "./components/ElementorSection";
+import QuiltedImageList from "./components/QuiltedImageList";
+import BasicTabs from "./components/BasicTabs";
 
 
 export default async function Home() {
@@ -32,6 +34,7 @@ export default async function Home() {
         <div className="container mx-auto py-24">
         <HomePageTitle
               title={headerNav.about}
+              
               style={`text-darkBlue`}
               />
           <ImageAndTextAbout />
@@ -50,6 +53,14 @@ export default async function Home() {
             <ServiceCard />
           </div>
         </div>
+
+    {/* <div className="container mx-auto py-24">
+
+    <QuiltedImageList />
+    <BasicTabs/>
+
+    </div> */}
+
         <div className="py-24">
           <HomePageTitle
             title={headerNav.testimonial}

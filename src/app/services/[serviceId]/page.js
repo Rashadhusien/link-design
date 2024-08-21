@@ -22,13 +22,14 @@ function ShowService({ params }) {
 
 
   return (
-    <>
+    <div>
       <PageTitle title={currentservice[0].title} />
+  
       <div className="container mx-auto flex flex-col lg:flex-row py-32 gap-10">
         <Service service={currentservice[0]} />
         <Aside currentServiceId={Number(serviceId)} />
       </div>
-    </>
+    </div>
   );
 }
 

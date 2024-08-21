@@ -95,14 +95,86 @@ export const testimonials = [
   },
 ]
 
+export const itemData = [
+  {
+    img: '/about-img-2.jpg',
+    title: 'bathroom',
+    width: 400,
+    height: 400,
+  },
+  {
+    img: '/about-img-2.jpg',
+    title: 'Burger',
+    rows: 1,
+    cols: 1,
+
+  },
+  {
+    img: '/about-img-2.jpg',
+    title: 'Burger',
+    rows: 1,
+    cols: 1,
+  },
+  {
+    img: '/about-img-2.jpg',
+    title: 'Camera',
+    rows: 1,
+    cols: 1,
+  },
+  // {
+  //   img: '/about-img-2.jpg',
+  //   title: 'Coffee',
+  //   cols: 2,
+  // },
+  // {
+  //   img: '/about-img-2.jpg',
+  //   title: 'Hats',
+  //   cols: 2,
+  // },
+  // {
+  //   img: '/about-img-2.jpg',
+  //   title: 'Honey',
+  //   author: '@arwinneil',
+  //   rows: 2,
+  //   cols: 2,
+  // },
+  // {
+  //   img: '/about-img-2.jpg',
+  //   title: 'Basketball',
+  // },
+  // {
+  //   img: '/about-img-2.jpg',
+  //   title: 'Fern',
+  // },
+  // {
+  //   img: '/about-img-2.jpg',
+  //   title: 'Mushrooms',
+  //   rows: 2,
+  //   cols: 2,
+  // },
+  // {
+  //   img: '/about-img-2.jpg',
+  //   title: 'Tomato basil',
+  // },
+  // {
+  //   img: '/about-img-2.jpg',
+  //   title: 'Sea star',
+  // },
+  // {
+  //   img: '/about-img-2.jpg',
+  //   title: 'Bike',
+  //   cols: 2,
+  // },
+];
+
 
 export const services = [
   {
     id: 1,
-    imgSrc: "/service-thumb-1.jpg",
-    title: "سباكة المطبخ",
-    description: "تم نشر التنضيد الإلكتروني دون تغيير بشكل أساسي",
-    iconUrl: "/icon-1.png",
+    imgSrc: "/sp/swimming-pool.avif",
+    title: "حمامات سباحة & ميكانيك",
+    description: "نحن متخصصون في تصميم وتركيب وصيانة حمامات السباحة بأنظمة ميكانيكية متطورة تضمن الأداء الأمثل. نقدم حلول متكاملة بدءًا من أنظمة الفلترة وتنقية المياه إلى التحكم في درجات الحرارة والإضاءة تحت الماء، لضمان تجربة سباحة آمنة ومريحة.",
+    iconUrl: "/servicesIcons/swimming-pool.png",
     servicesContent : [
       {
         id: uuid(),
@@ -141,15 +213,13 @@ export const services = [
       },
       
     ]
-
-
   },
   {
     id: 2,
-    imgSrc: "/service-thumb-2.jpg",
-    title: "خدمات خطوط الغاز",
-    description: "تم نشر التنضيد الإلكتروني دون تغيير بشكل أساسي",
-    iconUrl: "/icon-2.png",
+    imgSrc: "/p&w/b-banner.jpg",
+    title: "السباكة و شبكات المياه",
+    description: "نوفر حلول سباكة وشبكات مياه متكاملة تغطي جميع احتياجاتك، من تركيب الأنابيب وإصلاح التسريبات إلى تصميم وتنفيذ الشبكات المائية المعقدة.",
+    iconUrl: "/servicesIcons/icon-6.png",
     servicesContent : [
       {
         id: uuid(),
@@ -173,10 +243,10 @@ export const services = [
   },
   {
     id: 3,
-    imgSrc: "/service-thumb-3.jpg",
-    title: "إصلاح خط المياه",
-    description: "تم نشر التنضيد الإلكتروني دون تغيير بشكل أساسي",
-    iconUrl: "/icon-3.png",
+    imgSrc: "/fire/a-banner.jpg",
+    title: "fire fighting & Alarm",
+    description: "نقدم حلولاً شاملة لمكافحة الحرائق وأنظمة الإنذار، بدءًا من تركيب وصيانة أجهزة الإنذار بالحريق إلى تصميم أنظمة الإطفاء الآلية. هدفنا هو توفير الأمان والحماية لممتلكاتك وسلامة الأشخاص.",
+    iconUrl: "/servicesIcons/icon-2.png",
     servicesContent : [
       {
         id: uuid(),
@@ -200,10 +270,10 @@ export const services = [
   },
   {
     id: 4,
-    imgSrc: "/service-thumb-4.jpg",
-    title: "سباكة الحمام",
-    description: "تم نشر التنضيد الإلكتروني دون تغيير بشكل أساسي",
-    iconUrl: "/icon-4.png",
+    imgSrc: "/airconditions/a-banner.jfif",
+    title: "التكيفات و الشيلد واتر",
+    description: "نقدم خدمات التكييف المتكاملة والشيلد واتر، مع التركيز على توفير أنظمة تبريد فعالة وموفرة للطاقة. سواء كنت بحاجة إلى تركيب أنظمة جديدة أو صيانة الأنظمة الحالية، فإن فريقنا مستعد لضمان راحتك",
+    iconUrl: "/servicesIcons/air-conditioner.png",
     servicesContent : [
       {
         id: uuid(),
@@ -225,10 +295,10 @@ export const services = [
   },
   {
     id: 5,
-    imgSrc: "/service-thumb-5.jpg",
-    title: "شبكات الحريق",
-    description: "تم نشر التنضيد الإلكتروني دون تغيير بشكل أساسي",
-    iconUrl: "/icon-5.png",
+    imgSrc: "/finishing/a-banner.jfif",
+    title: "التشطيب المتكامل",
+    description: "نقدم خدمات التشطيب المتكامل التي تغطي جميع جوانب البناء والتجديد، من الأرضيات والحوائط إلى الأسقف والديكورات. نحن نحرص على تقديم حلول تشطيب تعكس رؤيتك وتحقق أعلى معايير الجودة والجمال.",
+    iconUrl: "/servicesIcons/icon-5.png",
     servicesContent : [
       {
         id: uuid(),
@@ -248,33 +318,7 @@ export const services = [
       },
     ]
   },
-  {
-    id: 6,
-    imgSrc: "/service-thumb-6.jpg",
-    title: "خدمة إعادة البناء",
-    description: "تم نشر التنضيد الإلكتروني دون تغيير بشكل أساسي",
-    iconUrl: "/icon-6.png",
-    servicesContent : [
-      {
-        id: uuid(),
-        title: "خبير في خدمة إعادة البناء",
-        descirption: "تم نشر التنضيد الإلكتروني دون تغيير بشكل أساسي تم نشر التنضيد الإلكتروني دون تغيير بشكل أساسيتم نشر التنضيد الإلكتروني دون تغيير بشكل أساسي تم نشر التنضيد الإلكتروني دون تغيير بشكل أساسي",
-        images: [
-          '/pasment/pasment-1.jpeg'
-        ],
-      },
-      
-      {
-        id: uuid(),
-        title: "خبير في خدمة إعادة البناء",
-        descirption: "تم نشر التنضيد الإلكتروني دون تغيير بشكل أساسي تم نشر التنضيد الإلكتروني دون تغيير بشكل أساسيتم نشر التنضيد الإلكتروني دون تغيير بشكل أساسي تم نشر التنضيد الإلكتروني دون تغيير بشكل أساسي",
-        images: [
-          '/pasment/pasment-2.jpeg'
-        ],
-      },
-      
-    ]
-  },
+
 ]
 
 

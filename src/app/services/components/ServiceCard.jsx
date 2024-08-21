@@ -31,7 +31,7 @@ function ServiceCard() {
             alt="service-thumb"
             width={1000}
             height={1000}
-            className="rounded-3xl object-cover hover:scale-125 transition-all duration-300"
+            className="rounded-3xl max-h-[200px] object-cover hover:scale-125 transition-all duration-300"
           />
         </div>
         <div className="pt-10 pb-4 relative">
@@ -45,7 +45,7 @@ function ServiceCard() {
           </Typography>
           <Typography
             variant="p"
-            className="line-clamp-3 text-grayp text-[16px] leading-7"
+            className="line-clamp-4 text-grayp text-[16px] leading-7"
           >
             {service?.description}
           </Typography>

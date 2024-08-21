@@ -140,8 +140,8 @@ function Footer() {
       </div>
       <div className="bg-[#212c3c] w-full text-whitep py-3 shadow-sm">
         <div className="container mx-auto ">
-          <p className="text-center p-3 text-lg tracking-wide">
-            &copy; حقوق النشر 2024 | <a href="#">رشاد</a> | جميع الحقوق محفوظة.
+          <p className="text-center p-1 text-sm tracking-wide">
+            &copy; حقوق النشر 2024  | جميع الحقوق محفوظة.
           </p>
         </div>
       </div>
