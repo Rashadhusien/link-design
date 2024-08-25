@@ -6,10 +6,12 @@ import Header from "./components/Header";
 import BackToTop from "./components/ScrollTop";
 import Footer from "./components/Footer";
 
-import { Analytics } from "@vercel/analytics/react"
-
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import BasicSpeedDial from "./components/SpeedDial";
+
+
 
 
 const cairo = Cairo({ subsets: ["latin"], weight: "600" });
@@ -29,6 +31,7 @@ export default async function RootLayout({  children }) {
       </head>
       <body className={cairo.className} style={{position: "relative"}}>
       <Analytics/>
+      <SpeedInsights/>
 
           <SpeedInsights />
           <Links />
