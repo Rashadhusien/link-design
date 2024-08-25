@@ -45,21 +45,13 @@ function ScrollTop(props) {
   );
 }
 
-ScrollTop.propTypes = {
-  children: PropTypes.element.isRequired,
-  /**
-   * Injected by the documentation to work in an iframe.
-   * You won't need it on your project.
-   */
-  window: PropTypes.func,
-};
+
 
 export default function BackToTop(props) {
   return (
     <>
-      {/* <Toolbar id="back-to-top-anchor" /> */}
 
-      <ScrollTop {...props} className="">
+      <ScrollTop {...props} >
         <Fab
           size="small"
           aria-label="scroll back to top"

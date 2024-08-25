@@ -124,7 +124,7 @@ function Swippe() {
           {/* {t("smallDesc")} */}
           نحن شركة معتمدة. نحن نقدم أفضل خدمات السباكة لك ولشركتك.
         </p>
-        <div className="h-[1000%] w-[1000%] bg-[#f5f8fe] absolute -left-5 translate-x-[1%] -z-10 rotate-6 top-10 block sm:hidden" />
+        <div className="h-[1000%] w-[1000%] bg-[#f5f8fe] absolute -left-5 translate-x-[-14%] -z-10 rotate-[50deg] top-10 block sm:hidden" />
       </div>
     </div>
   );

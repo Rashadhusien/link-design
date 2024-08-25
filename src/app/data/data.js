@@ -6,6 +6,43 @@ import ContactPageIcon from "@mui/icons-material/ContactPage";
 import BuildIcon from "@mui/icons-material/Build";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import PeopleIcon from "@mui/icons-material/People";
+import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
+import XIcon from "@mui/icons-material/X";
+import InstagramIcon from "@mui/icons-material/Instagram";
+import { Facebook,  WhatsApp } from "@mui/icons-material";
+
+
+
+
+
+export const social = [
+  {
+      id: uuid(),
+      href: "https://wa.me/+201003905069",
+      title: "whatsapp",
+      icon: <WhatsApp sx={{fontSize: "22px"}}/>,
+  },
+  {
+      id: uuid(),
+      href: "https://www.facebook.com/enghusseinrashad/",
+      title: "facebook",
+      icon: <Facebook sx={{fontSize: "22px"}}/>
+  }
+  ,
+  {
+      id: uuid(),
+      href: "/",
+      title: "twitter",
+      icon: <XIcon sx={{fontSize: "22px"}} />,
+    },
+  {
+      id: uuid(),
+      href: "/",
+      title: "instagram",
+      icon: <InstagramIcon sx={{fontSize: "22px"}}/>,
+  },
+]
+
 
 export const headerNav = {
   home:  "الرئيسية",
@@ -15,6 +52,8 @@ export const headerNav = {
   projects: "المشاريع",
   testimonial: "بعض الأراء",
 };
+
+
 
 export const quickLinks = [
   {
