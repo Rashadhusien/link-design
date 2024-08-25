@@ -6,7 +6,7 @@ import Header from "./components/Header";
 import BackToTop from "./components/ScrollTop";
 import Footer from "./components/Footer";
 
-// import Dial from "./components/Dial";
+import { Analytics } from "@vercel/analytics/react"
 
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import BasicSpeedDial from "./components/SpeedDial";
@@ -28,6 +28,7 @@ export default async function RootLayout({  children }) {
       <link rel="icon" href="/linkdesign-icon.png" sizes="any" />
       </head>
       <body className={cairo.className} style={{position: "relative"}}>
+      <Analytics/>
 
           <SpeedInsights />
           <Links />
@@ -43,6 +44,7 @@ export default async function RootLayout({  children }) {
 
             <BasicSpeedDial/>
           </span>
+
         
           <Footer />
       </body>

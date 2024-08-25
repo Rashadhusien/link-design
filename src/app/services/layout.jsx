@@ -1,5 +1,9 @@
+import { Analytics } from "@vercel/analytics/react"
 function Layout({ children }) {
-  return <div>{children}</div>;
+  return( <div>
+    <Analytics/>
+    {children}
+    </div>);
 }
 
 export default Layout;
