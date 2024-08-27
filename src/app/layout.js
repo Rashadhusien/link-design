@@ -14,6 +14,7 @@ import BasicSpeedDial from "./components/SpeedDial";
 
 
 
+
 const cairo = Cairo({ subsets: ["latin"], weight: "600" });
 
 export const metadata = {
@@ -42,7 +43,6 @@ export default async function RootLayout({  children }) {
           <BackToTop />
 
           </span>
-
           <span className=" fixed right-1 bottom-0 z-50 md:hidden">
 
             <BasicSpeedDial/>

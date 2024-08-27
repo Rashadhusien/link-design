@@ -41,8 +41,6 @@ html {
   animation: btn 0.3s ease;
 }
 
-
-
 /* active nav large screen */
 .active {
   padding: 0.75rem 1.25rem;
@@ -129,26 +127,56 @@ div.image::after {
   background-color: #0054dae0;
 }
 
-
 .soon {
   pointer-events: none !important;
   opacity: 0.5 !important;
 }
 
-
-
-
 .swiper-slide img.height-500 {
   height: 500px !important;
 }
-
-
 
 .elementor-section .box {
   box-shadow: 0px 22px 60px 0px rgba(37, 48, 65, 0.05);
 }
 
+.client-bg {
+  background-color: rgba(255, 255, 255, 0.05);
+}
 
+.client-bg-before::before {
+  content: "";
+  position: absolute;
+  width: 650px;
+  height: 650px;
+
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.05);
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  transform: translate(-50%, -50%);
+}
+
+@media (max-width: 1200px) {
+  .client-bg-before::before {
+    z-index: -1000;
+    display: none;
+  }
+}
+
+.hero-bg::after {
+  content: "";
+  z-index: -1;
+  background-color: transparent;
+
+  position: absolute;
+
+  border: 344px solid #e4f0ff;
+  bottom: 0;
+  right: 0;
+  transform: rotate(49deg) translate(500px, 0px);
+}
 
 @keyframes change-background {
   0%,
@@ -159,12 +187,6 @@ div.image::after {
     background-image: url("/discount-background2.jpg");
   }
 }
-
-
-
-
-
-
 
 @keyframes btn {
   0% {

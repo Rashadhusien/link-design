@@ -2,10 +2,7 @@
 /*-----------Icons------------- */
 import PlaceIcon from "@mui/icons-material/Place";
 import EmailIcon from "@mui/icons-material/Email";
-import FacebookRoundedIcon from "@mui/icons-material/FacebookRounded";
-import XIcon from "@mui/icons-material/X";
-import InstagramIcon from "@mui/icons-material/Instagram";
-import { LinkedIn } from "@mui/icons-material";
+
 import CallIcon from '@mui/icons-material/Call';
 /*-----------End Icons------------- */
 
@@ -31,7 +28,7 @@ function Links() {
   });
 
   return (
-    <div className="bg-darkBlue text-whitep shadow-md" id="back-to-top-anchor">
+    <div className=" px-4 bg-darkBlue text-whitep shadow-md" id="back-to-top-anchor">
       <div className="container mx-auto  flex flex-col md:gap-5 md:flex-row justify-between items-center p-3 ">
         <div className="mail-location-social text-[13px] lg:text-[16px] flex flex-1 flex-col sm:flex-row items-center gap-1 ">
           <div className="location flex  items-center">

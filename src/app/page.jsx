@@ -11,6 +11,9 @@ import ElementorSection from "./components/ElementorSection";
 import QuiltedImageList from "./components/QuiltedImageList";
 import BasicTabs from "./components/BasicTabs";
 
+import NumberOfClients from "./components/NumberOfClients";
+
+
 
 export default async function Home() {
 
@@ -69,6 +72,11 @@ export default async function Home() {
           />
           <TestemonialsCards />
         </div>
+
+
+      <NumberOfClients/>
+
+
         <div className="bg-[#F5F8FE] pt-24">
           <HomePageTitle title={headerNav.contactUs} />
           <Book />

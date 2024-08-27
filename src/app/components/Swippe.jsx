@@ -113,7 +113,7 @@ function Swippe() {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="container mx-auto block sm:hidden py-32 px-3 relative overflow-hidden ">
+      <div className="hero-bg h-[80vh] container mx-auto block sm:hidden py-32 px-3 relative overflow-hidden ">
         <p className="text-2xl text-primary ">: :  كادر مدرب على أعلى مستوى</p>{/*{t("smallSpan")} */}
         <h1 className="text-5xl font-bold text-gray mt-5 mb-6">
           {/* {t("smallHead")} */}
@@ -124,7 +124,7 @@ function Swippe() {
           {/* {t("smallDesc")} */}
           نحن شركة معتمدة. نحن نقدم أفضل خدمات السباكة لك ولشركتك.
         </p>
-        <div className="h-[1000%] w-[1000%] bg-[#f5f8fe] absolute -left-5 translate-x-[-14%] -z-10 rotate-[50deg] top-10 block sm:hidden" />
+        {/* <div className="h-[1000%] w-[1000%] bg-[#f5f8fe] absolute -left-5 translate-x-[-14%] -z-10 rotate-[50deg] top-10 block sm:hidden" /> */}
       </div>
     </div>
   );
