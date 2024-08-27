@@ -38,7 +38,7 @@ function NumberOfClients() {
         >
           <div className="flex-1  grid grid-cols-1 sm:grid-cols-2 grid-rows-2 gap-y-20 gap-x-10 relative  client-bg-before  ">
             {NumberOfClientsData.map((client) => {
-              const { countNumber, src, txt } = client;
+              const { countNumber, src, txt, IsThousand, plus } = client;
 
               return (
                 <div
@@ -62,6 +62,8 @@ function NumberOfClients() {
                           delay={0.2}
                         />
                       )}
+                      {IsThousand && "k"}
+                      {plus && "+"}
                     </h4>
                     <p className="mt-1">{txt}</p>
                   </div>

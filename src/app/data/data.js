@@ -16,21 +16,29 @@ export const NumberOfClientsData = [
     src: "/clientsIcons/funfact-icon-1.png",
     countNumber: 8,
     txt: "مشاريع تشغيلية",
+    IsThousand: false,
+    plus: false,
   },
   {
     src: "/clientsIcons/funfact-icon-2.png",
     countNumber: 10,
     txt: "أعضاء الفريق",
+    IsThousand: false,
+    plus: true,
   },
   {
     src: "/clientsIcons/funfact-icon-3.png",
     countNumber: 10,
     txt: "عملاء سعداء",
+    IsThousand: true,
+    plus: false,
   },
   {
     src: "/clientsIcons/funfact-icon-4.png",
     countNumber: 7,
     txt: "عدد الجوائز",
+    IsThousand: false,
+    plus: false,
   },
 ];
 
