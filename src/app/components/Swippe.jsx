@@ -26,7 +26,7 @@ function Swippe() {
           modules={[Navigation, Autoplay]}
           className="mySwiper mb-20 max-h-[70vh] md:max-h-max :w-full :h-full"
           autoplay={{
-            delay: 800000,
+            delay: 3000,
             disableOnInteraction: false,
           }}
         >
