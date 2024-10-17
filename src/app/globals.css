@@ -178,6 +178,21 @@ div.image::after {
   transform: rotate(49deg) translate(500px, 0px);
 }
 
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 10px;
+  background: #0052da;
+  transform-origin: 0%;
+  z-index: 100000;
+}
+
+.btn-style:hover {
+  background-color: transparent;
+}
+
 @keyframes change-background {
   0%,
   100% {

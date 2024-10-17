@@ -45,10 +45,6 @@ function Swippe() {
               >
                 أفضل خدمات مكافحة الحرائق وبأسعار مناسبة
               </Typography>
-              <p className="text-sm sm:text-md md:text-lg ">
-                هناك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن تم
-                تعديل غالبيتها بشكل ما
-              </p>
             </div>
           </SwiperSlide>
 
@@ -68,10 +64,7 @@ function Swippe() {
                 {/* {t("plumbHead")} */}
                 خدمة سباكة احترافية يمكنك الوثوق بها.
               </Typography>
-              <p className="text-sm sm:text-md md:text-lg">
-                هناك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، ولكن تم
-                تعديل غالبيتها بشكل ما
-              </p>
+
               {/*{t("plumbDesc")} */}
             </div>
           </SwiperSlide>

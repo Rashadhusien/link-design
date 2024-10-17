@@ -1,10 +1,9 @@
 "use client";
-import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // mui
 import Box from "@mui/material/Box";
@@ -16,18 +15,12 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 
-
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { navData } from "../data/data";
-import { Settings } from "@mui/icons-material";
-
-
 
 function Header() {
-
-
   const pathname = usePathname();
 
   const [state, setState] = useState({
@@ -45,8 +38,28 @@ function Header() {
     setState({ [anchor]: open });
   };
 
-  // Render
+  const [show, setShow] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
+  const controlNavbar = () => {
+    if (window.scrollY > lastScrollY && window.scrollY > 160) {
+      // Scrolling down
+      setShow(false);
+    } else {
+      // Scrolling up
+      setShow(true);
+    }
+    setLastScrollY(window.scrollY);
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", controlNavbar);
+    return () => {
+      window.removeEventListener("scroll", controlNavbar);
+    };
+  }, [lastScrollY]);
+
+  // Render
 
   const list = (anchor) => (
     <div className="block lg:hidden">
@@ -63,11 +76,18 @@ function Header() {
           //   currentLang === "ar" && href !== "/ar" ? `/ar${href}` : href;
 
           return (
-            <List key={text} disablePadding className="group relative" dir="ltr">
+            <List
+              key={text}
+              disablePadding
+              className="group relative"
+              dir="ltr"
+            >
               {/* li */}
               <Link
                 href={href}
-                className={`${pathname === href ? " active-small " : ""} relative ${text == "المشاريع" && "soon"} `}
+                className={`${
+                  pathname === href ? " active-small " : ""
+                } relative  `}
               >
                 <ListItem>
                   <ListItemButton>
@@ -87,7 +107,6 @@ function Header() {
                   </ListItemButton>
                 </ListItem>
               </Link>
-              {text == "المشاريع" && <Settings className="absolute animate-spin right-4 top-5" />}
 
               {/* li */}
             </List>
@@ -97,10 +116,8 @@ function Header() {
     </div>
   );
 
-
   const lgList = navData?.map((li) => {
     const { text, href } = li;
-
 
     return (
       <li key={text} className="relative">
@@ -108,17 +125,20 @@ function Header() {
           href={href}
           className={`${
             pathname === href ? "active" : ""
-          } ${text == "المشاريع" && "soon"}  py-3 px-5 rounded-lg   hover:text-whitep hover:bg-primary duration-200 cursor-pointer capitalize`}
+          }   py-3 px-5 rounded-lg   hover:text-whitep hover:bg-primary duration-200 cursor-pointer capitalize`}
         >
           {text}
         </Link>
-        {text == "المشاريع" && <Settings className="animate-spin  absolute -top-3 right-2 w-[20px]" />}
       </li>
     );
   });
 
   return (
-    <div className=" bg-slate shadow-md">
+    <div
+      className={`sticky w-full top-0 left-0 z-[500] bg-slate shadow-md transition-all duration-500 ${
+        show ? "-translate-y-0 " : " -translate-y-96 "
+      }`}
+    >
       <div
         className={` container mx-auto flex  lg:flex-row justify-between items-center p-2  h-[70px] lg:h-[90px] overflow-hidden `}
       >
@@ -143,18 +163,15 @@ function Header() {
           </Drawer>
         </div>
 
-
         <Link href={"/"}>
           <Image
-            // src={"/tr-logo.svg"}
-            src={'/logo.png'}
+            src={"/logo.png"}
             alt="logo"
             width={1000}
             height={1000}
             className="w-[70px] lg:w-[100px]"
             priority={true}
           />
-          {/* <span className="text-[#ff0000] text-5xl">Link <span className="text-primary">Design</span></span> */}
         </Link>
 
         <div className="hidden lg:block">

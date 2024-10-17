@@ -18,7 +18,7 @@ export const metadata = {
   description: "Link desgin For Firefiting Systems and Pluming",
 };
 
-export default async function RootLayout({ children }) {
+export default function RootLayout({ children }) {
   return (
     <html lang={"ar"} dir={"rtl"}>
       <head>
@@ -31,6 +31,7 @@ export default async function RootLayout({ children }) {
         <SpeedInsights />
         <Links />
         <Header />
+
         {children}
         <span className="hidden md:block">
           <BackToTop />

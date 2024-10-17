@@ -1,27 +1,26 @@
 "use client";
-import { Typography } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
 
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-import { useState } from "react";
-
 
 import { services } from "../../data/data";
 
-
-// import ServiceSkeleton from "./ServiceSkeleton";
+import { motion } from "framer-motion";
 
 function ServiceCard() {
-
-
-  // const [isLoading, setIsLoading] = useState(true);
-
-
-
-  const renderServicesCard = services.map((service) => {
+  const renderServicesCard = services.map((service, i) => {
     return (
-      <div
+      <motion.div
+        initial={{ y: -5, opacity: 0 }}
+        whileInView={{ y: 0, opacity: 1 }}
+        viewport={{ once: false, amount: 0.5 }}
+        transition={{
+          type: "tween",
+          duration: 1.2,
+          delay: i / 4,
+          ease: [0.25, 0.25, 0.25, 0.75],
+        }}
         key={service.id}
         className="bg-[#ffffff] shadow-sm max-w-[430px] mx-auto rounded-3xl p-5  "
       >
@@ -35,26 +34,19 @@ function ServiceCard() {
           />
         </div>
         <div className="pt-10 pb-4 relative">
-          <Typography
-            variant="h5"
-            className="font-bold mb-3 hover:text-primary w-fit underline decoration-1 underline-offset-2 duration-300 text-gray text-2xl  xl:text-3xl"
-          >
-            <Link href={`/services/${service?.id}`}>
-              {service?.title}
-            </Link>
-          </Typography>
-          <Typography
-            variant="p"
-            className="line-clamp-4 text-grayp text-[16px] leading-7"
-          >
+          <h5 className="font-bold mb-3 hover:text-primary w-fit underline decoration-1 underline-offset-2 duration-300 text-gray text-2xl  xl:text-3xl">
+            <Link href={`/services/${service?.id}`}>{service?.title}</Link>
+          </h5>
+          <p className="line-clamp-4 text-grayp text-[16px] leading-7">
             {service?.description}
-          </Typography>
+          </p>
           <div className="mt-10 flex items-center justify-between">
             <Link href={`/services/${service?.id}`}>
               <p
                 className={`flex-row flex w-fit hover:text-primary duration-300  font-bold text-darkBlue`}
               >
-                <KeyboardDoubleArrowRightIcon className="mt-[2px]" />قراءة المزيد 
+                <KeyboardDoubleArrowRightIcon className="mt-[2px]" />
+                قراءة المزيد
               </p>
             </Link>
             <Image
@@ -66,7 +58,7 @@ function ServiceCard() {
             />
           </div>
         </div>
-      </div>
+      </motion.div>
     );
   });
 
@@ -74,7 +66,6 @@ function ServiceCard() {
     <>
       <div className="bg-[#F5F8FE] container  mx-auto px-1 sm:px-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-5">
         {renderServicesCard}
-        {/* <ServiceSkeleton isLoading={isLoading} /> */}
       </div>
     </>
   );

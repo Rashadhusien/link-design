@@ -7,7 +7,6 @@ import BuildIcon from "@mui/icons-material/Build";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import PeopleIcon from "@mui/icons-material/People";
 
-import InstagramIcon from "@mui/icons-material/Instagram";
 import { Facebook, WhatsApp } from "@mui/icons-material";
 import CallIcon from "@mui/icons-material/Call";
 
@@ -63,12 +62,12 @@ export const social = [
       <CallIcon className="text-[15px] md:text-[17px] hover:scale-105 duration-300" />
     ),
   },
-  {
-    id: uuid(),
-    href: "/",
-    title: "instagram",
-    icon: <InstagramIcon sx={{ fontSize: "22px" }} />,
-  },
+  // {
+  //   id: uuid(),
+  //   href: "/",
+  //   title: "instagram",
+  //   icon: <InstagramIcon sx={{ fontSize: "22px" }} />,
+  // },
 ];
 
 export const headerNav = {
@@ -76,7 +75,7 @@ export const headerNav = {
   about: "معلومات عننا",
   services: "الخدمات",
   contactUs: "تواصل معنا",
-  projects: "المشاريع",
+  // projects: "المشاريع",
   testimonial: "بعض الأراء",
 };
 
@@ -125,11 +124,11 @@ export const navData = [
     icon: <ContactPageIcon />,
     text: "اتصل بنا",
   },
-  {
-    href: "/projects",
-    icon: <BusinessCenterIcon />,
-    text: "المشاريع",
-  },
+  // {
+  //   href: "/projects",
+  //   icon: <BusinessCenterIcon />,
+  //   text: "المشاريع",
+  // },
   {
     href: "/testemonials",
     icon: <PeopleIcon />,
@@ -142,6 +141,20 @@ export const testimonials = [
     id: uuid(),
     imgSrc: "/testi-1.jpg",
     name: "موريل جاريت",
+    message:
+      "هناك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، لكن الأغلبية تعرضت للتعديل بشكل ما، وذلك من خلال صناعة التنضيد. لقد كان النص الوهمي القياسي في الصناعة منذ ذلك الحين.",
+  },
+  {
+    id: uuid(),
+    imgSrc: "/testi-2.jpg",
+    name: "سيمون ميندوزا",
+    message:
+      "هناك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، لكن الأغلبية تعرضت للتعديل بشكل ما، وذلك من خلال صناعة التنضيد. لقد كان النص الوهمي القياسي في الصناعة منذ ذلك الحين.",
+  },
+  {
+    id: uuid(),
+    imgSrc: "/testi-3.jpg",
+    name: "هنري بارتون",
     message:
       "هناك العديد من الأنواع المتوفرة لنصوص لوريم إيبسوم، لكن الأغلبية تعرضت للتعديل بشكل ما، وذلك من خلال صناعة التنضيد. لقد كان النص الوهمي القياسي في الصناعة منذ ذلك الحين.",
   },
