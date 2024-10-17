@@ -13,8 +13,11 @@ import { motion } from "framer-motion";
 
 function Footer() {
   return (
-    <>
-      <div className=" bg-[#253041] text-whitep py-14 px-5 md:px-0 ">
+    <footer role="contentinfo">
+      <div
+        aria-hidden="true"
+        className=" bg-[#253041] text-whitep py-14 px-5 md:px-0 "
+      >
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
           {/* part 1 */}
           <div className="">
@@ -55,28 +58,28 @@ function Footer() {
               variant="h5"
               className="font-bold tracking-wide mb-8 capitalize"
             >
-              روابط سريعة{" "}
+              روابط سريعة
             </Typography>
             <ul className="flex flex-col md:pl-3 gap-5">
               {quickLinks.map((link, i) => {
                 const { id, href, content } = link;
-
                 return (
-                  <Link href={href} key={id}>
-                    <motion.li
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: i / 4,
-                      }}
-                      className={`  hover:pr-2 flex gap-2 items-center hover:pl-2 duration-300`}
-                    >
+                  <motion.li
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: i / 4,
+                    }}
+                    className={`  hover:pr-2 flex gap-2 items-center hover:pl-2 duration-300`}
+                    key={id}
+                  >
+                    <Link href={href}>
                       <KeyboardDoubleArrowLeftIcon />
 
                       {content}
-                    </motion.li>
-                  </Link>
+                    </Link>
+                  </motion.li>
                 );
               })}
             </ul>
@@ -93,21 +96,22 @@ function Footer() {
             <ul className="flex flex-col md:pl-3 gap-4 max-h-[400px] flex-wrap">
               {services.map((serv, i) => {
                 return (
-                  <Link href={`/services/${serv.id}`} key={serv.id}>
-                    <motion.li
-                      initial={{ opacity: 0 }}
-                      whileInView={{ opacity: 1 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: i / 4,
-                      }}
-                      className={` hover:pr-2 duration-300`}
-                    >
+                  <motion.li
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: i / 4,
+                    }}
+                    className={` hover:pr-2 duration-300`}
+                    key={serv.id}
+                  >
+                    <Link href={`/services/${serv.id}`}>
                       <KeyboardDoubleArrowLeftIcon />
 
                       {serv.title}
-                    </motion.li>
-                  </Link>
+                    </Link>
+                  </motion.li>
                 );
               })}
             </ul>
@@ -122,7 +126,7 @@ function Footer() {
           </p>
         </div>
       </div>
-    </>
+    </footer>
   );
 }
 

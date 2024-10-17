@@ -135,6 +135,8 @@ function Header() {
 
   return (
     <div
+      aria-hidden="true"
+      role="navigation"
       className={`sticky w-full top-0 left-0 z-[500] bg-slate shadow-md transition-all duration-500 ${
         show ? "-translate-y-0 " : " -translate-y-96 "
       }`}

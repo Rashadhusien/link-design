@@ -16,9 +16,9 @@ import { Typography } from "@mui/material";
 
 function Swippe() {
   return (
-    <div>
+    <div aria-hidden="true">
       {/* hidden sm:block */}
-      <div className="h-[50vh] md:h-screen">
+      <div aria-hidden="true" className="h-[50vh] md:h-screen">
         <Swiper
           slidesPerView={1}
           loop={true}

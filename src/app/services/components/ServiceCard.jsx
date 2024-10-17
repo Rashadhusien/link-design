@@ -34,9 +34,9 @@ function ServiceCard() {
           />
         </div>
         <div className="pt-10 pb-4 relative">
-          <h5 className="font-bold mb-3 hover:text-primary w-fit underline decoration-1 underline-offset-2 duration-300 text-gray text-2xl  xl:text-3xl">
+          <h2 className="font-bold mb-3 hover:text-primary w-fit underline decoration-1 underline-offset-2 duration-300 text-gray text-2xl  xl:text-3xl">
             <Link href={`/services/${service?.id}`}>{service?.title}</Link>
-          </h5>
+          </h2>
           <p className="line-clamp-4 text-grayp text-[16px] leading-7">
             {service?.description}
           </p>

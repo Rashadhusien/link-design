@@ -25,9 +25,13 @@ function ImageAndTextAbout() {
           className="max-w-[100%] object-contain"
         />
         <motion.div
-          variants={fadeIn("right", 0.2)}
-          initial={"hidden"}
-          whileInView={"show"}
+          initial={{ x: 40, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{
+            type: "tween",
+            duration: 1,
+            ease: [0.25, 0.25, 0.25, 0.75],
+          }}
           viewport={{ once: false, amount: 0.5 }}
           className="pl-0 py-10 pr-2  lg:p-10"
         >

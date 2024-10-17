@@ -9,15 +9,15 @@ import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import Fade from "@mui/material/Fade";
 
 function ScrollTop(props) {
-  const { children, window } = props;
+  const { children } = props;
   // Note that you normally won't need to set the window ref as useScrollTrigger
   // will default to window.
   // This is only being set here because the demo is in an iframe.
-  const trigger = useScrollTrigger({
-    target: window ? window() : undefined,
-    disableHysteresis: true,
-    threshold: 100,
-  });
+  // const trigger = useScrollTrigger({
+  //   target: window ? window() : undefined,
+  //   disableHysteresis: true,
+  //   threshold: 100,
+  // });
 
   const handleClick = (event) => {
     const anchor = (event.target.ownerDocument || document).querySelector(
@@ -32,7 +32,7 @@ function ScrollTop(props) {
   };
 
   return (
-    <Fade in={trigger} className=" z-50">
+    <Fade className=" z-50">
       <Box
         onClick={handleClick}
         role="presentation"
@@ -45,13 +45,10 @@ function ScrollTop(props) {
   );
 }
 
-
-
 export default function BackToTop(props) {
   return (
     <>
-
-      <ScrollTop {...props} >
+      <ScrollTop {...props}>
         <Fab
           size="small"
           aria-label="scroll back to top"

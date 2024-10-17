@@ -47,7 +47,7 @@ function TestemonialsCards() {
                 sx={{ width: 50, height: 50 }}
               />
             </motion.div>
-            <h6 className="text-2xl text-gray">{testemonial?.name}</h6>
+            <h3 className="text-2xl text-gray">{testemonial?.name}</h3>
           </div>
         </div>
       </SwiperSlide>

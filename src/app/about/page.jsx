@@ -3,7 +3,7 @@ import ImageAndTextAbout from "./components/ImageAndTextAbout";
 
 function About() {
   return (
-    <div>
+    <div role="main">
       <div className="container mx-auto py-32">
         <ImageAndTextAbout />
         <div className="py-20 ">

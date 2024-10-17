@@ -74,7 +74,7 @@ function NumberOfClients() {
                     />
                   </motion.div>
                   <div>
-                    <h4 className="text-6xl font-bold">
+                    <span className="text-6xl font-bold">
                       {conterON && (
                         <CountUp
                           start={0}
@@ -85,7 +85,7 @@ function NumberOfClients() {
                       )}
                       {IsThousand && "k"}
                       {plus && "+"}
-                    </h4>
+                    </span>
                     <p className="mt-1">{txt}</p>
                   </div>
                 </div>
