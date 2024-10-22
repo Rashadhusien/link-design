@@ -18,13 +18,13 @@ function NumberOfClients() {
       <div className="container mx-auto flex flex-col lg:flex-row gap-20 lg:justify-center lg:items-center py-28   overflow-hidden text-white">
         <div className="flex-1">
           <motion.h2
-            initial={{ x: 200, opacity: 0 }}
+            initial={{ x: 300, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{
               duration: 0.5,
               damping: 100,
               mass: 100,
-              delay: 0.2,
+              delay: 0.5,
             }}
             className="text-3xl sm:text-4xl md:text-5xl text-center sm:text-start xl:text-6xl  font-bold mt-5 leading-[40px] sm:leading-[50px]  md:leading-[70px] xl:leading-[80px] mb-10"
           >

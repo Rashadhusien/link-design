@@ -3,7 +3,6 @@ import "./globals.css";
 import Links from "./components/Links";
 import Header from "./components/Header";
 
-import BackToTop from "./components/ScrollTop";
 import Footer from "./components/Footer";
 
 import { Analytics } from "@vercel/analytics/react";
@@ -33,9 +32,7 @@ export default function RootLayout({ children }) {
         <Header />
 
         {children}
-        <span className="hidden md:block">
-          <BackToTop />
-        </span>
+
         <span className=" fixed right-1 bottom-0 z-50 md:hidden">
           <BasicSpeedDial />
         </span>

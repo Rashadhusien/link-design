@@ -61,17 +61,11 @@ function Footer() {
               روابط سريعة
             </Typography>
             <ul className="flex flex-col md:pl-3 gap-5">
-              {quickLinks.map((link, i) => {
+              {quickLinks.map((link) => {
                 const { id, href, content } = link;
                 return (
-                  <motion.li
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{
-                      duration: 0.3,
-                      delay: i / 4,
-                    }}
-                    className={`  hover:pr-2 flex gap-2 items-center hover:pl-2 duration-300`}
+                  <li
+                    className={`  hover:pr-2 flex gap-2 items-center hover:pl-2 duration-300 hover:underline`}
                     key={id}
                   >
                     <Link href={href}>
@@ -79,7 +73,7 @@ function Footer() {
 
                       {content}
                     </Link>
-                  </motion.li>
+                  </li>
                 );
               })}
             </ul>
@@ -93,17 +87,11 @@ function Footer() {
             >
               الخدمات
             </Typography>
-            <ul className="flex flex-col md:pl-3 gap-4 max-h-[400px] flex-wrap">
-              {services.map((serv, i) => {
+            <ul className="flex flex-col md:pl-3 gap-4 max-h-[400px] flex-wrap ">
+              {services.map((serv) => {
                 return (
-                  <motion.li
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    transition={{
-                      duration: 0.3,
-                      delay: i / 4,
-                    }}
-                    className={` hover:pr-2 duration-300`}
+                  <li
+                    className={` hover:pr-2 duration-300 hover:underline`}
                     key={serv.id}
                   >
                     <Link href={`/services/${serv.id}`}>
@@ -111,7 +99,7 @@ function Footer() {
 
                       {serv.title}
                     </Link>
-                  </motion.li>
+                  </li>
                 );
               })}
             </ul>

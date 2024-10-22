@@ -23,12 +23,7 @@ function Links() {
   });
 
   return (
-    <div
-      aria-hidden="true"
-      className={`px-4 bg-darkBlue text-whitep shadow-md`}
-      id="back-to-top-anchor"
-      role="navigation"
-    >
+    <div className={`px-4 bg-darkBlue text-whitep shadow-md`} role="navigation">
       <div className="container mx-auto  flex flex-col md:gap-5 md:flex-row justify-between items-center p-3 ">
         <div className="mail-location-social text-[13px] lg:text-[16px] flex flex-1 flex-col sm:flex-row items-center gap-1 ">
           <div className="location flex  items-center">
