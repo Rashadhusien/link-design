@@ -11,38 +11,28 @@ import "swiper/css/navigation";
 // import required modules
 import { Pagination } from "swiper/modules";
 
-
 function Service({ service }) {
-
-
-
-
   const renderContent = service?.servicesContent.map((serviceContent) => {
-
-
-
-
     const renderImages = serviceContent?.images.map((img, i) => {
-
-      
-        return (
-          <SwiperSlide key={i} className="mx-auto max-w-full ">
-            <Image
-              src={img}
-              alt={img}
-              width={2000} 
-              height={2000} 
-              className="w-[500px] h-[500px] object-cover rounded-sm height-500"
-            />
-          </SwiperSlide>
-        );
-      }
-    );
-
-
+      return (
+        <SwiperSlide key={i} className="mx-auto max-w-full ">
+          <Image
+            src={img}
+            alt={img}
+            quality={100}
+            width={1000}
+            height={1000}
+            className="w-[500px] h-[500px] object-cover rounded-sm height-500"
+          />
+        </SwiperSlide>
+      );
+    });
 
     return (
-      <div key={serviceContent?.id} className="w-full pb-20 overflow-hidden rounded-sm">
+      <div
+        key={serviceContent?.id}
+        className="w-full pb-20 overflow-hidden rounded-sm"
+      >
         <div className="">
           <Swiper
             className="max-w-full "
@@ -52,7 +42,6 @@ function Service({ service }) {
             pagination={{
               clickable: true,
             }}
-
             breakpoints={{
               640: {
                 slidesPerView: 1,
@@ -76,7 +65,7 @@ function Service({ service }) {
             {serviceContent.title}
           </h1>
           <p className="text-grayp leading-8 text-md">
-          {serviceContent.descirption}
+            {serviceContent.descirption}
           </p>
         </div>
       </div>

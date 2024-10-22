@@ -193,6 +193,27 @@ div.image::after {
   background-color: transparent;
 }
 
+@media (max-width: 600px) {
+  h2.text-swipper {
+    font-size: 20px;
+    line-height: 1;
+  }
+  
+}
+@media (min-width: 601px) and (max-width: 1200px) {
+  h2.text-swipper {
+    font-size: 30px;
+    line-height: 2;
+  }
+  
+}
+@media (min-width: 1201px) {
+  h2.text-swipper {
+    font-size: 50px;
+    line-height: 2;
+  }
+}
+
 @keyframes change-background {
   0%,
   100% {

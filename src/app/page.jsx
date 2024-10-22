@@ -2,7 +2,8 @@ import Swippe from "./components/Swippe";
 
 import SectionTitle from "./components/SectionTitle";
 import ImageAndTextAbout from "./about/components/ImageAndTextAbout";
-import ServiceCard from "./services/components/ServiceCard";
+
+import ServiceCard from "./components/ServiceCard";
 
 import TestemonialsCards from "./testemonials/components/TestemonialsCards";
 import Book from "./contact/components/Book";

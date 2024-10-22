@@ -7,7 +7,6 @@ import { navData } from "../../data/data";
 import { usePathname } from "next/navigation";
 
 import { motion } from "framer-motion";
-import { fadeIn } from "../../data/variants";
 
 import Button from "../../components/ui/Button";
 
@@ -40,9 +39,9 @@ function ImageAndTextAbout() {
             <span>من نحن؟</span>
             <span className="w-10 h-[0.8px] bg-primary block" />
           </p>
-          <h3 className="text-gray font-bold mb-9 text-3xl sm:text-4xl">
+          <h1 className="text-gray font-extrabold mb-9 text-3xl sm:text-4xl">
             أكثر من 25 عاماً من الخبرة في مجال خدمات السباكة ومكافحة الحرائق
-          </h3>
+          </h1>
 
           <p className="text-gray mb-6 max-w-[680px]   text-sm sm:text-md lg:text-lg xl:text-xl">
             لدينا سنوات من الخبرة والسمعة الطيبة لذا يمكنك أن تطمئن إلى أنك كذلك

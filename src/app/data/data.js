@@ -1,12 +1,10 @@
 import { v4 as uuid } from "uuid";
-
 import HomeIcon from "@mui/icons-material/Home";
 import InfoIcon from "@mui/icons-material/Info";
 import ContactPageIcon from "@mui/icons-material/ContactPage";
 import BuildIcon from "@mui/icons-material/Build";
 import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
 import PeopleIcon from "@mui/icons-material/People";
-
 import { Facebook, WhatsApp } from "@mui/icons-material";
 import CallIcon from "@mui/icons-material/Call";
 

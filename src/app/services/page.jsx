@@ -1,9 +1,9 @@
-import ServiceCard from "./components/ServiceCard";
 import PageTitle from "../components/PageTitle";
 import { headerNav } from "../data/data";
 
-function Services() {
+import ServiceCard from "../components/ServiceCard";
 
+function Services() {
   return (
     <>
       <PageTitle title={headerNav.services} />

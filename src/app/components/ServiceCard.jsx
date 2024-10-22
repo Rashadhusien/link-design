@@ -4,7 +4,7 @@ import Link from "next/link";
 
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 
-import { services } from "../../data/data";
+import { services } from "../data/data";
 
 import { motion } from "framer-motion";
 

@@ -1,21 +1,13 @@
 "use client";
 
-
-
 import Link from "next/link";
-import Button from "../../../components/ui/Button";
+import Button from "./ui/Button";
 
-
-import { services } from "../../../data/data";
-
+import { services } from "../data/data";
 
 function Aside({ currentServiceId }) {
-
-
-
-
   const servicesJSX = services.map((service) => {
-    const { id, title} = service;
+    const { id, title } = service;
 
     return (
       currentServiceId != id && (
@@ -38,13 +30,13 @@ function Aside({ currentServiceId }) {
           خدماتنا
         </h5>
 
-        <ul className="flex flex-col gap-5">{servicesJSX}</ul>
-        {/* <AsideSkeleton isLoading={isLoading} /> */}
+        <ul className="flex flex-col gap-5 w-full">{servicesJSX}</ul>
       </div>
-      <div className="p-8 lg:max-w-64 text-slate bg-darkBlue">
+
+      <div className="p-8 w-full text-slate bg-darkBlue">
         <h2 className="text-3xl my-5">تواصل معنا</h2>
         <p className="text-sm leading-6 capitalize mb-5">
-        نحن شركة سباكة تعمل في هذا المجال منذ ما يقرب من 20 عامًا منذ بدايتنا
+          نحن شركة سباكة تعمل في هذا المجال منذ ما يقرب من 20 عامًا منذ بدايتنا
         </p>
         <Button style={"border-2 py-3 px-5 mb-5 "}>
           <Link href={"/contact"}>اتصل بنا</Link>

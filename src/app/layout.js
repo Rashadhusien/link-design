@@ -10,7 +10,10 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import BasicSpeedDial from "./components/SpeedDial";
 
-const cairo = Cairo({ subsets: ["latin"], weight: "600" });
+const cairo = Cairo({
+  subsets: ["latin"],
+  weight: ["500", "600", "700", "800", "900", "1000"],
+});
 
 export const metadata = {
   title: "Link Design",
