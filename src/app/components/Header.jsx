@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-import { useState, useEffect } from "react";
+import { useCallback, useState, useEffect } from "react";
 
 // mui
 import Box from "@mui/material/Box";
@@ -41,23 +41,23 @@ function Header() {
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  const controlNavbar = () => {
-    if (window.scrollY > lastScrollY && window.scrollY > 160) {
-      // Scrolling down
-      setShow(false);
-    } else {
-      // Scrolling up
-      setShow(true);
-    }
-    setLastScrollY(window.scrollY);
-  };
+  const controlNavbar = useCallback(() => {
+    setLastScrollY((prevScrollY) => {
+      if (window.scrollY > prevScrollY && window.scrollY > 160) {
+        setShow(false);
+      } else {
+        setShow(true);
+      }
+      return window.scrollY;
+    });
+  }, []);
 
   useEffect(() => {
     window.addEventListener("scroll", controlNavbar);
     return () => {
       window.removeEventListener("scroll", controlNavbar);
     };
-  }, [lastScrollY]);
+  }, [controlNavbar, lastScrollY]);
 
   // Render
 

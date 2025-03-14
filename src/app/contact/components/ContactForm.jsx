@@ -78,10 +78,7 @@ function ContactForm() {
           <ValidationError prefix="Phone" field="phone" errors={state.errors} />
         </div>
         <div>
-          <label htmlFor="txt">
-            {/* {t("txt")} */}
-            رسالة قصيرة *
-          </label>
+          <label htmlFor="txt">رسالة قصيرة *</label>
           <textarea
             cols="30"
             rows="5"
