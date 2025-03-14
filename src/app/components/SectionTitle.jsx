@@ -5,6 +5,7 @@ function SectionTitle({ title, style, currentLang }) {
     <div className={style}>
       <motion.h2
         initial={{ y: 100, opacity: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
         whileInView={{ y: 0, opacity: 1 }}
         transition={{
           duration: 0.7,

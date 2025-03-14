@@ -31,7 +31,7 @@ function ImageAndTextAbout() {
             duration: 1,
             ease: [0.25, 0.25, 0.25, 0.75],
           }}
-          viewport={{ once: false, amount: 0.5 }}
+          viewport={{ once: true, amount: 0.5 }}
           className="pl-0 py-10 pr-2  lg:p-10"
         >
           <p className=" flex items-center gap-3 font-bold text-primary pb-5">

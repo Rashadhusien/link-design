@@ -9,6 +9,7 @@ function ElementorSection() {
     <div className="elementor-section max-w-[1110px] mx-auto grid grid-rows-3 sm:grid-rows-1 sm:grid-cols-3 text-center gap-5 lg:gap-24  ">
       <motion.div
         initial={{ scale: 0, opacity: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
         whileInView={{ scale: 1, opacity: 1 }}
         transition={{
           duration: 0.5,
@@ -45,6 +46,7 @@ function ElementorSection() {
 
       <motion.div
         initial={{ scale: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
         whileInView={{ scale: 1 }}
         transition={{
           duration: 0.5,
@@ -79,6 +81,7 @@ function ElementorSection() {
 
       <motion.div
         initial={{ scale: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
         whileInView={{ scale: 1 }}
         transition={{
           duration: 0.5,

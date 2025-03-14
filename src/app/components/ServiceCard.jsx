@@ -14,7 +14,7 @@ function ServiceCard() {
       <motion.div
         initial={{ y: -5, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: false, amount: 0.5 }}
+        viewport={{ once: true, amount: 0.5 }}
         transition={{
           type: "tween",
           duration: 1.2,

@@ -19,6 +19,7 @@ function NumberOfClients() {
         <div className="flex-1">
           <motion.h2
             initial={{ x: 300, opacity: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{
               duration: 0.5,
