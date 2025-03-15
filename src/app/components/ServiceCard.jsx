@@ -1,50 +1,40 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
-
-import { useState, useEffect } from "react";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
-
-// import { services } from "../data/data";
-
+import { useMemo } from "react";
+import useSWR from "swr";
 import { motion } from "framer-motion";
+import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import ServiceSkeleton from "./ServiceSkeleton";
 
+// Fetch function for SWR
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
+// Framer Motion Variants
+const serviceVariants = {
+  hidden: { y: -5, opacity: 0 },
+  visible: (i) => ({
+    y: 0,
+    opacity: 1,
+    transition: { duration: 1, delay: i / 5, ease: [0.25, 0.25, 0.25, 0.75] },
+  }),
+};
+
 function ServiceCard() {
-  const [services, setServices] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const { data: services, error } = useSWR("/api/services", fetcher);
 
-  useEffect(() => {
-    const fetchServics = async () => {
-      try {
-        const res = await fetch(`/api/services`);
-        if (!res.ok) throw new Error("Failed to fetch services");
-        const data = await res.json();
-        setServices(data);
-      } catch (err) {
-        console.error("Failed to fetch services:", err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchServics();
-  }, []);
-
-  const renderServicesCard = services.map((service, i) => {
-    return (
+  // Memoize service card list to avoid unnecessary re-renders
+  const renderServicesCard = useMemo(() => {
+    return services?.map((service, i) => (
       <motion.div
-        initial={{ y: -5, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
+        variants={serviceVariants}
+        initial="hidden"
+        whileInView="visible"
         viewport={{ once: true, amount: 0.5 }}
-        transition={{
-          type: "tween",
-          duration: 1,
-          delay: i / 5,
-          ease: [0.25, 0.25, 0.25, 0.75],
-        }}
+        custom={i}
         key={service.id}
-        className="bg-[#ffffff] shadow-sm max-w-[430px] mx-auto rounded-3xl p-5  "
+        className="bg-[#ffffff] shadow-sm max-w-[430px] mx-auto rounded-3xl p-5"
       >
         <div className="overflow-hidden rounded-3xl duration-500 transition-all">
           <Image
@@ -52,11 +42,13 @@ function ServiceCard() {
             alt="service-thumb"
             width={1000}
             height={1000}
+            priority={i === 0} // Prioritize first image
+            loading={i === 0 ? "eager" : "lazy"}
             className="rounded-3xl max-h-[200px] object-cover hover:scale-125 transition-all duration-300"
           />
         </div>
         <div className="pt-10 pb-4 relative">
-          <h2 className="font-bold mb-3 hover:text-primary w-fit underline decoration-1 underline-offset-2 duration-300 text-gray text-2xl  xl:text-3xl">
+          <h2 className="font-bold mb-3 hover:text-primary w-fit underline decoration-1 underline-offset-2 duration-300 text-gray text-2xl xl:text-3xl">
             <Link href={`/services/${service?.id}`}>{service?.title}</Link>
           </h2>
           <p className="line-clamp-4 text-grayp text-[16px] leading-7">
@@ -64,9 +56,7 @@ function ServiceCard() {
           </p>
           <div className="mt-10 flex items-center justify-between">
             <Link href={`/services/${service?.id}`}>
-              <p
-                className={`flex-row flex w-fit hover:text-primary duration-300  font-bold text-darkBlue`}
-              >
+              <p className="flex-row flex w-fit hover:text-primary duration-300 font-bold text-darkBlue">
                 <KeyboardDoubleArrowRightIcon className="mt-[2px]" />
                 قراءة المزيد
               </p>
@@ -76,28 +66,33 @@ function ServiceCard() {
               alt="funfact"
               width={50}
               height={50}
-              className=" opacity-20"
+              className="opacity-20"
             />
           </div>
         </div>
       </motion.div>
+    ));
+  }, [services]);
+
+  if (error)
+    return (
+      <p className="text-center text-lg font-semibold text-gray-500">
+        ❌ Failed to load services.
+      </p>
     );
-  });
+
+  if (!services) return <ServiceSkeleton isLoading={true} />;
 
   return (
-    <>
-      <div className="bg-[#F5F8FE] container  mx-auto px-1 sm:px-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-5">
-        {isLoading ? (
-          <ServiceSkeleton isLoading={isLoading} />
-        ) : services.length > 0 ? (
-          renderServicesCard
-        ) : (
-          <p className="text-center text-lg font-semibold text-gray-500">
-            ❌ No services found.
-          </p>
-        )}
-      </div>
-    </>
+    <div className="bg-[#F5F8FE] container mx-auto px-1 sm:px-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {services.length > 0 ? (
+        renderServicesCard
+      ) : (
+        <p className="text-center text-lg font-semibold text-gray-500">
+          ❌ No services found.
+        </p>
+      )}
+    </div>
   );
 }
 

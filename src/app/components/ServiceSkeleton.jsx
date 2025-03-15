@@ -46,7 +46,11 @@ function ServiceSkeleton({ isLoading }) {
     );
   });
 
-  return isLoading ? renderSkeleton : null;
+  return isLoading ? (
+    <div className="bg-[#F5F8FE] container mx-auto px-1 sm:px-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      {renderSkeleton}
+    </div>
+  ) : null;
 }
 
 export default ServiceSkeleton;

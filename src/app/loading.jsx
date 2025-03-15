@@ -10,6 +10,7 @@ function Test() {
             alt="preload"
             width={100}
             height={100}
+            loading="eager"
             className="rounded-full "
           />
         </div>

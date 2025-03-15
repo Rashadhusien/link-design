@@ -35,24 +35,24 @@ function ImageAndTextAbout() {
           className="pl-0 py-10 pr-2  lg:p-10"
         >
           <p className=" flex items-center gap-3 font-bold text-primary pb-5">
-            <span className="w-10 h-[0.8px] bg-primary block" />
-            <span>من نحن؟</span>
-            <span className="w-10 h-[0.8px] bg-primary block" />
+            <span className="w-1 h-[0.8px] bg-primary block" />
+            <span>من نحن ؟</span>
+            <span className="w-1 h-[0.8px] bg-primary block" />
           </p>
-          <h1 className="text-gray font-extrabold mb-9 text-3xl sm:text-4xl">
-            أكثر من 25 عاماً من الخبرة في مجال خدمات السباكة ومكافحة الحرائق
+          <h1 className="text-gray font-extrabold mb-6 text-2xl sm:text-3xl md:text-4xl leading-tight">
+            أكثر من 25 عامًا من الخبرة في خدمات السباكة ومكافحة الحرائق
           </h1>
 
-          <p className="text-gray mb-6 max-w-[680px]   text-sm sm:text-md lg:text-lg xl:text-xl">
-            لدينا سنوات من الخبرة والسمعة الطيبة لذا يمكنك أن تطمئن إلى أنك كذلك
-            <strong>منزلك ونظام السباكة آمنان</strong> موثوقة. حتى نتمكن من
-            إعادة نظام السباكة الخاص بك إلى المسار الصحيح بسرعة وبشكل صحيح.
+          <p className="text-gray mb-4 max-w-[680px] mx-auto xl:mx-0 text-sm sm:text-md lg:text-lg xl:text-xl leading-relaxed">
+            لدينا سنوات من الخبرة والسمعة الطيبة، لذا يمكنك أن تطمئن إلى أن{" "}
+            <strong>منزلك ونظام السباكة آمنان وموثوقان.</strong> نحن نعمل بكفاءة
+            لإعادة نظام السباكة الخاص بك إلى المسار الصحيح بسرعة وبشكل صحيح.
           </p>
-          <p className="text-gray  max-w-[680px]   text-sm sm:text-md lg:text-lg xl:text-xl">
-            لدينا سنوات من الخبرة والسمعة الطيبة لذا يمكنك أن تطمئن إلى أنك كذلك
-            <strong>إذا لم نصل في الوقت المحدد، فلن تدفع عشرة سنتات!</strong>
-            انقاذ على سخانات المياه. جدولة الطلب الآن. الخدمات: تنظيف الصرف،
-            فلتر المياه، إصلاح سخان المياه، تركيب سخان المياه.
+          <p className="text-gray max-w-[680px] mx-auto xl:mx-0 text-sm sm:text-md lg:text-lg xl:text-xl leading-relaxed">
+            إذا لم نصل في الوقت المحدد،{" "}
+            <strong>فلن تتحمل أي تكلفة إضافية!</strong> نحن نقدم خصومات على
+            سخانات المياه. احجز الآن للاستفادة من خدماتنا، والتي تشمل: تنظيف
+            الصرف، فلاتر المياه، إصلاح وتركيب سخانات المياه.
           </p>
           {pathname == "/" && (
             <Link href={navData[1].href}>

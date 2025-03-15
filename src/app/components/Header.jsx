@@ -2,10 +2,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
 import { useCallback, useState, useEffect } from "react";
 
-// mui
+// MUI Components
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import Button from "@mui/material/Button";
@@ -14,7 +13,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 
@@ -22,166 +20,123 @@ import { navData } from "../data/data";
 
 function Header() {
   const pathname = usePathname();
-
-  const [state, setState] = useState({
-    right: false,
-  });
-
-  const toggleDrawer = (anchor, open) => (event) => {
-    if (
-      event.type === "keydown" &&
-      (event.key === "Tab" || event.key === "Shift")
-    ) {
-      return;
-    }
-
-    setState({ [anchor]: open });
-  };
-
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
 
+  // Toggle drawer state
+  const toggleDrawer = (open) => () => setDrawerOpen(open);
+
+  // Navbar scroll effect
   const controlNavbar = useCallback(() => {
-    setLastScrollY((prevScrollY) => {
-      if (window.scrollY > prevScrollY && window.scrollY > 160) {
-        setShow(false);
-      } else {
-        setShow(true);
-      }
-      return window.scrollY;
-    });
-  }, []);
+    if (window.scrollY > lastScrollY && window.scrollY > 160) {
+      setShow(false);
+    } else {
+      setShow(true);
+    }
+    setLastScrollY(window.scrollY);
+  }, [lastScrollY]);
 
   useEffect(() => {
     window.addEventListener("scroll", controlNavbar);
-    return () => {
-      window.removeEventListener("scroll", controlNavbar);
-    };
-  }, [controlNavbar, lastScrollY]);
+    return () => window.removeEventListener("scroll", controlNavbar);
+  }, [controlNavbar]);
 
-  // Render
-
-  const list = (anchor) => (
-    <div className="block lg:hidden">
-      <Box
-        role="presentation"
-        onClick={toggleDrawer(anchor, false)}
-        onKeyDown={toggleDrawer(anchor, false)}
-        className="mt-20 "
-      >
-        {navData?.map((nav) => {
-          const { href, icon, text } = nav;
-
-          // const ref =
-          //   currentLang === "ar" && href !== "/ar" ? `/ar${href}` : href;
-
-          return (
-            <List
-              key={text}
-              disablePadding
-              className="group relative"
-              dir="ltr"
-            >
-              {/* li */}
-              <Link
-                href={href}
-                className={`${
-                  pathname === href ? " active-small " : ""
-                } relative  `}
-              >
-                <ListItem>
-                  <ListItemButton>
-                    <ListItemIcon
-                      className={`${
-                        pathname === href ? " active-small " : ""
-                      } group-hover:text-darkBlue`}
-                    >
-                      {icon}
-                    </ListItemIcon>
-                    <ListItemText
-                      primary={text}
-                      className={`${
-                        pathname === href ? " active-small " : ""
-                      } group-hover:text-darkBlue capitalize text-[#757575]`}
-                    />
-                  </ListItemButton>
-                </ListItem>
-              </Link>
-
-              {/* li */}
-            </List>
-          );
-        })}
-      </Box>
-    </div>
+  // Mobile Navigation List
+  const renderMobileNav = (
+    <Box
+      role="presentation"
+      onClick={toggleDrawer(false)}
+      onKeyDown={toggleDrawer(false)}
+      className="mt-20"
+    >
+      {navData.map(({ href, icon, text }) => (
+        <List key={text} disablePadding className="group relative">
+          <Link
+            href={href}
+            className={`relative ${pathname === href ? "active-small" : ""}`}
+          >
+            <ListItem>
+              <ListItemButton>
+                <ListItemIcon
+                  className={`group-hover:text-darkBlue ${
+                    pathname === href ? "active-small" : ""
+                  }`}
+                >
+                  {icon}
+                </ListItemIcon>
+                <ListItemText
+                  primary={text}
+                  className={`group-hover:text-darkBlue capitalize text-[#757575] ${
+                    pathname === href ? "active-small" : ""
+                  }`}
+                />
+              </ListItemButton>
+            </ListItem>
+          </Link>
+        </List>
+      ))}
+    </Box>
   );
 
-  const lgList = navData?.map((li) => {
-    const { text, href } = li;
-
-    return (
-      <li key={text} className="relative">
-        <Link
-          href={href}
-          className={`${
-            pathname === href ? "active" : ""
-          }   py-3 px-5 rounded-lg   hover:text-whitep hover:bg-primary duration-200 cursor-pointer capitalize`}
-        >
-          {text}
-        </Link>
-      </li>
-    );
-  });
+  // Desktop Navigation List
+  const renderDesktopNav = navData.map(({ text, href }) => (
+    <li key={text} className="relative">
+      <Link
+        href={href}
+        className={`py-3 px-5 rounded-lg hover:text-whitep hover:bg-primary duration-200 capitalize ${
+          pathname === href ? "active" : ""
+        }`}
+      >
+        {text}
+      </Link>
+    </li>
+  ));
 
   return (
-    <div
+    <nav
       role="navigation"
       className={`sticky w-full top-0 left-0 z-[500] bg-slate shadow-md transition-all duration-500 ${
-        show ? "-translate-y-0 " : " -translate-y-96 "
+        show ? "translate-y-0" : "-translate-y-96"
       }`}
     >
-      <div
-        className={` container mx-auto flex  lg:flex-row justify-between items-center p-2  h-[70px] lg:h-[90px] overflow-hidden `}
-      >
-        <div className="block lg:hidden">
-          <Button onClick={toggleDrawer("right", true)}>
-            <MenuIcon className="text-black text-[25px] " />
-          </Button>
-        </div>
-        <div className="block lg:hidden">
-          <Drawer
-            anchor={"right"}
-            open={state["right"]}
-            onClose={toggleDrawer("right", false)}
-            className="block lg:hidden"
-          >
-            <CloseIcon
-              onClick={() => setState({ right: false })}
-              className="border p-1 text-[35px] cursor-pointer  absolute right-9 top-9"
-            />
+      <div className="container mx-auto flex justify-between items-center p-2 h-[70px] lg:h-[90px]">
+        {/* Mobile Menu Button */}
+        <Button onClick={toggleDrawer(true)} className="block lg:hidden">
+          <MenuIcon className="text-black text-[25px]" />
+        </Button>
 
-            {list("right")}
-          </Drawer>
-        </div>
+        {/* Mobile Drawer */}
+        <Drawer
+          anchor="right"
+          open={isDrawerOpen}
+          onClose={toggleDrawer(false)}
+        >
+          <CloseIcon
+            onClick={toggleDrawer(false)}
+            className="border p-1 text-[35px] cursor-pointer absolute right-9 top-9"
+          />
+          {renderMobileNav}
+        </Drawer>
 
-        <Link href={"/"}>
+        {/* Logo */}
+        <Link href="/" rel="noopener noreferrer">
           <Image
-            src={"/logo.png"}
+            src="/logo.png"
             alt="logo"
             width={1000}
             height={1000}
             className="w-[70px] lg:w-[100px]"
-            priority={true}
+            priority
           />
         </Link>
 
-        <div className="hidden lg:block">
-          <ul className="flex justify-evenly items-center gap-3 text-lg ">
-            {lgList}
-          </ul>
-        </div>
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex justify-evenly items-center gap-3 text-lg">
+          {renderDesktopNav}
+        </ul>
       </div>
-    </div>
+    </nav>
   );
 }
 
