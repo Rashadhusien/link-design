@@ -7,10 +7,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination } from "swiper/modules";
-import { motion } from "framer-motion";
 import { useEffect, useMemo, useState } from "react";
 import TestimonialsSkeleton from "./TestemonilasSkelton";
-// import { testimonials } from "../../data/data";
 
 function TestemonialsCards() {
   const [testimonials, setTestimonials] = useState([]);
@@ -34,7 +32,7 @@ function TestemonialsCards() {
 
   const testimonialsJSX = useMemo(
     () =>
-      testimonials.map(({ id, message, imgSrc, name }) => (
+      testimonials.map(({ id, message, name }) => (
         <SwiperSlide key={id} className="mx-auto">
           <div className="mx-auto w-fit">
             <div className="p-10 mb-10 relative max-w-[450px] bg-[#f5f8fe] -z-20 arrow-down-ar">
@@ -45,9 +43,10 @@ function TestemonialsCards() {
               <div>
                 <Avatar
                   alt={name}
-                  src={imgSrc}
-                  sx={{ width: 50, height: 50 }}
-                />
+                  sx={{ width: 50, height: 50, backgroundColor: "#0052da" }}
+                >
+                  {name[0]}
+                </Avatar>
               </div>
               <h3 className="text-2xl text-gray">{name}</h3>
             </div>
