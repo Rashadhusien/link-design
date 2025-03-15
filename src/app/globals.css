@@ -212,6 +212,16 @@ div.image::after {
   }
 }
 
+.service-img {
+  max-height: 500px !important;
+}
+
+@media (max-width: 768px) {
+  .service-img {
+    height: 250px !important;
+  }
+}
+
 @keyframes change-background {
   0%,
   100% {

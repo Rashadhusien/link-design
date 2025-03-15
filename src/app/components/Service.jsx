@@ -13,20 +13,21 @@ import { Pagination } from "swiper/modules";
 import SkeletonContent from "./OneServiceSkeleton";
 
 function Service({ service, isLoading }) {
-  console.log(service.servicesContent);
-
   const renderContent = service?.servicesContent?.map((serviceContent) => {
     const renderImages = serviceContent?.images?.map((img, i) => {
       return (
-        <SwiperSlide key={i} className="mx-auto max-w-full ">
-          <Image
-            src={img}
-            alt={img}
-            quality={100}
-            width={1000}
-            height={1000}
-            className="w-[500px] h-[500px] object-cover rounded-sm height-500"
-          />
+        <SwiperSlide key={i} className="max-w-full flex justify-center">
+          {img && (
+            <Image
+              src={img}
+              alt="Service Image"
+              quality={100}
+              width={800}
+              height={600}
+              className="service-img w-full object-cover rounded-sm"
+              
+            />
+          )}
         </SwiperSlide>
       );
     });

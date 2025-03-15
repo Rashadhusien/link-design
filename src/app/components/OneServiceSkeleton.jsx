@@ -10,7 +10,7 @@ function SkeletonContent() {
           sx={{ bgcolor: "grey.600" }}
           variant="rectangular"
           height={500}
-          className="rounded-md object-cover mb-3  w-full"
+          className=" rounded-md object-cover mb-3  w-full"
         />
         <div className="pt-14">
           <Skeleton
