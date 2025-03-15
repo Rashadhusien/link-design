@@ -56,7 +56,7 @@ function Header() {
             href={href}
             className={`relative ${pathname === href ? "active-small" : ""}`}
           >
-            <ListItem>
+            <ListItem dir="ltr">
               <ListItemButton>
                 <ListItemIcon
                   className={`group-hover:text-darkBlue ${
@@ -67,7 +67,7 @@ function Header() {
                 </ListItemIcon>
                 <ListItemText
                   primary={text}
-                  className={`group-hover:text-darkBlue capitalize text-[#757575] ${
+                  className={`text-right group-hover:text-darkBlue capitalize text-[#757575] ${
                     pathname === href ? "active-small" : ""
                   }`}
                 />
@@ -107,17 +107,18 @@ function Header() {
         </Button>
 
         {/* Mobile Drawer */}
-        <Drawer
-          anchor="right"
-          open={isDrawerOpen}
-          onClose={toggleDrawer(false)}
-        >
+        <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
           <CloseIcon
             onClick={toggleDrawer(false)}
             className="border p-1 text-[35px] cursor-pointer absolute right-9 top-9"
           />
           {renderMobileNav}
         </Drawer>
+
+        {/* Desktop Menu */}
+        <ul className="hidden lg:flex justify-evenly items-center gap-3 text-lg">
+          {renderDesktopNav}
+        </ul>
 
         {/* Logo */}
         <Link href="/" rel="noopener noreferrer">
@@ -126,15 +127,10 @@ function Header() {
             alt="logo"
             width={1000}
             height={1000}
-            className="w-[70px] lg:w-[100px]"
+            className="w-[50px] lg:w-[80px]"
             priority
           />
         </Link>
-
-        {/* Desktop Menu */}
-        <ul className="hidden lg:flex justify-evenly items-center gap-3 text-lg">
-          {renderDesktopNav}
-        </ul>
       </div>
     </nav>
   );
