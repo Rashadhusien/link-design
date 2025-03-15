@@ -18,8 +18,7 @@ function NumberOfClients() {
       <div className="container mx-auto flex flex-col lg:flex-row gap-20 lg:justify-center lg:items-center py-28   overflow-hidden text-white">
         <div className="flex-1">
           <motion.h2
-            initial={{ x: 300, opacity: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
+            initial={false} // Prevents it from hiding initially
             whileInView={{ x: 0, opacity: 1 }}
             transition={{
               duration: 0.5,
@@ -27,7 +26,7 @@ function NumberOfClients() {
               mass: 100,
               delay: 0.5,
             }}
-            className="text-3xl sm:text-4xl md:text-5xl text-center sm:text-start xl:text-6xl  font-bold mt-5 leading-[40px] sm:leading-[50px]  md:leading-[70px] xl:leading-[80px] mb-10"
+            className="text-center lg:text-start text-3xl lg:text-4xl xl:text-5xl font-bold mt-5 leading-[50px] sm:leading-[50px] md:leading-[70px] xl:leading-[80px] mb-10"
           >
             نحن نقدم دائمًا خدمات مختلفة عن الخدمات الأخرى.
           </motion.h2>
@@ -59,11 +58,12 @@ function NumberOfClients() {
                 >
                   <motion.div
                     initial={{ opacity: 0 }}
+                    viewport={{ once: true, amount: 0.5 }}
                     whileInView={{ opacity: 1 }}
                     transition={{
                       duration: 0.5,
 
-                      delay: i / 4,
+                      delay: i / 5,
                     }}
                   >
                     <Image
