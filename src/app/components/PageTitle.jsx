@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import Image from "next/image";
 function PageTitle({ title }) {
   return (
@@ -12,12 +11,9 @@ function PageTitle({ title }) {
         priority={true}
       />
       <div className="absolute top-0 left-0 z-10 w-full h-full bg-primary opacity-60   " />
-      <Typography
-        variant="h2"
-        className=" absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2 z-20 text-nowrap  capitalize text-whitep font-[600] text-3xl sm:text-4xl md:text-5xl "
-      >
+      <h2 className=" absolute top-1/2 left-1/2 -translate-x-1/2  -translate-y-1/2 z-20 text-nowrap  capitalize text-whitep font-[600] text-3xl sm:text-4xl md:text-5xl ">
         {title}
-      </Typography>
+      </h2>
     </div>
   );
 }

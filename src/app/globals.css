@@ -196,16 +196,14 @@ div.image::after {
 @media (max-width: 600px) {
   h2.text-swipper {
     font-size: 20px;
-    line-height: 1;
+    line-height: 1.5;
   }
-  
 }
 @media (min-width: 601px) and (max-width: 1200px) {
   h2.text-swipper {
     font-size: 30px;
     line-height: 2;
   }
-  
 }
 @media (min-width: 1201px) {
   h2.text-swipper {

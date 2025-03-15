@@ -2,7 +2,7 @@ import { v4 as uuid } from "uuid";
 import { Skeleton } from "@mui/material";
 
 function ServiceSkeleton({ isLoading }) {
-  const renderSkeleton = [1, 2, 3, 4, 5, 6].map(() => {
+  const renderSkeleton = Array.from({ length: 5 }).map(() => {
     return (
       <div
         key={uuid()}
@@ -46,7 +46,7 @@ function ServiceSkeleton({ isLoading }) {
     );
   });
 
-  return isLoading && renderSkeleton;
+  return isLoading ? renderSkeleton : null;
 }
 
 export default ServiceSkeleton;

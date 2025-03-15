@@ -2,13 +2,35 @@
 import Image from "next/image";
 import Link from "next/link";
 
+import { useState, useEffect } from "react";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 
-import { services } from "../data/data";
+// import { services } from "../data/data";
 
 import { motion } from "framer-motion";
+import ServiceSkeleton from "./ServiceSkeleton";
 
 function ServiceCard() {
+  const [services, setServices] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchServics = async () => {
+      try {
+        const res = await fetch(`/api/services`);
+        if (!res.ok) throw new Error("Failed to fetch services");
+        const data = await res.json();
+        setServices(data);
+      } catch (err) {
+        console.error("Failed to fetch services:", err.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchServics();
+  }, []);
+
   const renderServicesCard = services.map((service, i) => {
     return (
       <motion.div
@@ -17,8 +39,8 @@ function ServiceCard() {
         viewport={{ once: true, amount: 0.5 }}
         transition={{
           type: "tween",
-          duration: 1.2,
-          delay: i / 4,
+          duration: 1,
+          delay: i / 5,
           ease: [0.25, 0.25, 0.25, 0.75],
         }}
         key={service.id}
@@ -65,7 +87,15 @@ function ServiceCard() {
   return (
     <>
       <div className="bg-[#F5F8FE] container  mx-auto px-1 sm:px-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3  gap-5">
-        {renderServicesCard}
+        {isLoading ? (
+          <ServiceSkeleton isLoading={isLoading} />
+        ) : services.length > 0 ? (
+          renderServicesCard
+        ) : (
+          <p className="text-center text-lg font-semibold text-gray-500">
+            ❌ No services found.
+          </p>
+        )}
       </div>
     </>
   );

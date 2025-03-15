@@ -1,24 +1,47 @@
+"use client";
 import PageTitle from "../../components/PageTitle";
 
 import Aside from "../../components/Aside";
 
-import Service from "../../components/Service";
+import { useState, useEffect } from "react";
 
-import { services } from "../../data/data";
+import Service from "../../components/Service";
 
 function ShowService({ params }) {
   const { serviceId } = params;
 
-  const currentservice = services.filter(
-    (service) => service.id === Number(serviceId)
-  );
+  // const currentservice = services.filter(
+  //   (service) => service.id === Number(serviceId)
+  // );
+
+  const [service, setService] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (!serviceId) return; // Ensure serviceId exists before fetching
+
+    const fetchService = async () => {
+      try {
+        const res = await fetch(`/api/services/${serviceId}`); // Dynamic API call
+        if (!res.ok) throw new Error("Failed to fetch service");
+        const data = await res.json();
+        setService(data);
+      } catch (e) {
+        console.error("Failed to fetch service:", e.message);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchService();
+  }, [serviceId]);
 
   return (
     <div>
-      <PageTitle title={currentservice[0].title} />
+      <PageTitle title={service.title} />
 
       <div className="container mx-auto flex flex-col lg:flex-row py-32 gap-10">
-        <Service service={currentservice[0]} />
+        <Service service={service} isLoading={isLoading} />
         <Aside currentServiceId={Number(serviceId)} />
       </div>
     </div>

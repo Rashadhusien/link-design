@@ -43,7 +43,7 @@ export default function Home() {
       </div>
 
       {/* <div className="container mx-auto py-24">
-
+        //TODO: add this section
     <QuiltedImageList />
     <BasicTabs/>
 

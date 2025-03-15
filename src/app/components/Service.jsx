@@ -10,10 +10,13 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination } from "swiper/modules";
+import SkeletonContent from "./OneServiceSkeleton";
 
-function Service({ service }) {
-  const renderContent = service?.servicesContent.map((serviceContent) => {
-    const renderImages = serviceContent?.images.map((img, i) => {
+function Service({ service, isLoading }) {
+  console.log(service.servicesContent);
+
+  const renderContent = service?.servicesContent?.map((serviceContent) => {
+    const renderImages = serviceContent?.images?.map((img, i) => {
       return (
         <SwiperSlide key={i} className="mx-auto max-w-full ">
           <Image
@@ -74,9 +77,13 @@ function Service({ service }) {
 
   return (
     <div className="w-full lg:max-w-[70%] ">
-      {renderContent}
-
-      {/* <SkeltonContent isLoading={isLoading} /> */}
+      {isLoading ? (
+        <SkeletonContent />
+      ) : service?.servicesContent?.length > 0 ? (
+        renderContent
+      ) : (
+        <p className=" text-center ">Service Not Found</p>
+      )}
     </div>
   );
 }
