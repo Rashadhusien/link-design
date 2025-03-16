@@ -11,8 +11,9 @@ function PageTitle({ title }) {
       <Image
         src="/page-title.jpg"
         alt="Page Background"
-        layout="fill"
         objectFit="cover"
+        width={"1000"}
+        height={"1000"}
         priority={true} // Keep it true only if it's above the fold
         className="w-full h-full"
       />

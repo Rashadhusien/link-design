@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 import { useMemo } from "react";
 import useSWR from "swr";
@@ -37,12 +38,12 @@ function ServiceCard() {
         className="bg-[#ffffff] shadow-sm max-w-[430px] mx-auto rounded-3xl p-5"
       >
         <div className="overflow-hidden rounded-3xl duration-500 transition-all">
-          <Image
+          <CldImage
             src={service?.imgSrc}
             alt="service-thumb"
             width={1000}
             height={1000}
-            priority={i === 0} // Prioritize first image
+            priority={i === 0}
             loading={i === 0 ? "eager" : "lazy"}
             className="rounded-3xl max-h-[200px] object-cover hover:scale-125 transition-all duration-300"
           />
@@ -61,7 +62,7 @@ function ServiceCard() {
                 قراءة المزيد
               </p>
             </Link>
-            <Image
+            <CldImage
               src={service.iconUrl}
               alt="funfact"
               width={50}

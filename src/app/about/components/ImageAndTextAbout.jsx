@@ -6,6 +6,8 @@ import { navData } from "../../data/data";
 
 import { usePathname } from "next/navigation";
 
+import { CldImage } from "next-cloudinary";
+
 import { motion } from "framer-motion";
 
 import Button from "../../components/ui/Button";
@@ -16,8 +18,8 @@ function ImageAndTextAbout() {
   return (
     <div>
       <div className=" flex flex-col justify-between overflow-hidden xl:flex-row gap-10 relative ">
-        <Image
-          src={"/master.jpg"} // about-img-2
+        <CldImage
+          src={"master_cebvdg"} // about-img-2
           alt="about-Image-2"
           width={500}
           height={500}

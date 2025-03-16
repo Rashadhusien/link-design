@@ -2,7 +2,7 @@
 
 import { useMemo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import Image from "next/image";
+import { CldImage } from "next-cloudinary";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
@@ -28,7 +28,7 @@ function Service({ service, isLoading }) {
           {serviceContent?.images?.map((img, i) => (
             <SwiperSlide key={i} className="max-w-full flex justify-center">
               {img && (
-                <Image
+                <CldImage
                   src={img}
                   alt="Service Image"
                   quality={90} // Lowered for better performance

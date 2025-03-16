@@ -1,8 +1,9 @@
 "use client";
 
-import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper/modules";
+
+import { CldImage } from "next-cloudinary";
 
 import "swiper/css";
 import "swiper/css/navigation";
@@ -10,12 +11,12 @@ import "swiper/css/navigation";
 const slides = [
   {
     id: 1,
-    image: "/slide-2.jpg",
+    image: "slide-1",
     text: "أفضل خدمات مكافحة الحرائق وبأسعار مناسبة",
   },
   {
     id: 2,
-    image: "/slide-3.jpg",
+    image: "slide-2",
     text: "خدمة سباكة احترافية يمكنك الوثوق بها.",
   },
 ];
@@ -33,7 +34,7 @@ function Swippe() {
       >
         {slides.map(({ id, image, text }) => (
           <SwiperSlide key={id} className="relative">
-            <Image
+            <CldImage
               src={image}
               alt={`slide-${id}`}
               width={1000}

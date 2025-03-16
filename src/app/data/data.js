@@ -10,28 +10,28 @@ import CallIcon from "@mui/icons-material/Call";
 
 export const NumberOfClientsData = [
   {
-    src: "/clientsIcons/funfact-icon-1.png",
+    src: "funfact-icon-1",
     countNumber: 8,
     txt: "مشاريع تشغيلية",
     IsThousand: false,
     plus: false,
   },
   {
-    src: "/clientsIcons/funfact-icon-2.png",
+    src: "funfact-icon-2",
     countNumber: 10,
     txt: "أعضاء الفريق",
     IsThousand: false,
     plus: true,
   },
   {
-    src: "/clientsIcons/funfact-icon-3.png",
+    src: "funfact-icon-3",
     countNumber: 10,
     txt: "عملاء سعداء",
     IsThousand: true,
     plus: false,
   },
   {
-    src: "/clientsIcons/funfact-icon-4.png",
+    src: "funfact-icon-4",
     countNumber: 7,
     txt: "عدد الجوائز",
     IsThousand: false,
@@ -241,11 +241,11 @@ export const itemData = [
 export const services = [
   {
     id: 1,
-    imgSrc: "/sp/swimming-pool.webp",
+    imgSrc: "swimming-pool-banner",
     title: "حمامات سباحة & ميكانيك",
     description:
       "نحن متخصصون في تصميم وتركيب وصيانة حمامات السباحة بأنظمة ميكانيكية متطورة تضمن الأداء الأمثل. نقدم حلول متكاملة بدءًا من أنظمة الفلترة وتنقية المياه إلى التحكم في درجات الحرارة والإضاءة تحت الماء، لضمان تجربة سباحة آمنة ومريحة.",
-    iconUrl: "/servicesIcons/swimming-pool.png",
+    iconUrl: "swimming-pool-icon",
 
     servicesContent: [
       {
@@ -253,24 +253,24 @@ export const services = [
         title: "مسبح فاخر لتجربة منعشة ومثالية",
         descirption:
           "نوفر لك تجربة سباحة آمنة ومريحة بمستوى فاخر. اغمر نفسك في التميز اليوم!",
-        images: ["/sp/pool-1.webp", "/sp/pool-3.webp"],
+        images: ["pool-1"],
       },
       {
         id: uuid(),
         title: "تصميم وصيانة المسابح بأعلى المعايير",
         descirption:
           "التصميم الفريد إلى الصيانة الدورية والتنظيف العميق. احصل على مسبح نظيف، آمن، وجاهز للاستخدام في أي وقت. استمتع بالراحة والانتعاش في منزلك!",
-        images: ["/sp/pool-2.webp"],
+        images: ["pool-3"],
       },
     ],
   },
   {
     id: 2,
-    imgSrc: "/p&w/b-banner.jpg",
+    imgSrc: "pluming-banner",
     title: "السباكة و شبكات المياه",
     description:
       "نوفر حلول سباكة وشبكات مياه متكاملة تغطي جميع احتياجاتك، من تركيب الأنابيب وإصلاح التسريبات إلى تصميم وتنفيذ الشبكات المائية المعقدة.",
-    iconUrl: "/servicesIcons/icon-6.png",
+    iconUrl: "pluming-icon",
 
     servicesContent: [
       {
@@ -278,7 +278,7 @@ export const services = [
         title: "خدمات صيانة وإصلاح سباكة المطبخ",
         descirption:
           "نقدم حلول سباكة احترافية للمطابخ، بما في ذلك إصلاح التسريبات، تركيب المواسير، وصيانة الأحواض لضمان أداء مثالي.",
-        images: ["/kitchen/service-single.jpg"],
+        images: ["service-single-1"],
       },
 
       {
@@ -286,10 +286,7 @@ export const services = [
         title: "تركيب وصيانة سباكة المطبخ بأعلى جودة",
         descirption:
           "خدمات متكاملة لسباكة المطابخ تشمل تركيب الأنابيب، إصلاح الأعطال، وضمان تدفق المياه بسلاسة وكفاءة.",
-        images: [
-          "/kitchen/kitchen-content1.jpg",
-          "/kitchen/kitchen-content2.jpg",
-        ],
+        images: ["kitchen-content1_udunxt", "kitchen-content2_csqjib"],
       },
 
       {
@@ -297,15 +294,7 @@ export const services = [
         title: "إصلاح أعطال السباكة في المطابخ بسرعة وكفاءة",
         descirption:
           "مهندسون متخصصون في معالجة مشاكل سباكة المطابخ، بما في ذلك انسداد المواسير، تسريبات المياه، وصيانة الصمامات.",
-        images: ["/kitchen/kitchen-content3.jpg"],
-      },
-
-      {
-        id: uuid(),
-        title: "حلول متكاملة لسباكة المطبخ",
-        descirption:
-          "نقدم أفضل الخدمات في تركيب وصيانة السباكة للمطابخ، مع استخدام أحدث التقنيات لضمان جودة عالية وأداء مستدام.",
-        images: ["/kitchen/service-thum.jpg", "/kitchen/service-thum2-1.jpg"],
+        images: ["kitchen-content3_snlzjk"],
       },
 
       {
@@ -313,21 +302,17 @@ export const services = [
         title: "خدمات سباكة الحمامات الشاملة",
         descirption:
           "توفير حلول سباكة متكاملة للحمامات، من تركيب أنظمة الصرف إلى إصلاح التسريبات وضبط ضغط المياه لضمان تجربة مريحة وآمنة.",
-        images: [
-          "/bathroom/bathroom.jpg",
-          "/bathroom/bathroom2.jpeg",
-          "/bathroom/bathroom3.jpg",
-        ],
+        images: ["bathroom4_zdddtc", "bathroom_xzjgox", "bathroom3_kqrdyn"],
       },
     ],
   },
   {
     id: 3,
-    imgSrc: "/fire/a-banner.jpg",
+    imgSrc: "firefighting-banner",
     title: "firefighting and fire alarm",
     description:
       "نقدم حلولاً شاملة لمكافحة الحرائق وأنظمة الإنذار، بدءًا من تركيب وصيانة أجهزة الإنذار بالحريق إلى تصميم أنظمة الإطفاء الآلية. هدفنا هو توفير الأمان والحماية لممتلكاتك وسلامة الأشخاص.",
-    iconUrl: "/servicesIcons/icon-2.png",
+    iconUrl: "fire-icon",
 
     servicesContent: [
       {
@@ -335,7 +320,7 @@ export const services = [
         title: "حلول متكاملة لمكافحة الحرائق في مصر",
         descirption:
           "نقدم لك أحدث تقنيات مكافحة الحرائق لضمان سلامتك وسلامة ممتلكاتك، مع فريق محترف وخدمات متميزة تناسب جميع الاحتياجات.",
-        images: ["/fire/fire-10.jpg", "/fire/fire-12.jpeg", "/fire/fire8.jpg"],
+        images: ["fire-10_xtpooq", "fire7_p7m8uj", "fire8_di3ngt"],
       },
 
       {
@@ -343,24 +328,24 @@ export const services = [
         title: "أنظمة حديثة للحماية من الحرائق",
         descirption:
           "نقوم بتصميم وتركيب أنظمة إطفاء متطورة تضمن أعلى معايير الأمان، مع صيانة دورية لضمان الكفاءة والاستجابة السريعة.",
-        images: ["/fire/fire-11.png", "/fire/fire2.jpg", "/fire/fire9.jpg"],
+        images: ["fire-12_k30e8e", "fire9_v3ckyc", "fire-11_sikqg9"],
       },
     ],
   },
   {
     id: 4,
-    imgSrc: "/airconditions/a-banner.png",
+    imgSrc: "air-conditioning-banner",
     title: "التكيفات و الشيلد واتر",
     description:
       "نقدم خدمات التكييف المتكاملة والشيلد واتر، مع التركيز على توفير أنظمة تبريد فعالة وموفرة للطاقة. سواء كنت بحاجة إلى تركيب أنظمة جديدة أو صيانة الأنظمة الحالية، فإن فريقنا مستعد لضمان راحتك",
-    iconUrl: "/servicesIcons/air-conditioner.png",
+    iconUrl: "air-conditioner-icon",
     servicesContent: [
       {
         id: uuid(),
         title: "تركيب وصيانة أجهزة التكييف في مصر",
         descirption:
           "نقدم خدمات متكاملة في تركيب وصيانة التكييفات بمختلف أنواعها، مع ضمان الكفاءة العالية وتوفير استهلاك الطاقة.",
-        images: ["/airconditions/air-1.jpg"],
+        images: ["air-1_rob3bl"],
       },
 
       {
@@ -368,24 +353,24 @@ export const services = [
         title: "أفضل حلول التبريد والتكييف لمختلف الاحتياجات",
         descirption:
           "استمتع بجو مثالي في منزلك أو مكتبك مع خدماتنا المتخصصة في تركيب وصيانة أنظمة التكييف بأحدث التقنيات.",
-        images: ["/airconditions/air-2.jpg"],
+        images: ["air-2_cag2kc"],
       },
     ],
   },
   {
     id: 5,
-    imgSrc: "/finishing/a-banner.png",
+    imgSrc: "finishing-banner",
     title: "التشطيب المتكامل",
     description:
       "نقدم خدمات التشطيب المتكامل التي تغطي جميع جوانب البناء والتجديد، من الأرضيات والحوائط إلى الأسقف والديكورات. نحن نحرص على تقديم حلول تشطيب تعكس رؤيتك وتحقق أعلى معايير الجودة والجمال.",
-    iconUrl: "/servicesIcons/icon-5.png",
+    iconUrl: "finishing-icon",
     servicesContent: [
       {
         id: uuid(),
         title: "خدمات التشطيبات والديكور بأعلى جودة",
         descirption:
           "نقدم لك حلول تشطيبات متكاملة، باستخدام أحدث المواد والتقنيات العصرية، لنحقق لك التصميم المثالي لمنزلك أو مكتبك.",
-        images: ["/finishing/finish-1.jpg", "/finishing/finish-2.jpg"],
+        images: ["finish-1_cqe82e", "finish-2_bpnpkw"],
       },
 
       {
@@ -393,7 +378,7 @@ export const services = [
         title: "تشطيبات راقية بتصاميم عصرية",
         descirption:
           "سواء كنت تبحث عن تشطيب فاخر أو تصميم عملي ومريح، فريقنا المتخصص سيحول أفكارك إلى واقع بأعلى جودة ودقة.",
-        images: ["/finishing/finish-3.jpg"],
+        images: ["finish-3_lhzjb9"],
       },
     ],
   },

@@ -1,11 +1,14 @@
 "use client";
 
-import Image from "next/image";
 import React, { useState, useCallback } from "react";
 import CountUp from "react-countup";
 import ScrollTrigger from "react-scroll-trigger";
 import { NumberOfClientsData } from "../data/data";
 import { motion } from "framer-motion";
+
+import Image from "next/image";
+
+import { CldImage } from "next-cloudinary";
 
 function NumberOfClients() {
   const [conterON, setConterON] = useState(false);
@@ -30,8 +33,8 @@ function NumberOfClients() {
           <div className="client-bg mx-auto sm:mx-0 py-5 px-9 rounded-xl flex items-center justify-center w-fit">
             <h3 className="text-6xl font-bold text-[#f4b81c]">5k</h3>
             <div className="mr-5">
-              <Image
-                src="/star.png"
+              <CldImage
+                src="star.png"
                 alt="star"
                 width={80}
                 height={80}
@@ -48,13 +51,14 @@ function NumberOfClients() {
           <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 grid-rows-2 gap-y-20 gap-x-10 relative client-bg-before">
             {NumberOfClientsData.map((client, i) => {
               const { countNumber, src, txt, IsThousand, plus } = client;
+
               return (
                 <div
                   key={src}
                   className="flex justify-center sm:justify-normal lg:justify-center items-center gap-5"
                 >
                   <div>
-                    <Image
+                    <CldImage
                       src={src}
                       alt={src}
                       width={80}
