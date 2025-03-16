@@ -38,7 +38,7 @@ function ElementorSection() {
           key={index}
           {...animationSettings(delay)}
           className={`box ${
-            index === 1 ? "bg-primary" : "bg-PaleBlue"
+            index === 1 ? "bg-primary  " : "bg-PaleBlue  "
           } w-[200px] h-[200px] mx-auto md:w-[240px] md:h-[240px] lg:w-[270px] lg:h-[270px] rounded-full flex justify-center items-center relative ${
             index === 1 ? "sm:mt-24 xl:mt-0" : ""
           }`}
@@ -49,7 +49,9 @@ function ElementorSection() {
               alt={alt}
               width={50}
               height={50}
-              className="md:w-20 md:h-20"
+              className={`md:w-20 md:h-20  ${
+                index === 1 && "transform scale-x-[-1] "
+              }`}
             />
             {index !== 2 && (
               <Image
@@ -70,8 +72,8 @@ function ElementorSection() {
               <p
                 className={`text-xl md:text-2xl ${
                   index === 1
-                    ? "text-white"
-                    : "text-[#0075ff] cursor-default hover:text-primary pt-3"
+                    ? "text-white "
+                    : "text-[#0075ff] cursor-default hover:text-primary pt-3 "
                 }`}
               >
                 {text}
