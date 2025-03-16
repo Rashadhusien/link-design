@@ -45,13 +45,13 @@ function ImageAndTextAbout() {
             أكثر من 25 عامًا من الخبرة في خدمات السباكة ومكافحة الحرائق
           </h1>
 
-          <p className="text-gray mb-4 max-w-[680px] mx-auto xl:mx-0 text-sm sm:text-md lg:text-lg xl:text-xl leading-relaxed">
-            لدينا سنوات من الخبرة والسمعة الطيبة، لذا يمكنك أن تطمئن إلى أن{" "}
+          <p className="text-gray mb-4 max-w-[680px]  xl:mx-0 text-sm sm:text-md lg:text-lg xl:text-xl leading-relaxed">
+            لدينا سنوات من الخبرة والسمعة الطيبة، لذا يمكنك أن تطمئن إلى أن
             <strong>منزلك ونظام السباكة آمنان وموثوقان.</strong> نحن نعمل بكفاءة
             لإعادة نظام السباكة الخاص بك إلى المسار الصحيح بسرعة وبشكل صحيح.
           </p>
-          <p className="text-gray max-w-[680px] mx-auto xl:mx-0 text-sm sm:text-md lg:text-lg xl:text-xl leading-relaxed">
-            إذا لم نصل في الوقت المحدد،{" "}
+          <p className="text-gray max-w-[680px] xl:mx-0 text-sm sm:text-md lg:text-lg xl:text-xl leading-relaxed">
+            إذا لم نصل في الوقت المحدد،
             <strong>فلن تتحمل أي تكلفة إضافية!</strong> نحن نقدم خصومات على
             سخانات المياه. احجز الآن للاستفادة من خدماتنا، والتي تشمل: تنظيف
             الصرف، فلاتر المياه، إصلاح وتركيب سخانات المياه.

@@ -15,6 +15,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 import { navData } from "../data/data";
 
@@ -23,6 +24,14 @@ function Header() {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [isClient, setIsClient] = useState(false);
+
+  // Detect screen size after client-side render
+  const isLgScreen = useMediaQuery("(min-width: 1024px)");
+
+  useEffect(() => {
+    setIsClient(true); // Ensures correct rendering after hydration
+  }, []);
 
   // Toggle drawer state
   const toggleDrawer = (open) => () => setDrawerOpen(open);
@@ -101,10 +110,12 @@ function Header() {
       }`}
     >
       <div className="container mx-auto flex justify-between items-center p-2 h-[70px] lg:h-[90px]">
-        {/* Mobile Menu Button */}
-        <Button onClick={toggleDrawer(true)} className="block lg:hidden">
-          <MenuIcon className="text-black text-[25px]" />
-        </Button>
+        {/* Mobile Menu Button (Only visible on mobile after hydration) */}
+        {isClient && !isLgScreen && (
+          <Button onClick={toggleDrawer(true)} className="block">
+            <MenuIcon className="text-black text-[25px]" />
+          </Button>
+        )}
 
         {/* Mobile Drawer */}
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>

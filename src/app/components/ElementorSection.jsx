@@ -12,7 +12,7 @@ const animationSettings = (delay) => ({
 
 function ElementorSection() {
   return (
-    <div className="elementor-section max-w-[1110px] mx-auto grid grid-rows-3 sm:grid-rows-1 sm:grid-cols-3 text-center gap-5 lg:gap-24">
+    <div className="elementor-section max-w-[1110px] mx-auto grid grid-rows-3 sm:grid-rows-1 sm:grid-cols-3 text-center gap-9 lg:gap-24">
       {[
         {
           src: "/calendar.svg",
@@ -38,12 +38,12 @@ function ElementorSection() {
           key={index}
           {...animationSettings(delay)}
           className={`box ${
-            index === 1 ? "bg-primary  " : "bg-PaleBlue  "
+            index === 1 ? "bg-primary justify-self-start " : "bg-PaleBlue  "
           } w-[200px] h-[200px] mx-auto md:w-[240px] md:h-[240px] lg:w-[270px] lg:h-[270px] rounded-full flex justify-center items-center relative ${
-            index === 1 ? "sm:mt-24 xl:mt-0" : ""
+            index === 1 ? "sm:mt-24 xl:mt-0 " : ""
           }`}
         >
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col items-center ">
             <Image
               src={src}
               alt={alt}
