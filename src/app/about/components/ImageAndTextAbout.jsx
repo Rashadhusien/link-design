@@ -1,13 +1,13 @@
 "use client";
-import Image from "next/image";
 
 import Link from "next/link";
 import { navData } from "../../data/data";
 
 import { usePathname } from "next/navigation";
 
-import { CldImage } from "next-cloudinary";
+// import { CldImage } from "next-cloudinary";
 
+import { CldImage } from "next-cloudinary";
 import { motion } from "framer-motion";
 
 import Button from "../../components/ui/Button";
@@ -19,7 +19,7 @@ function ImageAndTextAbout() {
     <div>
       <div className=" flex flex-col justify-between overflow-hidden xl:flex-row gap-10 relative ">
         <CldImage
-          src={"master_cebvdg"} // about-img-2
+          src={"master_cebvdg"}
           alt="about-Image-2"
           width={500}
           height={500}

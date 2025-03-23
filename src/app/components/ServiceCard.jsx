@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 import { useMemo } from "react";
@@ -39,7 +38,7 @@ function ServiceCard() {
       >
         <div className="overflow-hidden rounded-3xl duration-500 transition-all">
           <CldImage
-            src={service?.imgSrc}
+            src={service?.banner}
             alt="service-thumb"
             width={1000}
             height={1000}
@@ -63,7 +62,7 @@ function ServiceCard() {
               </p>
             </Link>
             <CldImage
-              src={service.iconUrl}
+              src={service.iconurl}
               alt="funfact"
               width={50}
               height={50}

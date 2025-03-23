@@ -1,12 +1,13 @@
 "use client";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 
 import { CldImage } from "next-cloudinary";
 
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/pagination";
 
 const slides = [
   {
@@ -23,26 +24,33 @@ const slides = [
 
 function Swippe() {
   return (
-    <div className="h-[50vh] md:h-screen">
+    <div className="h-[60vh] sm:h-[70vh] md:h-screen">
       <Swiper
+        modules={[Navigation, Autoplay, Pagination]}
         slidesPerView={1}
         loop
         navigation
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
-        modules={[Navigation, Autoplay]}
-        className="mySwiper mb-20 max-h-[70vh] md:max-h-full w-full"
+        autoplay={{ delay: 4000, disableOnInteraction: false }}
+        pagination={{ clickable: true }}
+        className="relative w-full h-full"
       >
         {slides.map(({ id, image, text }) => (
           <SwiperSlide key={id} className="relative">
-            <CldImage
-              src={image}
-              alt={`slide-${id}`}
-              width={1000}
-              height={1000}
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 sm:-translate-x-[80%] -translate-y-1/2 text-start text-white">
-              <h2 className="text-swipper font-bold mt-2 mb-4 sm:mb-7 text-2xl md:text-5xl lg:text-6xl">
+            {/* Background Image */}
+            <div className="relative w-full h-full">
+              <CldImage
+                src={image}
+                alt={`slide-${id}`}
+                fill
+                className="object-cover w-full h-full"
+              />
+              {/* Overlay */}
+              <div className="absolute inset-0  bg-black/20"></div>
+            </div>
+
+            {/* Text Content */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white px-4 sm:px-8 md:min-w-[800px]">
+              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-snug lg:leading-relaxed w-full">
                 {text}
               </h2>
             </div>

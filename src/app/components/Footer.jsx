@@ -1,14 +1,31 @@
 "use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Typography } from "@mui/material";
 import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import Link from "next/link";
-import { quickLinks, services, social } from "../data/data";
+import { quickLinks, social } from "../data/data";
 
 function Footer() {
+  const [services, setServices] = useState([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const res = await fetch("/api/services");
+        if (!res.ok) throw new Error("Failed to fetch services");
+        const data = await res.json();
+        setServices(data);
+      } catch (error) {
+        console.error("Error fetching services:", error);
+      }
+    };
+
+    fetchServices();
+  }, []);
+
   return (
     <footer role="contentinfo">
-      {/* Main Footer Section */}
       <div className="bg-[#253041] text-whitep py-14 px-5 md:px-0">
         <section className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
           {/* Logo & Social Links */}
@@ -83,19 +100,23 @@ function Footer() {
             </Typography>
             <nav>
               <ul className="flex flex-col md:pl-3 gap-4 max-h-[400px] flex-wrap">
-                {services.map(({ id, title }) => (
-                  <li
-                    key={id}
-                    className="hover:pr-2 duration-300 hover:underline"
-                  >
-                    <Link href={`/services/${id}`}>
-                      <span className="flex items-center">
-                        <KeyboardDoubleArrowLeftIcon />
-                        {title}
-                      </span>
-                    </Link>
-                  </li>
-                ))}
+                {services.length > 0 ? (
+                  services.map(({ id, title }) => (
+                    <li
+                      key={id}
+                      className="hover:pr-2 duration-300 hover:underline"
+                    >
+                      <Link href={`/services/${id}`}>
+                        <span className="flex items-center">
+                          <KeyboardDoubleArrowLeftIcon />
+                          {title}
+                        </span>
+                      </Link>
+                    </li>
+                  ))
+                ) : (
+                  <li>Loading services...</li>
+                )}
               </ul>
             </nav>
           </section>

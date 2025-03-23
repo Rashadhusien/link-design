@@ -5,7 +5,7 @@ import Aside from "../../components/Aside";
 import Service from "../../components/Service";
 
 function ShowService({ params }) {
-  const serviceId = Number(params.serviceId); // Ensure it's a number
+  const { serviceId } = params;
 
   const [service, setService] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -31,9 +31,11 @@ function ShowService({ params }) {
     fetchService();
   }, [serviceId]);
 
+  console.log(service);
+
   return (
     <div>
-      <PageTitle title={service?.title || "تحميل..."} />
+      <PageTitle title={service?.title || "..."} />
 
       <div className="container mx-auto flex flex-col lg:flex-row py-32 gap-10">
         {error ? (
