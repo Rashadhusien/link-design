@@ -8,7 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Autoplay } from "swiper/modules";
 import { useEffect, useMemo, useState } from "react";
-import { db } from "../../../../firebaseConfig";
+import { db } from "../../../../../firebaseConfig";
 import { collection, onSnapshot } from "firebase/firestore";
 import TestimonialsSkeleton from "./TestemonilasSkelton";
 

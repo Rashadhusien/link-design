@@ -1,16 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { navData } from "../../data/data";
+import { navData } from "../../../data/data";
 
 import { usePathname } from "next/navigation";
-
-// import { CldImage } from "next-cloudinary";
 
 import { CldImage } from "next-cloudinary";
 import { motion } from "framer-motion";
 
-import Button from "../../components/ui/Button";
+import Button from "../../../components/ui/Button";
 
 function ImageAndTextAbout() {
   const pathname = usePathname();
@@ -58,7 +56,7 @@ function ImageAndTextAbout() {
           </p>
           {pathname == "/" && (
             <Link href={navData[1].href}>
-              <Button>قراءة المزيد</Button>
+              <Button style={"mt-5"}>قراءة المزيد</Button>
             </Link>
           )}
         </motion.div>

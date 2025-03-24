@@ -6,6 +6,8 @@ import ScrollTrigger from "react-scroll-trigger";
 import { NumberOfClientsData } from "../data/data";
 import { motion } from "framer-motion";
 
+import Button from "../components/ui/Button";
+
 import Image from "next/image";
 
 import { CldImage } from "next-cloudinary";
@@ -30,6 +32,7 @@ function NumberOfClients() {
           >
             نحن نقدم دائمًا خدمات مختلفة عن الخدمات الأخرى.
           </motion.h2>
+
           <div className="client-bg mx-auto sm:mx-0 py-5 px-9 rounded-xl flex items-center justify-center w-fit">
             <h3 className="text-6xl font-bold text-[#f4b81c]">5k</h3>
             <div className="mr-5">

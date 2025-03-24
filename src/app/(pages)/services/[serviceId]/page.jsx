@@ -1,8 +1,9 @@
 "use client";
 import { useState, useEffect } from "react";
-import PageTitle from "../../components/PageTitle";
-import Aside from "../../components/Aside";
-import Service from "../../components/Service";
+import PageTitle from "../../../components/PageTitle";
+
+import Aside from "../../../components/Aside";
+import Service from "../../../components/Service";
 
 function ShowService({ params }) {
   const { serviceId } = params;

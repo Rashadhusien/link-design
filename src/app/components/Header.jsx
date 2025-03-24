@@ -1,8 +1,12 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useState, useEffect } from "react";
+
+import { auth } from "../../../firebaseConfig";
+
+import { signOut } from "firebase/auth";
 
 // MUI Components
 import Box from "@mui/material/Box";
@@ -17,9 +21,13 @@ import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
+import LogoutIcon from "@mui/icons-material/Logout";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 import { navData } from "../data/data";
 
 function Header() {
+  const [user] = useAuthState(auth);
   const pathname = usePathname();
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [show, setShow] = useState(true);
@@ -85,6 +93,50 @@ function Header() {
           </Link>
         </List>
       ))}
+      <div className="w-full flex justify-center items-center flex-col gap-5 mt-3">
+        {user ? (
+          <button
+            className={
+              " btn-style p-3 mx-auto   cursor-pointer lg:p-3 text-md md:p-4 lg:text-lg  text-primary  border-4 border-primary  hover:text-slate hover:bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
+            }
+            onClick={() => {
+              signOut(auth);
+              console.log("signed out");
+            }}
+          >
+            <LogoutIcon />
+            تسجيل الخروج
+          </button>
+        ) : (
+          <>
+            <Link
+              href={"/sign-in"}
+              className="w-[90%] flex justify-center items-center"
+            >
+              <button
+                className={
+                  " btn-style p-3  cursor-pointer lg:p-3 text-md  lg:text-lg  hover:text-primary  border-4 border-primary  text-slate bg-primary  font-bold capitalize z-10 relative transition-all duration-300 rounded-lg "
+                }
+              >
+                تسجيل الدخول
+              </button>
+            </Link>
+
+            <Link
+              href={"/sign-up"}
+              className="w-[100%] flex justify-center items-center"
+            >
+              <button
+                className={
+                  " btn-style py-3 px-5  cursor-pointer lg:p-3 text-md md:p-4 lg:text-lg  text-primary  border-4 border-primary  hover:text-slate hover:bg-primary  font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
+                }
+              >
+                انشاء حساب
+              </button>
+            </Link>
+          </>
+        )}
+      </div>
     </Box>
   );
 
@@ -126,10 +178,49 @@ function Header() {
           {renderMobileNav}
         </Drawer>
 
-        {/* Desktop Menu */}
-        <ul className="hidden lg:flex justify-evenly items-center gap-3 text-lg">
-          {renderDesktopNav}
-        </ul>
+        <div className="lg:flex gap-10">
+          {user ? (
+            <button
+              className={
+                "hidden btn-style  cursor-pointer lg:p-3 text-md md:p-4 lg:text-lg  text-primary  border-4 border-primary  hover:text-slate hover:bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
+              }
+              onClick={() => {
+                signOut(auth);
+                console.log("signed out");
+              }}
+            >
+              <LogoutIcon />
+              تسجيل الخروج
+            </button>
+          ) : (
+            <div className="flex items-center gap-6 ">
+              <Link href={"/sign-in"}>
+                <button
+                  className={
+                    "hidden btn-style  cursor-pointer p-2 xl:p-3 text-md  xl:text-lg  hover:text-primary border-2 xl:border-4 border-primary  text-slate bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg "
+                  }
+                >
+                  تسجيل الدخول
+                </button>
+              </Link>
+
+              <Link href={"/sign-up"}>
+                <button
+                  className={
+                    "hidden btn-style  cursor-pointer p-2 xl:p-3 text-md xl:text-lg  text-primary border-2 xl:border-4 border-primary  hover:text-slate hover:bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
+                  }
+                >
+                  انشاء حساب
+                </button>
+              </Link>
+            </div>
+          )}
+
+          {/* Desktop Menu */}
+          <ul className="hidden lg:flex justify-evenly items-center gap-3 text-lg">
+            {renderDesktopNav}
+          </ul>
+        </div>
 
         {/* Logo */}
         <Link href="/" rel="noopener noreferrer">

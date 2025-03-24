@@ -3,13 +3,9 @@
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-// import useSWR from "swr";
 import { motion } from "framer-motion";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import ServiceSkeleton from "./ServiceSkeleton";
-
-// Fetch function for SWR
-// const fetcher = (url) => fetch(url).then((res) => res.json());
 
 // Framer Motion Variants
 const serviceVariants = {
@@ -23,26 +19,34 @@ const serviceVariants = {
 
 function ServiceCard() {
   const [services, setServices] = useState([]);
-  // const { data: services, error } = useSWR("/api/services", fetcher);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const fetcher = await fetch("/api/services");
-        const data = await fetcher.json();
+        const response = await fetch("/api/services");
+        if (!response.ok) throw new Error("Failed to fetch services");
+
+        const data = await response.json();
+        if (!Array.isArray(data)) throw new Error("Invalid data format");
+
         setServices(data);
       } catch (err) {
+        console.error("Error fetching services:", err);
         setServices([]);
-        console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchServices();
   }, []);
 
-  // Memoize service card list to avoid unnecessary re-renders
+  // Memoized service cards
   const renderServicesCard = useMemo(() => {
-    return services?.map((service, i) => (
+    if (!services || services.length === 0) return null;
+
+    return services.map((service, i) => (
       <motion.div
         variants={serviceVariants}
         initial="hidden"
@@ -59,7 +63,9 @@ function ServiceCard() {
             width={1000}
             height={1000}
             priority={i === 0}
-            loading={"eager"}
+            loading="eager"
+            quality="auto"
+            format="auto"
             className="rounded-3xl max-h-[200px] object-cover hover:scale-125 transition-all duration-300"
           />
         </div>
@@ -77,27 +83,22 @@ function ServiceCard() {
                 قراءة المزيد
               </p>
             </Link>
-            <CldImage
-              src={service.iconurl}
-              alt="funfact"
-              width={50}
-              height={50}
-              className="opacity-20"
-            />
+            {service.iconurl && (
+              <CldImage
+                src={service.iconurl}
+                alt="funfact"
+                width={50}
+                height={50}
+                className="opacity-20"
+              />
+            )}
           </div>
         </div>
       </motion.div>
     ));
   }, [services]);
 
-  // if (error)
-  //   return (
-  //     <p className="text-center text-lg font-semibold text-gray-500">
-  //       ❌ Failed to load services.
-  //     </p>
-  //   );
-
-  if (!services) return <ServiceSkeleton isLoading={true} />;
+  if (loading) return <ServiceSkeleton isLoading={true} />;
 
   return (
     <div className="bg-[#F5F8FE] container mx-auto px-1 sm:px-0 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">

@@ -107,9 +107,9 @@ html {
 
 @media (max-width: 700px) {
   .swiper-pagination-bullet {
-   width: 20px;
+    width: 20px;
   }
-  
+
   .swiper-pagination-bullet-active {
     width: 30px;
   }

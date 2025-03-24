@@ -1,14 +1,13 @@
-import PageTitle from "../components/PageTitle";
-import { headerNav } from "../data/data";
+import PageTitle from "../../components/PageTitle";
+import { headerNav } from "../../data/data";
 import { Analytics } from "@vercel/analytics/react";
-import { SpeedInsights } from "@vercel/speed-insights/next"
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 function Layout({ children }) {
-
   return (
     <div>
-      <Analytics/>
-      <SpeedInsights/>
+      <Analytics />
+      <SpeedInsights />
       <PageTitle title={headerNav.testimonial} />
       {children}
     </div>

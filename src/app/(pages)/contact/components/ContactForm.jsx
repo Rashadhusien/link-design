@@ -4,7 +4,7 @@ import { InputBase } from "@mui/material";
 import { useForm, ValidationError } from "@formspree/react";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
-import Button from "../../components/ui/Button";
+import Button from "../../../components/ui/Button";
 
 function ContactForm() {
   const [state, handleSubmit] = useForm("xgvweqkq");

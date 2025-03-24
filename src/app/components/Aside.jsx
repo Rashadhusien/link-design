@@ -5,8 +5,15 @@ import Link from "next/link";
 import Button from "./ui/Button";
 
 import AsideSkeleton from "./AsideSkeleton";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../../firebaseConfig";
+import LogoutIcon from "@mui/icons-material/Logout";
+
+import { signOut } from "firebase/auth";
 
 function Aside({ currentServiceId }) {
+  const [user] = useAuthState(auth);
+
   const [services, setServices] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -56,6 +63,51 @@ function Aside({ currentServiceId }) {
         <Button className="border-2 py-3 px-5 mb-5">
           <Link href="/contact">اتصل بنا</Link>
         </Button>
+      </div>
+      <div className="p-8 w-full text-darkBlue bg-bgtestemonial rounded-sm">
+        {user ? (
+          <h2 className="text-3xl my-5">تسجيل الخروج</h2>
+        ) : (
+          <h2 className="text-3xl my-5">تسجيل الدخول</h2>
+        )}
+        {user ? (
+          <Link href={"/sign-in"}>
+            <button
+              className={
+                "hidden btn-style  cursor-pointer lg:p-3 text-md md:p-4 lg:text-lg  text-primary  border-4 border-primary  hover:text-slate hover:bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
+              }
+              onClick={() => {
+                signOut(auth);
+                console.log("signed out");
+              }}
+            >
+              <LogoutIcon />
+              تسجيل الخروج
+            </button>
+          </Link>
+        ) : (
+          <div className="flex items-center gap-6 flex-col w-full ">
+            <Link href={"/sign-in"} className="w-full">
+              <button
+                className={
+                  "hidden btn-style w-full cursor-pointer p-2 xl:p-3 text-md  xl:text-lg  hover:text-primary border-2 xl:border-4 border-primary  text-slate bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg "
+                }
+              >
+                تسجيل الدخول
+              </button>
+            </Link>
+
+            <Link href={"/sign-up"} className="w-full">
+              <button
+                className={
+                  "hidden btn-style w-full cursor-pointer p-2 xl:p-3 text-md xl:text-lg  text-primary border-2 xl:border-4 border-primary  hover:text-slate hover:bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
+                }
+              >
+                انشاء حساب
+              </button>
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
-import PageTitle from "../components/PageTitle";
-import { headerNav } from "../data/data";
+import PageTitle from "../../components/PageTitle";
+import { headerNav } from "../../data/data";
 
-import ServiceCard from "../components/ServiceCard";
+import ServiceCard from "../../components/ServiceCard";
 
 function Services() {
   return (

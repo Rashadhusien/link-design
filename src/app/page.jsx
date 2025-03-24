@@ -1,12 +1,12 @@
 import Swippe from "./components/Swippe";
 
 import SectionTitle from "./components/SectionTitle";
-import ImageAndTextAbout from "./about/components/ImageAndTextAbout";
+import ImageAndTextAbout from "./(pages)/about/components/ImageAndTextAbout";
 
 import ServiceCard from "./components/ServiceCard";
 
-import TestemonialsCards from "./testemonials/components/TestemonialsCards";
-import Book from "./contact/components/Book";
+import TestemonialsCards from "./(pages)/testemonials/components/TestemonialsCards";
+import Book from "./(pages)/contact/components/Book";
 import { headerNav } from "./data/data";
 import ElementorSection from "./components/ElementorSection";
 import QuiltedImageList from "./components/QuiltedImageList";

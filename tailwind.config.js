@@ -38,6 +38,7 @@ module.exports = {
       inputgray: "#384559",
       btnhover: "#0041ac",
       PaleBlue: "#e4f0ff",
+      red: "#f44336",
     },
   },
   plugins: [],

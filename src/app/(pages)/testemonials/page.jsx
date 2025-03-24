@@ -1,4 +1,3 @@
-import React from "react";
 import TestemonialsCards from "./components/TestemonialsCards";
 function Testemonial() {
   return (
