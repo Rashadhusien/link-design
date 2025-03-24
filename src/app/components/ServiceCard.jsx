@@ -2,14 +2,14 @@
 
 import { CldImage } from "next-cloudinary";
 import Link from "next/link";
-import { useMemo } from "react";
-import useSWR from "swr";
+import { useEffect, useMemo, useState } from "react";
+// import useSWR from "swr";
 import { motion } from "framer-motion";
 import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
 import ServiceSkeleton from "./ServiceSkeleton";
 
 // Fetch function for SWR
-const fetcher = (url) => fetch(url).then((res) => res.json());
+// const fetcher = (url) => fetch(url).then((res) => res.json());
 
 // Framer Motion Variants
 const serviceVariants = {
@@ -22,7 +22,23 @@ const serviceVariants = {
 };
 
 function ServiceCard() {
-  const { data: services, error } = useSWR("/api/services", fetcher);
+  const [services, setServices] = useState([]);
+  // const { data: services, error } = useSWR("/api/services", fetcher);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const fetcher = await fetch("/api/services");
+        const data = await fetcher.json();
+        setServices(data);
+      } catch (err) {
+        setServices([]);
+        console.error(err);
+      }
+    };
+
+    fetchServices();
+  }, []);
 
   // Memoize service card list to avoid unnecessary re-renders
   const renderServicesCard = useMemo(() => {
@@ -43,7 +59,7 @@ function ServiceCard() {
             width={1000}
             height={1000}
             priority={i === 0}
-            loading={i === 0 ? "eager" : "lazy"}
+            loading={"eager"}
             className="rounded-3xl max-h-[200px] object-cover hover:scale-125 transition-all duration-300"
           />
         </div>
@@ -74,12 +90,12 @@ function ServiceCard() {
     ));
   }, [services]);
 
-  if (error)
-    return (
-      <p className="text-center text-lg font-semibold text-gray-500">
-        ❌ Failed to load services.
-      </p>
-    );
+  // if (error)
+  //   return (
+  //     <p className="text-center text-lg font-semibold text-gray-500">
+  //       ❌ Failed to load services.
+  //     </p>
+  //   );
 
   if (!services) return <ServiceSkeleton isLoading={true} />;
 

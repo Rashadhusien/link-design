@@ -8,6 +8,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Autoplay } from "swiper/modules";
 import { useEffect, useMemo, useState } from "react";
+import { db } from "../../../../firebaseConfig";
+import { collection, onSnapshot } from "firebase/firestore";
 import TestimonialsSkeleton from "./TestemonilasSkelton";
 
 function TestemonialsCards() {
@@ -16,19 +18,19 @@ function TestemonialsCards() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
-    const fetchTestimonials = async () => {
-      try {
-        const res = await fetch("/api/testimonials");
-        if (!res.ok) throw new Error("Failed to fetch testimonials");
-        const data = await res.json();
+    const unsubscribe = onSnapshot(
+      collection(db, "testimonials"),
+      (snapshot) => {
+        const data = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
         setTestimonials(data);
-      } catch (error) {
-        console.error("Error fetching testimonials:", error);
-      } finally {
         setIsLoading(false);
       }
-    };
-    fetchTestimonials();
+    );
+
+    return () => unsubscribe(); // Cleanup the listener on unmount
   }, []);
 
   const testimonialsJSX = useMemo(
