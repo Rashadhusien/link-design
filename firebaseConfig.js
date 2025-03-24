@@ -1,7 +1,7 @@
 // Import Firebase
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getStorage } from "firebase/storage";
 
 // Firebase Config (Replace with your actual keys)
@@ -18,6 +18,8 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
+const googleProvider = new GoogleAuthProvider(); // ✅ Fix: Initialize provider
+
 const storage = getStorage(app);
 
-export { app, db, auth, storage, collection, getDocs, addDoc };
+export { app, db, auth, storage, collection, getDocs, addDoc, googleProvider };

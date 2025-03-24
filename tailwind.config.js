@@ -4,7 +4,6 @@ module.exports = {
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
-    "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
@@ -38,7 +37,10 @@ module.exports = {
       inputgray: "#384559",
       btnhover: "#0041ac",
       PaleBlue: "#e4f0ff",
-      red: "#f44336",
+      red: {
+        500: "#f44336",
+        600: "#d32f2f",
+      },
     },
   },
   plugins: [],

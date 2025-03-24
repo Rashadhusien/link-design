@@ -1,20 +1,29 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
-import { auth } from "../../../../firebaseConfig";
+import {
+  useCreateUserWithEmailAndPassword,
+  useUpdateProfile,
+} from "react-firebase-hooks/auth";
+import { auth, db } from "../../../../firebaseConfig"; // ✅ Import Firestore
 import { useRouter } from "next/navigation";
+import { doc, setDoc } from "firebase/firestore"; // ✅ Firestore functions
 import Link from "next/link";
 
 const SignUp = () => {
   const router = useRouter();
   const [isMounted, setIsMounted] = useState(false);
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
   const [error, setError] = useState(""); // ✅ Stores error messages
   const [loading, setLoading] = useState(false); // ✅ Disable button when signing up
 
   const [createUserWithEmailAndPassword] =
     useCreateUserWithEmailAndPassword(auth);
+  const [updateProfile] = useUpdateProfile(auth);
 
   useEffect(() => {
     setIsMounted(true);
@@ -31,7 +40,7 @@ const SignUp = () => {
     setError(""); // ✅ Clear previous errors
     setLoading(true); // ✅ Show loading state
 
-    if (!formData.email || !formData.password) {
+    if (!formData.name || !formData.email || !formData.password) {
       setError("يرجى ملء جميع الحقول");
       setLoading(false);
       return;
@@ -44,16 +53,26 @@ const SignUp = () => {
     }
 
     try {
-      const user = await createUserWithEmailAndPassword(
+      const userCredential = await createUserWithEmailAndPassword(
         formData.email,
         formData.password
       );
 
-      if (!user) {
+      if (!userCredential.user) {
         throw new Error("حدث خطأ أثناء إنشاء الحساب");
       }
 
-      setFormData({ email: "", password: "" });
+      // ✅ Update Firebase user profile with name
+      await updateProfile({ displayName: formData.name });
+
+      // ✅ Save user data in Firestore
+      await setDoc(doc(db, "users", userCredential.user.uid), {
+        uid: userCredential.user.uid,
+        name: formData.name,
+        email: formData.email,
+      });
+
+      setFormData({ name: "", email: "", password: "" });
       router.push("/");
     } catch (err) {
       console.error(err);
@@ -74,6 +93,20 @@ const SignUp = () => {
         className="py-3 flex justify-center items-center"
       >
         <div className="container mx-auto max-w-[600px]">
+          <div className="mb-4">
+            <label htmlFor="name" className="block font-semibold">
+              الاسم الكامل
+            </label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="مثال: أحمد محمد"
+              value={formData.name}
+              onChange={handleChange}
+              className="mt-2 w-full p-4 h-14 border outline-none text-[#333] rounded-lg border-gray-300"
+            />
+          </div>
           <div className="mb-4">
             <label htmlFor="email" className="block font-semibold">
               البريد الإلكتروني

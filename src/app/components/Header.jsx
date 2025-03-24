@@ -4,9 +4,11 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useCallback, useState, useEffect } from "react";
 
-import { auth } from "../../../firebaseConfig";
+import { auth, db } from "../../../firebaseConfig";
+import { doc, getDoc } from "firebase/firestore";
 
 import { signOut } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 // MUI Components
 import Box from "@mui/material/Box";
@@ -20,26 +22,48 @@ import ListItemText from "@mui/material/ListItemText";
 import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import IconButton from "@mui/material/IconButton";
+import Typography from "@mui/material/Typography";
+import Menu from "@mui/material/Menu";
+import Avatar from "@mui/material/Avatar";
+import Tooltip from "@mui/material/Tooltip";
+import MenuItem from "@mui/material/MenuItem";
 
 import LogoutIcon from "@mui/icons-material/Logout";
-import { useAuthState } from "react-firebase-hooks/auth";
 
 import { navData } from "../data/data";
 
 function Header() {
+  const router = useRouter();
   const [user] = useAuthState(auth);
   const pathname = usePathname();
   const [isDrawerOpen, setDrawerOpen] = useState(false);
   const [show, setShow] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isClient, setIsClient] = useState(false);
+  const [anchorElUser, setAnchorElUser] = useState(null);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  // const [openPopup, setopenPopup] = useState(false);
 
   // Detect screen size after client-side render
   const isLgScreen = useMediaQuery("(min-width: 1024px)");
 
+  const settings = isAdmin
+    ? ["Profile", "Account", "Dashboard", "Logout"]
+    : ["Profile", "Account", "Logout"];
+
   useEffect(() => {
     setIsClient(true); // Ensures correct rendering after hydration
   }, []);
+
+  const handleOpenUserMenu = (event) => {
+    setAnchorElUser(event.currentTarget);
+  };
+
+  const handleCloseUserMenu = () => {
+    setAnchorElUser(null);
+  };
 
   // Toggle drawer state
   const toggleDrawer = (open) => () => setDrawerOpen(open);
@@ -58,6 +82,21 @@ function Header() {
     window.addEventListener("scroll", controlNavbar);
     return () => window.removeEventListener("scroll", controlNavbar);
   }, [controlNavbar]);
+
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      if (user) {
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (userSnap.exists()) {
+          setIsAdmin(userSnap.data().role === "admin");
+        }
+      }
+    };
+
+    fetchUserRole();
+  }, [user]);
 
   // Mobile Navigation List
   const renderMobileNav = (
@@ -163,12 +202,6 @@ function Header() {
     >
       <div className="container mx-auto flex justify-between items-center p-2 h-[70px] lg:h-[90px]">
         {/* Mobile Menu Button (Only visible on mobile after hydration) */}
-        {isClient && !isLgScreen && (
-          <Button onClick={toggleDrawer(true)} className="block">
-            <MenuIcon className="text-black text-[25px]" />
-          </Button>
-        )}
-
         {/* Mobile Drawer */}
         <Drawer anchor="left" open={isDrawerOpen} onClose={toggleDrawer(false)}>
           <CloseIcon
@@ -178,48 +211,101 @@ function Header() {
           {renderMobileNav}
         </Drawer>
 
-        <div className="lg:flex gap-10">
-          {user ? (
-            <button
-              className={
-                "hidden btn-style  cursor-pointer lg:p-3 text-md md:p-4 lg:text-lg  text-primary  border-4 border-primary  hover:text-slate hover:bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
-              }
-              onClick={() => {
-                signOut(auth);
-                console.log("signed out");
-              }}
-            >
-              <LogoutIcon />
-              تسجيل الخروج
-            </button>
-          ) : (
-            <div className="flex items-center gap-6 ">
-              <Link href={"/sign-in"}>
-                <button
-                  className={
-                    "hidden btn-style  cursor-pointer p-2 xl:p-3 text-md  xl:text-lg  hover:text-primary border-2 xl:border-4 border-primary  text-slate bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg "
-                  }
+        <div className=" flex justify-center items-center gap-2">
+          <div className="lg:flex gap-10">
+            {user ? (
+              <Box sx={{ flexGrow: 0 }}>
+                <Tooltip title="Open settings">
+                  <IconButton
+                    onClick={handleOpenUserMenu}
+                    sx={{ p: 0, backgroundColor: "#0052da" }}
+                  >
+                    <Avatar sx={{ backgroundColor: "#0025da" }}>
+                      {user.displayName && user.displayName[0]}
+                    </Avatar>
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: "45px" }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
                 >
-                  تسجيل الدخول
-                </button>
-              </Link>
+                  {isAdmin && (
+                    <MenuItem onClick={handleCloseUserMenu}>
+                      <Link href={"/dashboard"}>
+                        <Typography sx={{ textAlign: "center" }}>
+                          لوحة التحكم
+                        </Typography>
+                      </Link>
+                    </MenuItem>
+                  )}
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Link href={"/profile"}>
+                      <Typography sx={{ textAlign: "center" }}>
+                        ملفي الشخصي
+                      </Typography>
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseUserMenu}>
+                    <Typography sx={{ textAlign: "center" }}>
+                      <Button
+                        onClick={() => {
+                          signOut(auth);
+                          router.push("/sign-in");
+                        }}
+                      >
+                        تسجيل الخروج
+                      </Button>
+                    </Typography>
+                  </MenuItem>
+                </Menu>
+              </Box>
+            ) : (
+              <div className="flex items-center gap-6 ">
+                <Link href={"/sign-in"}>
+                  <button
+                    className={
+                      "hidden btn-style  cursor-pointer p-2 xl:p-3 text-md  xl:text-lg  hover:text-primary border-2 xl:border-4 border-primary  text-slate bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg "
+                    }
+                  >
+                    تسجيل الدخول
+                  </button>
+                </Link>
 
-              <Link href={"/sign-up"}>
-                <button
-                  className={
-                    "hidden btn-style  cursor-pointer p-2 xl:p-3 text-md xl:text-lg  text-primary border-2 xl:border-4 border-primary  hover:text-slate hover:bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
-                  }
-                >
-                  انشاء حساب
-                </button>
-              </Link>
-            </div>
+                <Link href={"/sign-up"}>
+                  <button
+                    className={
+                      "hidden btn-style  cursor-pointer p-2 xl:p-3 text-md xl:text-lg  text-primary border-2 xl:border-4 border-primary  hover:text-slate hover:bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
+                    }
+                  >
+                    انشاء حساب
+                  </button>
+                </Link>
+              </div>
+            )}
+
+            {/* Desktop Menu */}
+            <ul className="hidden lg:flex justify-evenly items-center gap-3 text-lg">
+              {renderDesktopNav}
+            </ul>
+          </div>
+
+          {isClient && !isLgScreen && (
+            <Button onClick={toggleDrawer(true)} className="block">
+              <MenuIcon className="text-black text-[25px]" />
+            </Button>
           )}
-
-          {/* Desktop Menu */}
-          <ul className="hidden lg:flex justify-evenly items-center gap-3 text-lg">
-            {renderDesktopNav}
-          </ul>
         </div>
 
         {/* Logo */}
