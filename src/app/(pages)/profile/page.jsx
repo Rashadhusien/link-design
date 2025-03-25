@@ -13,8 +13,12 @@ const Profile = () => {
   const router = useRouter();
   const [name, setName] = useState(user?.displayName || "");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState(null);
-  const [error, setError] = useState(null);
+
+  // Separate state for name and password messages/errors
+  const [messageName, setMessageName] = useState(null);
+  const [messagePassword, setMessagePassword] = useState(null);
+  const [errorName, setErrorName] = useState(null);
+  const [errorPassword, setErrorPassword] = useState(null);
   const [isUpdating, setIsUpdating] = useState(false);
 
   useEffect(() => {
@@ -26,28 +30,34 @@ const Profile = () => {
   const handleUpdateProfile = async () => {
     if (!user) return;
     setIsUpdating(true);
-    setError(null);
-    setMessage(null);
+
+    // Reset messages and errors
+    setMessageName(null);
+    setMessagePassword(null);
+    setErrorName(null);
+    setErrorPassword(null);
 
     try {
-      // Update display name
+      // Update Display Name
       if (name && name !== user.displayName) {
         await updateProfile(user, { displayName: name });
-        setMessage("تم تحديث الاسم بنجاح!");
+        setMessageName("تم تحديث الاسم بنجاح!");
       }
 
-      // Update password if provided
+      // Update Password
       if (password.length >= 6) {
         await updatePassword(user, password);
-        setMessage("تم تحديث كلمة المرور بنجاح!");
+        setMessagePassword("تم تحديث كلمة المرور بنجاح!");
       } else if (password.length > 0) {
-        setError("يجب أن تكون كلمة المرور 6 أحرف على الأقل.");
+        setErrorPassword("يجب أن تكون كلمة المرور 6 أحرف على الأقل.");
       }
     } catch (err) {
       if (user?.providerData[0]?.providerId === "google.com") {
-        setError("لا يمكن تغيير كلمة المرور انت مسجل بحساب جوجل");
+        setErrorPassword("لا يمكن تغيير كلمة المرور لأنك مسجل بحساب جوجل.");
       } else {
-        setError("حدث خطأ أثناء التحديث. تأكد من تسجيل الدخول حديثًا.");
+        setErrorPassword(
+          "حدث خطأ أثناء تحديث كلمة المرور. تأكد من تسجيل الدخول حديثًا."
+        );
       }
     } finally {
       setIsUpdating(false);
@@ -95,6 +105,7 @@ const Profile = () => {
       <div className="mt-6 bg-bgtestemonial p-4 rounded-lg shadow">
         <h2 className="text-xl font-semibold mb-4">تعديل الملف الشخصي</h2>
 
+        {/* Name Input */}
         <div className="mb-4">
           <label className="block text-gray-700">الاسم الجديد:</label>
           <input
@@ -104,9 +115,11 @@ const Profile = () => {
             placeholder="اتركه فارغًا إذا لم ترد التغيير"
             onChange={(e) => setName(e.target.value)}
           />
-          {message && <p className="text-green-500 mt-1">{message}</p>}
+          {messageName && <p className="text-green-500 mt-1">{messageName}</p>}
+          {errorName && <p className="text-red-600 mt-1">{errorName}</p>}
         </div>
 
+        {/* Password Input */}
         <div className="mb-4">
           <label className="block text-gray-700">كلمة المرور الجديدة:</label>
           <input
@@ -116,9 +129,15 @@ const Profile = () => {
             onChange={(e) => setPassword(e.target.value)}
             placeholder="اتركه فارغًا إذا لم ترد التغيير"
           />
-          {error && <p className="text-red-600 mt-1">{error}</p>}
+          {messagePassword && (
+            <p className="text-green-500 mt-1">{messagePassword}</p>
+          )}
+          {errorPassword && (
+            <p className="text-red-600 mt-1">{errorPassword}</p>
+          )}
         </div>
 
+        {/* Buttons */}
         <div className="flex justify-between">
           <Button onClick={handleUpdateProfile} disabled={isUpdating}>
             {isUpdating ? "جارٍ التحديث..." : "حفظ التعديلات"}
