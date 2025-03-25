@@ -14,6 +14,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu"; // ✅ ShadCN dropdown
+import { Button } from "@/components/ui/button";
 
 import { useRouter, usePathname } from "next/navigation";
 import { signOut } from "firebase/auth";
@@ -24,7 +25,12 @@ const AppSidebar = ({ toggleDrawer, user, navData, isAdmin }) => {
   const pathname = usePathname();
 
   return (
-    <div className="absolute top-0 left-0 w-[250px] h-screen bg-white shadow-lg p-5 flex flex-col z-40">
+    <div
+      onClick={() => {
+        toggleDrawer();
+      }}
+      className="absolute top-0 left-0 w-[250px] h-screen bg-white shadow-lg p-5 flex flex-col z-40"
+    >
       {/* Close Sidebar Button */}
       <button onClick={toggleDrawer} className="self-end">
         <X size={28} />
@@ -47,7 +53,7 @@ const AppSidebar = ({ toggleDrawer, user, navData, isAdmin }) => {
       </ul>
 
       {/* User Dropdown Menu (Only if user exists) */}
-      {user && (
+      {user ? (
         <div className="mt-5 relative">
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -64,7 +70,6 @@ const AppSidebar = ({ toggleDrawer, user, navData, isAdmin }) => {
                 <DropdownMenuItem
                   onClick={() => {
                     router.push("/dashboard");
-                    toggleDrawer();
                   }}
                   className="flex items-center gap-2"
                 >
@@ -75,7 +80,6 @@ const AppSidebar = ({ toggleDrawer, user, navData, isAdmin }) => {
               <DropdownMenuItem
                 onClick={() => {
                   router.push("/profile");
-                  toggleDrawer();
                 }}
                 className="flex items-center gap-2"
               >
@@ -86,7 +90,6 @@ const AppSidebar = ({ toggleDrawer, user, navData, isAdmin }) => {
                 onClick={() => {
                   signOut(auth);
                   router.push("/sign-in");
-                  toggleDrawer();
                 }}
                 className="flex items-center gap-2 text-red-500  "
               >
@@ -95,6 +98,19 @@ const AppSidebar = ({ toggleDrawer, user, navData, isAdmin }) => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+        </div>
+      ) : (
+        <div className="flex items-center flex-col gap-4">
+          <Link href="/sign-in" className="w-full">
+            <Button variant="default" className="text-white bg-primary w-full">
+              تسجيل الدخول
+            </Button>
+          </Link>
+          <Link href="/sign-up" className="w-full">
+            <Button variant="outline" className="w-full">
+              انشاء حساب
+            </Button>
+          </Link>
         </div>
       )}
     </div>
