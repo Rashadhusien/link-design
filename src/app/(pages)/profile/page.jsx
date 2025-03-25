@@ -92,6 +92,7 @@ const Profile = () => {
           src={user?.photoURL || "/default.png"}
           alt="Profile Picture"
           className="w-[100px] h-[100px] rounded-full shadow-lg object-cover"
+          unoptimized
         />
         <div>
           <h3 className="text-3xl text-gray mb-4 font-bold">
