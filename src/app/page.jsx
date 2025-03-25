@@ -9,8 +9,6 @@ import TestemonialsCards from "./(pages)/testemonials/components/TestemonialsCar
 import Book from "./(pages)/contact/components/Book";
 import { headerNav } from "./data/data";
 import ElementorSection from "./components/ElementorSection";
-import QuiltedImageList from "./components/QuiltedImageList";
-import BasicTabs from "./components/BasicTabs";
 
 import NumberOfClients from "./components/NumberOfClients";
 

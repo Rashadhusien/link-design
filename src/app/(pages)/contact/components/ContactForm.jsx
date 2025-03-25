@@ -1,61 +1,75 @@
 "use client";
-import { useState } from "react";
-import { InputBase } from "@mui/material";
+import { useState, useEffect } from "react";
 import { useForm, ValidationError } from "@formspree/react";
-import Alert from "@mui/material/Alert";
-import Snackbar from "@mui/material/Snackbar";
-import Button from "../../../components/ui/Button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
+import { CheckCircle } from "lucide-react";
+import { Toast, ToastProvider, ToastViewport } from "@/components/ui/toast";
+import { auth } from "firebaseConfig"; // Import your Firebase auth config
+import { useAuthState } from "react-firebase-hooks/auth";
 
 function ContactForm() {
   const [state, handleSubmit] = useForm("xgvweqkq");
+  const [showToast, setShowToast] = useState(false);
+  const [user] = useAuthState(auth);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
 
-  const [open, setOpen] = useState(false);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (event, reason) => {
-    if (reason === "clickaway") {
-      return;
+  // Prefill name and email when user is authenticated
+  useEffect(() => {
+    if (user) {
+      setName(user.displayName || "");
+      setEmail(user.email || "");
     }
+  }, [user]);
 
-    setOpen(false);
+  const handleClose = () => {
+    setShowToast(false);
   };
 
   return (
-    <>
-      <div className="mb-16">
-        <span className=" uppercase tracking-wider text-lg text-[#9bb1d5]">
+    <ToastProvider>
+      <div className="mb-16 ">
+        <span className="uppercase tracking-wider text-lg text-[#9bb1d5]">
           احجز عبر الإنترنت
         </span>
-        <h2 className=" text-3xl font-bold capitalize tracking-wider">
+        <h2 className="text-3xl font-bold capitalize tracking-wider">
           حجز المواعيد.
         </h2>
       </div>
 
-      <form onSubmit={handleSubmit}>
-        <div className="md:flex justify-between gap-1 items-center">
-          <div>
+      <form
+        onSubmit={(e) => {
+          handleSubmit(e);
+          setShowToast(true);
+        }}
+      >
+        <div className="md:flex justify-between gap-4 items-center">
+          <div className="w-full">
             <label htmlFor="name">الاسم *</label>
-            <InputBase
+            <Input
               type="text"
               id="name"
               name="name"
-              placeholder={"اسمك هنا"}
-              className="mt-4 w-full p-4 h-14 mb-4 border-none outline-none text-[#bababa] bg-inputgray rounded-lg"
+              placeholder="اسمك هنا"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
+              className="mt-2 bg-inputgray border-none"
             />
             <ValidationError prefix="Name" field="name" errors={state.errors} />
           </div>
-          <div>
+          <div className="w-full">
             <label htmlFor="email">البريد الإلكتروني</label>
-            <InputBase
+            <Input
               type="email"
               id="email"
               name="email"
               placeholder="test@test.com"
-              className="mt-4 w-full p-4 h-14 mb-4 border-none outline-none text-[#bababa] bg-inputgray rounded-lg"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className="mt-2 bg-inputgray border-none"
             />
             <ValidationError
               prefix="Email"
@@ -64,29 +78,28 @@ function ContactForm() {
             />
           </div>
         </div>
-        <div>
-          <label htmlFor="phone">رقم الهاتف*</label>
-
-          <InputBase
+        <div className="mt-4">
+          <label htmlFor="phone">رقم الهاتف *</label>
+          <Input
             type="text"
             id="phone"
             name="phone"
             placeholder="01234567891"
-            className="mt-4 w-full p-4 h-14 mb-4 border-none outline-none text-[#bababa] bg-inputgray rounded-lg"
             required
+            className="mt-2 bg-inputgray border-none"
           />
           <ValidationError prefix="Phone" field="phone" errors={state.errors} />
         </div>
-        <div>
-          <label htmlFor="txt">رسالة قصيرة *</label>
-          <textarea
-            cols="30"
-            rows="5"
-            className={`mt-4 p-4 w-full relative z-30 mb-4 border-none outline-none text-[#bababa] bg-inputgray rounded-lg`}
-            placeholder={"رسالة"}
+        <div className="mt-4">
+          <label htmlFor="message">رسالة قصيرة *</label>
+          <Textarea
+            id="message"
             name="message"
+            rows={5}
+            placeholder="رسالة"
             required
-          ></textarea>
+            className="mt-2 bg-inputgray border-none"
+          />
           <ValidationError
             prefix="Message"
             field="message"
@@ -95,30 +108,26 @@ function ContactForm() {
         </div>
 
         <Button
-          className="p-3 text-md md:p-4 md:text-lg   hover:bg-btnhover  text-slate bg-primary inline-block font-[600] capitalize z-10 relative transition-all duration-300 rounded-lg tracking-widest"
+          className="mt-4 w-full md:w-auto p-4"
           type="submit"
           disabled={state.submitting}
-          onClick={handleClick}
         >
           الحصول على موعد
         </Button>
       </form>
-      {state.succeeded ? (
-        <Snackbar open={open} autoHideDuration={10000} onClose={handleClose}>
-          <Alert
-            onClose={handleClose}
-            severity="success"
-            variant="filled"
-            className="px-4"
-            sx={{ width: "100%", display: "flex", gap: 2 }}
-          >
-            تم إرسال رسالتك بنجاح !
-          </Alert>
-        </Snackbar>
-      ) : (
-        <></>
+
+      {state.succeeded && showToast && (
+        <Toast>
+          <CheckCircle className="text-green-500" />
+          <span>تم إرسال رسالتك بنجاح!</span>
+          <Button variant="ghost" size="sm" onClick={handleClose}>
+            إغلاق
+          </Button>
+        </Toast>
       )}
-    </>
+
+      <ToastViewport />
+    </ToastProvider>
   );
 }
 

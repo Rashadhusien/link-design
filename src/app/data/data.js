@@ -1,12 +1,15 @@
 import { v4 as uuid } from "uuid";
-import HomeIcon from "@mui/icons-material/Home";
-import InfoIcon from "@mui/icons-material/Info";
-import ContactPageIcon from "@mui/icons-material/ContactPage";
-import BuildIcon from "@mui/icons-material/Build";
-import BusinessCenterIcon from "@mui/icons-material/BusinessCenter";
-import PeopleIcon from "@mui/icons-material/People";
-import { Facebook, WhatsApp } from "@mui/icons-material";
-import CallIcon from "@mui/icons-material/Call";
+
+import {
+  Facebook,
+  PhoneCall,
+  Home,
+  Info,
+  Wrench,
+  Mail,
+  Users,
+  MessageCircle,
+} from "lucide-react";
 
 export const NumberOfClientsData = [
   {
@@ -43,29 +46,21 @@ export const social = [
   {
     id: uuid(),
     href: "https://wa.me/+201003905069",
-    title: "whatsapp",
-    icon: <WhatsApp sx={{ fontSize: "22px" }} />,
+    title: "WhatsApp",
+    icon: <MessageCircle size={22} className="hover:scale-105 duration-300" />, // React Icons
   },
   {
     id: uuid(),
     href: "https://www.facebook.com/enghusseinrashad/",
-    title: "facebook",
-    icon: <Facebook sx={{ fontSize: "22px" }} />,
+    title: "Facebook",
+    icon: <Facebook size={22} className="hover:scale-105 duration-300" />, // Lucide
   },
   {
     id: uuid(),
     href: "tel:+201003905069",
     title: "01003905069",
-    icon: (
-      <CallIcon className="text-[15px] md:text-[17px] hover:scale-105 duration-300" />
-    ),
+    icon: <PhoneCall size={22} className="hover:scale-105 duration-300" />, // Lucide
   },
-  // {
-  //   id: uuid(),
-  //   href: "/",
-  //   title: "instagram",
-  //   icon: <InstagramIcon sx={{ fontSize: "22px" }} />,
-  // },
 ];
 
 export const headerNav = {
@@ -103,33 +98,27 @@ export const quickLinks = [
 export const navData = [
   {
     href: "/",
-    icon: <HomeIcon />,
+    icon: <Home size={22} />,
     text: "الرئيسية",
   },
   {
     href: "/about",
-    icon: <InfoIcon />,
+    icon: <Info size={22} />,
     text: "معلومات عننا",
   },
-
   {
     href: "/services",
-    icon: <BuildIcon />,
+    icon: <Wrench size={22} />,
     text: "الخدمات",
   },
   {
     href: "/contact",
-    icon: <ContactPageIcon />,
+    icon: <Mail size={22} />,
     text: "اتصل بنا",
   },
-  // {
-  //   href: "/projects",
-  //   icon: <BusinessCenterIcon />,
-  //   text: "المشاريع",
-  // },
   {
-    href: "/testemonials",
-    icon: <PeopleIcon />,
+    href: "/testimonials",
+    icon: <Users size={22} />,
     text: "بعض الأراء",
   },
 ];
@@ -258,8 +247,7 @@ export const services = [
       {
         id: uuid(),
         title: "تصميم وصيانة المسابح بأعلى المعايير",
-        descirption:
-          "f",
+        descirption: "f",
         images: ["pool-3"],
       },
     ],

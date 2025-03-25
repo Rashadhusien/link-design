@@ -7,7 +7,7 @@ import Button from "./ui/Button";
 import AsideSkeleton from "./AsideSkeleton";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../firebaseConfig";
-import LogoutIcon from "@mui/icons-material/Logout";
+import { LogOutIcon } from "lucide-react";
 
 import { signOut } from "firebase/auth";
 
@@ -74,14 +74,14 @@ function Aside({ currentServiceId }) {
           <Link href={"/sign-in"}>
             <button
               className={
-                "hidden btn-style  cursor-pointer lg:p-3 text-md md:p-4 lg:text-lg  text-primary  border-4 border-primary  hover:text-slate hover:bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
+                "btn-style  cursor-pointer p-3 text-md md:p-4 lg:text-lg  text-primary  border-4 border-primary  hover:text-slate hover:bg-primary flex gap-3 items-center font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
               }
               onClick={() => {
                 signOut(auth);
                 console.log("signed out");
               }}
             >
-              <LogoutIcon />
+              <LogOutIcon />
               تسجيل الخروج
             </button>
           </Link>
@@ -90,7 +90,7 @@ function Aside({ currentServiceId }) {
             <Link href={"/sign-in"} className="w-full">
               <button
                 className={
-                  "hidden btn-style w-full cursor-pointer p-2 xl:p-3 text-md  xl:text-lg  hover:text-primary border-2 xl:border-4 border-primary  text-slate bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg "
+                  " btn-style w-full cursor-pointer p-3 xl:p-3 text-md  xl:text-lg  hover:text-primary border-2 xl:border-4 border-primary  text-slate bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg "
                 }
               >
                 تسجيل الدخول
@@ -100,7 +100,7 @@ function Aside({ currentServiceId }) {
             <Link href={"/sign-up"} className="w-full">
               <button
                 className={
-                  "hidden btn-style w-full cursor-pointer p-2 xl:p-3 text-md xl:text-lg  text-primary border-2 xl:border-4 border-primary  hover:text-slate hover:bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
+                  " btn-style w-full cursor-pointer p-3 xl:p-3 text-md xl:text-lg  text-primary border-2 xl:border-4 border-primary  hover:text-slate hover:bg-primary lg:inline-block font-bold capitalize z-10 relative transition-all duration-300 rounded-lg"
                 }
               >
                 انشاء حساب

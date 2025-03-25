@@ -5,7 +5,6 @@ import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth, googleProvider } from "../../../../firebaseConfig";
 import { useRouter } from "next/navigation";
 import { signInWithPopup } from "firebase/auth"; // ✅ Correct function
-import GoogleIcon from "@mui/icons-material/Google";
 
 import Link from "next/link";
 
@@ -128,7 +127,7 @@ const SignIn = () => {
               onClick={handleGoogleSignIn}
               className="mt-4 w-full p-3 text-md md:p-4 md:text-lg flex items-center justify-center bg-red-500 hover:bg-red-600 text-white font-semibold capitalize transition-all duration-300 rounded-lg"
             >
-              تسجيل الدخول باستخدام جوجل <GoogleIcon className="mr-2" />
+              تسجيل الدخول باستخدام جوجل
             </button>
           </div>
         </form>

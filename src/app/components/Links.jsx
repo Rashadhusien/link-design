@@ -1,59 +1,55 @@
 "use client";
 
 /*-----------Icons------------- */
-import PlaceIcon from "@mui/icons-material/Place";
-import EmailIcon from "@mui/icons-material/Email";
-import CallIcon from "@mui/icons-material/Call";
+import { MapPin, Mail, PhoneCall } from "lucide-react"; // Replacing MUI icons
 /*-----------End Icons------------- */
 
 import { social } from "../data/data";
 
 function Links() {
   return (
-    <nav className="px-4 bg-darkBlue text-whitep shadow-md">
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center p-3">
+    <nav className="px-4 bg-darkBlue text-white shadow-md">
+      <div className="container mx-auto flex flex-row justify-between items-center p-3">
         {/* Contact Section */}
-        <div className="flex flex-1 flex-col sm:flex-row items-center gap-1 text-[13px] lg:text-[16px]">
+        <div className="flex flex-1  items-center gap-5 md:gap-1 text-[13px] lg:text-[16px]">
           {/* Location */}
-          <div className="flex items-center gap-1">
-            <PlaceIcon className="text-[15px] md:text-[17px] hover:scale-105 duration-300" />
-            <a
-              href="https://maps.app.goo.gl/mbaWaiQkMJw5WaKx9"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs lg:text-sm"
-            >
-              الزهراء، مصر القديمة
-            </a>
-          </div>
+          <a
+            href="https://maps.app.goo.gl/mbaWaiQkMJw5WaKx9"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs lg:text-sm flex justify-center gap-1 items-center"
+          >
+            <MapPin
+              size={18}
+              className="hover:scale-105 duration-300 inline-block "
+            />
+            <span className="hidden md:block"> القاهرة , الزهراء</span>
+          </a>
 
-          <div className="flex mt-1 gap-2 items-center">
-            <span className="hidden sm:block mx-1">|</span>
+          <span className="hidden sm:block mx-1">|</span>
 
-            {/* Email */}
-            <div className="flex gap-2 items-center">
-              <a
-                href="mailto:0linkdesign0@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                0linkdesign0@gmail.com
-              </a>
-              <EmailIcon className="text-[15px] md:text-[17px] hover:scale-105 duration-300" />
-            </div>
+          {/* Email */}
+          <a
+            href="mailto:0linkdesign0@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex gap-2 items-center"
+          >
+            <span className="hidden md:block"> 0linkdesign0@gmail.com</span>
+            <Mail size={18} className="hover:scale-105 duration-300" />
+          </a>
 
-            <span className="hidden sm:block mx-1">|</span>
+          <span className="hidden sm:block mx-1">|</span>
 
-            {/* Phone */}
-            <div className="flex gap-2 items-center">
-              <a href="tel:+201003905069">01003905069</a>
-              <CallIcon className="text-[15px] md:text-[17px] hover:scale-105 duration-300" />
-            </div>
-          </div>
+          {/* Phone */}
+          <a href="tel:+201003905069" className="flex gap-2 items-center">
+            <span className="hidden md:block">01003905069</span>
+            <PhoneCall size={18} className="hover:scale-105 duration-300" />
+          </a>
         </div>
 
         {/* Social Icons */}
-        <ul className="hidden md:flex gap-5">
+        <ul className="flex gap-5">
           {social.map(({ id, href, title, icon }) => (
             <li key={id}>
               <a

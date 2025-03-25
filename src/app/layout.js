@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
-import BasicSpeedDial from "./components/SpeedDial";
+import BackToTop from "./components/BackToTop";
 
 const cairo = Cairo({
   subsets: ["latin"],
@@ -36,9 +36,7 @@ export default function RootLayout({ children }) {
 
         {children}
 
-        <span className=" fixed right-1 bottom-0 z-50 md:hidden">
-          <BasicSpeedDial />
-        </span>
+        <BackToTop />
 
         <Footer />
       </body>

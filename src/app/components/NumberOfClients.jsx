@@ -33,7 +33,7 @@ function NumberOfClients() {
             نحن نقدم دائمًا خدمات مختلفة عن الخدمات الأخرى.
           </motion.h2>
 
-          <div className="client-bg mx-auto sm:mx-0 py-5 px-9 rounded-xl flex items-center justify-center w-fit">
+          <div className="client-bg mx-auto md:mx-0 py-5 px-9 rounded-xl flex items-center justify-center w-fit">
             <h3 className="text-6xl font-bold text-[#f4b81c]">5k</h3>
             <div className="mr-5">
               <CldImage
@@ -58,7 +58,7 @@ function NumberOfClients() {
               return (
                 <div
                   key={src}
-                  className="flex justify-center sm:justify-normal lg:justify-center items-center gap-5"
+                  className="flex justify-center  lg:justify-center items-center gap-5"
                 >
                   <div>
                     <CldImage

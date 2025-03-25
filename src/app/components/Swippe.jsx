@@ -50,7 +50,7 @@ function Swippe() {
 
             {/* Text Content */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-center text-white px-4 sm:px-8 md:min-w-[800px]">
-              <h2 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-snug lg:leading-relaxed w-full">
+              <h2 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-snug lg:leading-relaxed w-full">
                 {text}
               </h2>
             </div>

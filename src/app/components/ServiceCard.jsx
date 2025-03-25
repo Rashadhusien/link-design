@@ -4,7 +4,7 @@ import { CldImage } from "next-cloudinary";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import KeyboardDoubleArrowRightIcon from "@mui/icons-material/KeyboardDoubleArrowRight";
+import { ArrowRightCircle } from "lucide-react"; // ✅ ShadCN Icons
 import ServiceSkeleton from "./ServiceSkeleton";
 
 // Framer Motion Variants
@@ -79,7 +79,7 @@ function ServiceCard() {
           <div className="mt-10 flex items-center justify-between">
             <Link href={`/services/${service?.id}`}>
               <p className="flex-row flex w-fit hover:text-primary duration-300 font-bold text-darkBlue">
-                <KeyboardDoubleArrowRightIcon className="mt-[2px]" />
+                <ArrowRightCircle className="ml-[2px]" />
                 قراءة المزيد
               </p>
             </Link>

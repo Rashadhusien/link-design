@@ -1,9 +1,9 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { Typography } from "@mui/material";
-import KeyboardDoubleArrowLeftIcon from "@mui/icons-material/KeyboardDoubleArrowLeft";
 import Link from "next/link";
+import { ArrowLeftCircle } from "lucide-react"; // Replacing MUI icon
 import { quickLinks, social } from "../data/data";
 
 function Footer() {
@@ -26,7 +26,7 @@ function Footer() {
 
   return (
     <footer role="contentinfo">
-      <div className="bg-[#253041] text-whitep py-14 px-5 md:px-0">
+      <div className="bg-[#253041] text-white py-14 px-5 md:px-0">
         <section className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
           {/* Logo & Social Links */}
           <section>
@@ -40,15 +40,15 @@ function Footer() {
                 priority
               />
             </Link>
-            <Typography lang="ar" className="leading-7 mb-6">
+            <p lang="ar" className="leading-7 mb-6">
               تتضمن إدارة السباكة مجموعة واسعة من الأنشطة، وغالبًا ما تحدد
               العديد من الشركات وأعضائها هذه الممارسات.
-            </Typography>
+            </p>
             <ul className="flex gap-5 justify-center md:justify-start">
               {social.map(({ id, href, icon, title }) => (
                 <li
                   key={id}
-                  className="group bg-grayHover w-[40px] h-[40px] rounded-full flex items-center justify-center"
+                  className="group bg-grayHover w-10 h-10 rounded-full flex items-center justify-center"
                 >
                   <a
                     href={href}
@@ -65,12 +65,9 @@ function Footer() {
 
           {/* Quick Links */}
           <section>
-            <Typography
-              variant="h5"
-              className="font-bold tracking-wide mb-8 capitalize"
-            >
+            <span className="text-lg font-bold tracking-wide mb-8 block capitalize">
               روابط سريعة
-            </Typography>
+            </span>
             <nav>
               <ul className="flex flex-col md:pl-3 gap-5">
                 {quickLinks.map(({ id, href, content }) => (
@@ -78,11 +75,9 @@ function Footer() {
                     key={id}
                     className="hover:pr-2 flex gap-2 items-center hover:pl-2 duration-300 hover:underline"
                   >
-                    <Link href={href}>
-                      <span className="flex items-center">
-                        <KeyboardDoubleArrowLeftIcon />
-                        {content}
-                      </span>
+                    <Link href={href} className="flex items-center">
+                      <ArrowLeftCircle size={18} className="ml-2" />
+                      {content}
                     </Link>
                   </li>
                 ))}
@@ -92,12 +87,9 @@ function Footer() {
 
           {/* Services */}
           <section>
-            <Typography
-              variant="h5"
-              className="font-bold tracking-wide mb-5 capitalize"
-            >
+            <span className="text-lg font-bold tracking-wide mb-5 block capitalize">
               الخدمات
-            </Typography>
+            </span>
             <nav>
               <ul className="flex flex-col md:pl-3 gap-4 max-h-[400px] flex-wrap">
                 {services.length > 0 ? (
@@ -106,11 +98,12 @@ function Footer() {
                       key={id}
                       className="hover:pr-2 duration-300 hover:underline"
                     >
-                      <Link href={`/services/${id}`}>
-                        <span className="flex items-center">
-                          <KeyboardDoubleArrowLeftIcon />
-                          {title}
-                        </span>
+                      <Link
+                        href={`/services/${id}`}
+                        className="flex items-center"
+                      >
+                        <ArrowLeftCircle size={18} className="ml-2" />
+                        {title}
                       </Link>
                     </li>
                   ))
@@ -124,7 +117,7 @@ function Footer() {
       </div>
 
       {/* Copyright Section */}
-      <div className="bg-[#212c3c] w-full text-whitep py-3 shadow-sm">
+      <div className="bg-[#212c3c] w-full text-white py-3 shadow-sm">
         <div className="container mx-auto">
           <p className="text-center p-1 text-sm tracking-wide">
             &copy; حقوق النشر 2024 | جميع الحقوق محفوظة.

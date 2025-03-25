@@ -1,24 +1,16 @@
-import { Skeleton } from "@mui/material";
+import { Skeleton } from "@/components/ui/skeleton";
 
 function SkeletonContent() {
   return (
     <>
       {Array.from({ length: 2 }).map((_, index) => (
         <div className="w-full pb-20" key={index}>
-          <Skeleton
-            sx={{ bgcolor: "grey.600" }}
-            variant="rectangular"
-            height={500}
-            className="rounded-md object-cover mb-3 w-full"
-          />
+          <Skeleton className="h-[500px] w-full rounded-md bg-gray-600 mb-3 animate-pulse" />
           <div className="pt-14 space-y-3">
             {[30, 20, 20, 20].map((height, i) => (
               <Skeleton
                 key={i}
-                sx={{ bgcolor: "grey.600" }}
-                variant="rectangular"
-                height={height}
-                className="rounded-md object-cover w-full"
+                className={`h-[${height}px] w-full rounded-md bg-gray-600 animate-pulse`}
               />
             ))}
           </div>
