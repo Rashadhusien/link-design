@@ -4,16 +4,18 @@ import {
   X,
   LogOut,
   User2,
-  ChevronUp,
   ShieldCheck,
   UserCircle,
+  ChevronDown,
 } from "lucide-react"; // ✅ Lucide Icons
+
 import {
   DropdownMenu,
   DropdownMenuTrigger,
   DropdownMenuContent,
   DropdownMenuItem,
-} from "@/components/ui/dropdown-menu"; // ✅ ShadCN dropdown
+} from "@/components/ui/dropdown-menu"; // ✅
+//  ShadCN dropdown
 import { Button } from "@/components/ui/button";
 
 import { useRouter, usePathname } from "next/navigation";
@@ -38,14 +40,15 @@ const AppSidebar = ({ toggleDrawer, user, navData, isAdmin }) => {
 
       {/* Navigation Links */}
       <ul className="mt-10 space-y-4">
-        {navData?.map(({ text, href }) => (
+        {navData?.map(({ text, href, icon }) => (
           <li key={text} onClick={toggleDrawer}>
             <Link
               href={href}
-              className={`block p-3 rounded-md hover:bg-bgtestemonial transition ${
-                pathname === href ? "bg-bgtestemonial" : ""
+              className={` flex items-center gap-2 p-3 rounded-md hover:bg-bgtestemonial hover:text-primary duration-300 transition ${
+                pathname === href ? "bg-bgtestemonial text-primary" : ""
               }`}
             >
+              <span>{icon}</span>
               {text}
             </Link>
           </li>
@@ -60,12 +63,16 @@ const AppSidebar = ({ toggleDrawer, user, navData, isAdmin }) => {
               <button className="flex items-center w-full p-3 bg-bgtestemonial text-gray rounded-md hover:bg-gray hover:text-white duration-300">
                 <User2 className="ml-2" />
                 {user?.displayName || "اسم المستخدم"}
-                <ChevronUp className="mr-auto" />
+                <ChevronDown className="mr-auto" />
               </button>
             </DropdownMenuTrigger>
 
             {/* Make Dropdown Appear Above Sidebar */}
-            <DropdownMenuContent align="end" side="top" className={"z-[1000]"}>
+            <DropdownMenuContent
+              align="end"
+              side="bottom"
+              className={"z-[1000]"}
+            >
               {isAdmin && (
                 <DropdownMenuItem
                   onClick={() => {
@@ -100,7 +107,7 @@ const AppSidebar = ({ toggleDrawer, user, navData, isAdmin }) => {
           </DropdownMenu>
         </div>
       ) : (
-        <div className="flex items-center flex-col gap-4">
+        <div className="flex items-center flex-col gap-4 mt-5">
           <Link href="/sign-in" className="w-full">
             <Button variant="default" className="text-white bg-primary w-full">
               تسجيل الدخول

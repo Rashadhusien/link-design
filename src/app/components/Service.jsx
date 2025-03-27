@@ -9,8 +9,6 @@ import { Pagination } from "swiper/modules";
 import SkeletonContent from "./OneServiceSkeleton";
 
 function Service({ service, isLoading }) {
-
-  
   // Memoize the content rendering
   const renderContent = useMemo(() => {
     if (!service?.serviceContent) return null;
@@ -43,7 +41,7 @@ function Service({ service, isLoading }) {
             </SwiperSlide>
           ))}
         </Swiper>
-        <div className="pt-14">
+        <div className="pt-8">
           <h1 className="text-gray text-3xl capitalize font-bold pb-8">
             {serviceContent?.title}
           </h1>

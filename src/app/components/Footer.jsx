@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeftCircle } from "lucide-react"; // Replacing MUI icon
+import { ArrowLeft } from "lucide-react"; // Replacing MUI icon
 import { quickLinks, social } from "../data/data";
 
 function Footer() {
@@ -76,7 +76,7 @@ function Footer() {
                     className="hover:pr-2 flex gap-2 items-center hover:pl-2 duration-300 hover:underline"
                   >
                     <Link href={href} className="flex items-center">
-                      <ArrowLeftCircle size={18} className="ml-2" />
+                      <ArrowLeft size={18} className="ml-2" />
                       {content}
                     </Link>
                   </li>
@@ -102,7 +102,7 @@ function Footer() {
                         href={`/services/${id}`}
                         className="flex items-center"
                       >
-                        <ArrowLeftCircle size={18} className="ml-2" />
+                        <ArrowLeft size={18} className="ml-2" />
                         {title}
                       </Link>
                     </li>

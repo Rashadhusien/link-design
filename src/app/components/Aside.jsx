@@ -35,8 +35,8 @@ function Aside({ currentServiceId }) {
   if (isLoading) return <AsideSkeleton />;
 
   return (
-    <div className="sm:w-96 lg:container lg:mx-auto flex flex-col items-center gap-10 sm:px-4">
-      <div className="w-full">
+    <div className=" overflow-hidden lg:container lg:mx-auto flex rounded-md flex-col bg-bgtestemonial items-center gap-10 sm:px-4">
+      <div className="w-full pt-3">
         <h5 className="relative text-2xl mb-8 font-bold capitalize pb-5 text-gray after:right-16 before:right-0 before:bg-primary before:w-14 before:h-1 before:absolute before:bottom-0 before:rounded-xl after:bg-[#f2f2f2] after:w-2/3 sm:after:w-4/5 after:h-1 after:absolute after:bottom-0 after:rounded-xl">
           خدماتنا
         </h5>

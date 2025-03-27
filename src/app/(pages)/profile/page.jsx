@@ -84,13 +84,13 @@ const Profile = () => {
   return (
     <div className="container mx-auto max-w-[800px] p-5">
       {/* Profile Display Section */}
-      <div className="bg-gray-100 p-4 text-center rounded-lg bg-bgtestemonial flex flex-col md:flex-row items-center gap-4">
+      <div className="bg-gray-100 p-4 text-center md:text-start rounded-lg bg-bgtestemonial flex flex-col md:flex-row items-center gap-4">
         <Image
           width={100}
           height={100}
           loading="eager"
           src={user?.photoURL || "/default.png"}
-          alt="Profile Picture"
+          alt="Profile Profile Profile Profile Profile Profile Profile  "
           className="w-[100px] h-[100px] rounded-full shadow-lg object-cover"
           unoptimized
         />

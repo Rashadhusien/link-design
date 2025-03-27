@@ -1,8 +1,9 @@
 "use client";
 
 /*-----------Icons------------- */
-import { MapPin, Mail, PhoneCall } from "lucide-react"; // Replacing MUI icons
-/*-----------End Icons------------- */
+import { Mail } from "lucide-react";
+import { IoCallSharp } from "react-icons/io5";
+import { FaLocationDot } from "react-icons/fa6";
 
 import { social } from "../data/data";
 
@@ -19,7 +20,7 @@ function Links() {
             rel="noopener noreferrer"
             className="text-xs lg:text-sm flex justify-center gap-1 items-center"
           >
-            <MapPin
+            <FaLocationDot
               size={18}
               className="hover:scale-105 duration-300 inline-block "
             />
@@ -44,7 +45,7 @@ function Links() {
           {/* Phone */}
           <a href="tel:+201003905069" className="flex gap-2 items-center">
             <span className="hidden md:block">01003905069</span>
-            <PhoneCall size={18} className="hover:scale-105 duration-300" />
+            <IoCallSharp size={18} className="hover:scale-105 duration-300" />
           </a>
         </div>
 
@@ -59,7 +60,7 @@ function Links() {
                 rel="noopener noreferrer"
                 className="hover:scale-110 transition-transform duration-200"
               >
-                {icon}
+                {title !== "01003905069" && icon}
               </a>
             </li>
           ))}

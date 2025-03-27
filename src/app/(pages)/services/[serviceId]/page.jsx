@@ -38,7 +38,7 @@ function ShowService({ params }) {
     <div>
       <PageTitle title={service?.title || "..."} />
 
-      <div className="container mx-auto flex flex-col lg:flex-row py-32 gap-10">
+      <div className=" mx-auto flex flex-col lg:flex-row py-32 px-5 md:px-10 gap-10">
         {error ? (
           <p className="text-red-500">{error}</p>
         ) : (

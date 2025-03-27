@@ -1,40 +1,62 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { auth, db } from "../../../../firebaseConfig";
-import { doc, getDoc } from "firebase/firestore";
-import { useAuthState } from "react-firebase-hooks/auth";
-
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { db } from "firebaseConfig";
 import { Oval } from "react-loader-spinner";
 
-function Dashboard() {
-  const [user] = useAuthState(auth);
+import { collection, getDocs } from "firebase/firestore";
+
+const Dashboard = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [services, setServices] = useState([]);
+  const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
-    const checkAdmin = async () => {
-      if (!user) {
-        router.push("/");
-        return;
-      }
+    const auth = getAuth();
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const token = await user.getIdToken();
+        const res = await fetch("/api/setAdmin", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ token }),
+        });
 
-      const userRef = doc(db, "users", user.uid);
-      const userSnap = await getDoc(userRef);
-
-      if (userSnap.exists() && userSnap.data().role === "admin") {
-        setIsAdmin(true);
+        const data = await res.json();
+        if (data.isAdmin) {
+          setIsAdmin(true);
+          fetchServices();
+          fetchTestimonials();
+        } else {
+          router.push("/"); // Redirect non-admins
+        }
       } else {
-        router.push("/"); // Redirect if not admin
+        router.push("/sign-in");
       }
-
       setLoading(false);
-    };
+    });
+  }, []);
 
-    checkAdmin();
-  }, [user, router]);
+  const fetchServices = async () => {
+    const querySnapshot = await getDocs(collection(db, "services"));
+    const servicesData = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setServices(servicesData);
+  };
+
+  const fetchTestimonials = async () => {
+    const querySnapshot = await getDocs(collection(db, "testimonials"));
+    const testimonialsData = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    setTestimonials(testimonialsData);
+  };
 
   if (loading)
     return (
@@ -52,10 +74,51 @@ function Dashboard() {
         }}
       />
     );
+  if (!isAdmin) return null;
 
-  return <div>Dashboard</div>;
-}
+  return (
+    <div className="p-5">
+      <h1 className="text-2xl font-bold">لوحة المعلومات</h1>
+
+      {/* Services Table */}
+      <h2 className="text-xl font-semibold mt-5">الخدمات</h2>
+      <table className="w-full border mt-2">
+        <thead>
+          <tr className="bg-gray text-white">
+            <th className="p-2 border">العنوان</th>
+            <th className="p-2 border">الوصف</th>
+          </tr>
+        </thead>
+        <tbody>
+          {services.map((service) => (
+            <tr key={service.id}>
+              <td className="p-2 border">{service.title}</td>
+              <td className="p-2 border">{service.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      {/* Testimonials Table */}
+      <h2 className="text-xl font-semibold mt-5">أراء العملاء</h2>
+      <table className="w-full border mt-2">
+        <thead>
+          <tr className="bg-gray text-white">
+            <th className="p-2 border">الاسم</th>
+            <th className="p-2 border">الرأي</th>
+          </tr>
+        </thead>
+        <tbody>
+          {testimonials.map((testimonial) => (
+            <tr key={testimonial.id}>
+              <td className="p-2 border">{testimonial.name}</td>
+              <td className="p-2 border">{testimonial.description}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
 
 export default Dashboard;
-
-
