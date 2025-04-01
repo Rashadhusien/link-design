@@ -57,7 +57,7 @@ const SignIn = () => {
       await signInWithPopup(auth, googleProvider); // ✅ Corrected
       router.push("/");
     } catch (err) {
-      setError(err.message || "حدث خطأ أثناء تسجيل الدخول");
+setError(err.message || "حدث خطأ أثناء تسجيل الدخول");
       console.error(err);
     }
   };
