@@ -2,14 +2,25 @@ import admin from "../../../../firebaseAdmin";
 
 export async function POST(req) {
   try {
-    const body = await req.json();
+    if (!req.body) {
+      throw new Error("Missing request body");
+    }
+
+    const body = await req.json(); // ✅ Prevent JSON parsing errors
     const { token } = body;
 
-    // Verify ID token
+    if (!token) {
+      return new Response(
+        JSON.stringify({ isAdmin: false, error: "Token is required" }),
+        { status: 400 }
+      );
+    }
+
+    // Verify token with Firebase Admin SDK
     const decodedToken = await admin.auth().verifyIdToken(token);
     const userId = decodedToken.uid;
 
-    // Fetch user data from Firestore
+    // Check Firestore user role
     const userRef = admin.firestore().collection("users").doc(userId);
     const userDoc = await userRef.get();
 
