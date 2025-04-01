@@ -26,33 +26,27 @@ const SignIn = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSignIn = async (e) => {
     e.preventDefault();
-    setError(""); // ✅ Clear previous errors
-    setLoading(true); // ✅ Show loading state
+    setError("");
+    setLoading(true);
 
-    if (!formData.email || !formData.password) {
+    const email = formData.email.trim();
+    const password = formData.password.trim();
+
+    if (!email || !password) {
       setError("يرجى ملء جميع الحقول");
       setLoading(false);
       return;
     }
 
     try {
-      const user = await signInWithEmailAndPassword(
-        formData.email,
-        formData.password
-      );
-
-      if (!user) {
-        throw new Error("البريد الإلكتروني أو كلمة المرور غير صحيحة");
-      }
-
+      const user = await signInWithEmailAndPassword(email, password);
+      if (!user) throw new Error("البريد الإلكتروني أو كلمة المرور غير صحيحة");
       setFormData({ email: "", password: "" });
       router.push("/");
     } catch (err) {
-      console.error(err);
-      setError("البريد الإلكتروني أو كلمة المرور غير صحيحة");
+      setError(err.message || "حدث خطأ أثناء تسجيل الدخول");
     } finally {
       setLoading(false);
     }
@@ -63,7 +57,7 @@ const SignIn = () => {
       await signInWithPopup(auth, googleProvider); // ✅ Corrected
       router.push("/");
     } catch (err) {
-      setError("حدث خطأ أثناء تسجيل الدخول باستخدام جوجل");
+      setError(err.message || "حدث خطأ أثناء تسجيل الدخول");
       console.error(err);
     }
   };
@@ -111,7 +105,11 @@ const SignIn = () => {
             </div>
 
             {/* ✅ Show error message */}
-            {error && <p className="text-red-500 text-center my-2">{error}</p>}
+            {error && (
+              <p className="text-red-500 text-center my-2" aria-live="polite">
+                {error}
+              </p>
+            )}
 
             {/* ✅ Disable button when signing in */}
             <button
