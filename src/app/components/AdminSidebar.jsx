@@ -1,14 +1,11 @@
 "use client";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { auth } from "firebaseConfig";
 import { useState } from "react";
 import { IoMenu } from "react-icons/io5";
 import { IoClose } from "react-icons/io5";
 
 const AdminSidebar = () => {
   const [openAdminSide, setOpenAdminSide] = useState(false);
-  const router = useRouter();
 
   return (
     <div className="relative">
