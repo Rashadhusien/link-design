@@ -3,6 +3,7 @@ import admin from "../../../../firebaseAdmin";
 
 export async function POST(req) {
   try {
+    // change fire base admin key
     const { token } = await req.json();
 
     if (!token) {
