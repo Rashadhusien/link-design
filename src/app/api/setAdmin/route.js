@@ -1,57 +1,42 @@
-// import admin from "../../../../firebaseAdmin";
+import { NextResponse } from "next/server";
+import admin from "../../../../firebaseAdmin";
 
-// export async function POST(req) {
-//   try {
-//     if (!req.body) {
-//       throw new Error("Missing request body");
-//     }
+export async function POST(req) {
+  try {
+    const { token } = await req.json();
 
-//     const body = await req.json(); // ✅ Prevent JSON parsing errors
-//     const { token } = body;
+    if (!token) {
+      return NextResponse.json(
+        { isAdmin: false, error: "Token is required" },
+        { status: 400 }
+      );
+    }
 
-//     if (!token) {
-//       return new Response(
-//         JSON.stringify({ isAdmin: false, error: "Token is required" }),
-//         { status: 400 }
-//       );
-//     }
+    // Verify Firebase Auth Token
+    const decodedToken = await admin.auth().verifyIdToken(token);
+    const userId = decodedToken.uid;
 
-//     // Verify token with Firebase Admin SDK
-//     const decodedToken = await admin.auth().verifyIdToken(token);
-//     const userId = decodedToken.uid;
+    // Check Admin Role (Option 1: Using Firestore)
+    const userRef = admin.firestore().collection("users").doc(userId);
+    const userDoc = await userRef.get();
+    const isAdmin = userDoc.exists && userDoc.data().role === "admin";
 
-//     // Check Firestore user role
-//     const userRef = admin.firestore().collection("users").doc(userId);
-//     const userDoc = await userRef.get();
+    // (Option 2: Using Custom Claims)
+    // const isAdmin = decodedToken.admin === true;
 
-//     if (!userDoc.exists) {
-//       return new Response(
-//         JSON.stringify({ isAdmin: false, error: "User not found" }),
-//         {
-//           status: 404,
-//         }
-//       );
-//     }
+    if (!isAdmin) {
+      return NextResponse.json(
+        { isAdmin: false, error: "Not an admin" },
+        { status: 403 }
+      );
+    }
 
-//     const userData = userDoc.data();
-//     if (!userData || userData.role !== "admin") {
-//       return new Response(
-//         JSON.stringify({ isAdmin: false, error: "Not an admin" }),
-//         {
-//           status: 403,
-//         }
-//       );
-//     }
-
-//     return new Response(JSON.stringify({ isAdmin: true }), { status: 200 });
-//   } catch (error) {
-//     console.error("Admin verification failed:", error);
-//     return new Response(
-//       JSON.stringify({
-//         isAdmin: false,
-//         error: error.message || "Unknown error",
-//       }),
-//       { status: 500 }
-//     );
-//   }
-// }
+    return NextResponse.json({ isAdmin: true }, { status: 200 });
+  } catch (error) {
+    console.error("Admin verification failed:", error);
+    return NextResponse.json(
+      { isAdmin: false, error: error.message || "Unknown error" },
+      { status: 500 }
+    );
+  }
+}
