@@ -55,9 +55,14 @@ const SignIn = () => {
     setLoading(true);
     try {
       await signInWithPopup(auth, googleProvider);
-      router.push("/");
+      router.push("/"); // Redirect after successful sign-in
     } catch (err) {
-      setError(err.message || "حدث خطأ أثناء تسجيل الدخول");
+      // Specific error handling for popup closure
+      if (err.code === "auth/popup-closed-by-user") {
+        setError("تم إغلاق النافذة من قبل المستخدم. يرجى المحاولة مرة أخرى.");
+      } else {
+        setError(err.message || "حدث خطأ أثناء تسجيل الدخول");
+      }
       console.error(err);
     } finally {
       setLoading(false);

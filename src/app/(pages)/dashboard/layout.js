@@ -14,14 +14,17 @@ const DashboardLayout = ({ children }) => {
 
   useEffect(() => {
     const checkAdmin = async () => {
-      try {
-        const token = await user.getIdToken();
-        const response = await axios.post("/api/setAdmin", { token });
-        setIsAdmin(response.data.isAdmin);
-      } catch (error) {
-        setIsAdmin(false); // Explicitly mark as non-admin to prevent indefinite loading
-        // router.push("/");
-        console.log("home");
+      if (user) {
+        try {
+          const token = await user.getIdToken();
+
+          const response = await axios.post("/api/checkAdmin", { token });
+
+          setIsAdmin(response.data.isAdmin); 
+        } catch (error) {
+          setIsAdmin(false); // Explicitly mark as non-admin to prevent indefinite loading
+          console.log("home");
+        }
       }
     };
 

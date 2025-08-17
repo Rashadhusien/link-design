@@ -62,7 +62,7 @@ export const headerNav = {
   services: "الخدمات",
   contactUs: "تواصل معنا",
   // projects: "المشاريع",
-  testimonial: "بعض الأراء",
+  testemonials: "بعض الأراء",
 };
 
 export const quickLinks = [
@@ -84,7 +84,7 @@ export const quickLinks = [
   {
     id: uuid(),
     href: "/testemonials",
-    content: headerNav.testimonial,
+    content: headerNav.testemonials,
   },
 ];
 
@@ -110,7 +110,7 @@ export const navData = [
     text: "اتصل بنا",
   },
   {
-    href: "/testimonials",
+    href: "/testemonials",
     icon: <Users size={22} />,
     text: "بعض الأراء",
   },

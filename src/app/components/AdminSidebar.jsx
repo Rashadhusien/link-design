@@ -41,6 +41,9 @@ const AdminSidebar = () => {
           <li>
             <Link href="/dashboard/testimonials">اراء العملاء</Link>
           </li>
+          <li>
+            <Link href="/dashboard/users"> العملاء</Link>
+          </li>
         </ul>
       </div>
     </div>

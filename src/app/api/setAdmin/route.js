@@ -3,40 +3,65 @@ import admin from "../../../../firebaseAdmin";
 
 export async function POST(req) {
   try {
-    // change fire base admin key
-    const { token } = await req.json();
+    const { token, targetUserId, makeAdmin } = await req.json();
 
-    if (!token) {
+    if (!token || !targetUserId || typeof makeAdmin !== "boolean") {
       return NextResponse.json(
-        { isAdmin: false, error: "Token is required" },
+        { error: "Token, targetUserId, and makeAdmin are required" },
         { status: 400 }
       );
     }
 
-    // Verify Firebase Auth Token
+    // Verify token
     const decodedToken = await admin.auth().verifyIdToken(token);
-    const userId = decodedToken.uid;
+    const currentUserId = decodedToken.uid;
 
-    // Check Admin Role (Option 1: Using Firestore)
-    const userRef = admin.firestore().collection("users").doc(userId);
-    const userDoc = await userRef.get();
-    const isAdmin = userDoc.exists && userDoc.data().role === "admin";
+    // Fetch the requesting user from Firestore
+    const requesterRef = admin
+      .firestore()
+      .collection("users")
+      .doc(currentUserId);
+    const requesterSnap = await requesterRef.get();
 
-    // (Option 2: Using Custom Claims)
-    // const isAdmin = decodedToken.admin === true;
-
-    if (!isAdmin) {
+    if (!requesterSnap.exists) {
       return NextResponse.json(
-        { isAdmin: false, error: "Not an admin" },
+        { error: "Requester not found" },
+        { status: 404 }
+      );
+    }
+
+    const requesterData = requesterSnap.data();
+
+    // Only admins can change roles
+    if (requesterData.role !== "admin") {
+      return NextResponse.json(
+        { error: "You do not have permission to change user roles" },
         { status: 403 }
       );
     }
 
-    return NextResponse.json({ isAdmin: true }, { status: 200 });
-  } catch (error) {
-    console.error("Admin verification failed:", error);
+    // Prevent removing own admin status (optional safeguard)
+    if (currentUserId === targetUserId && !makeAdmin) {
+      return NextResponse.json(
+        { error: "You cannot remove your own admin role" },
+        { status: 403 }
+      );
+    }
+
+    // Update target user's role
+    const targetRef = admin.firestore().collection("users").doc(targetUserId);
+    await targetRef.update({
+      role: makeAdmin ? "admin" : "user",
+    });
+
     return NextResponse.json(
-      { isAdmin: false, error: error.message || "Unknown error" },
+      { message: "User role updated successfully" },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Admin role update failed:", error);
+    return NextResponse.json(
+      { error: error.message || "Unknown error" },
       { status: 500 }
     );
   }

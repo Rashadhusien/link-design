@@ -2,15 +2,16 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { db } from "firebaseConfig";
 import { Oval } from "react-loader-spinner";
-
+import Link from "next/link";
 import { collection, getDocs } from "firebase/firestore";
+import { db } from "firebaseConfig";
 
 const Dashboard = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(true);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [users, setUsers] = useState([]);
   const [services, setServices] = useState([]);
   const [testimonials, setTestimonials] = useState([]);
 
@@ -19,7 +20,7 @@ const Dashboard = () => {
     onAuthStateChanged(auth, async (user) => {
       if (user) {
         const token = await user.getIdToken();
-        const res = await fetch("/api/setAdmin", {
+        const res = await fetch("/api/checkAdmin", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ token }),
@@ -30,6 +31,7 @@ const Dashboard = () => {
           setIsAdmin(true);
           fetchServices();
           fetchTestimonials();
+          fetchUsers();
         } else {
           router.push("/"); // Redirect non-admins
         }
@@ -38,7 +40,7 @@ const Dashboard = () => {
       }
       setLoading(false);
     });
-  }, []);
+  }, [router]);
 
   const fetchServices = async () => {
     const querySnapshot = await getDocs(collection(db, "services"));
@@ -56,6 +58,18 @@ const Dashboard = () => {
       ...doc.data(),
     }));
     setTestimonials(testimonialsData);
+  };
+
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch("/api/getUsers", { method: "GET" });
+      if (!response.ok) throw new Error("Failed to fetch users");
+
+      const data = await response.json();
+      setUsers(data.users);
+    } catch (error) {
+      console.error("Error fetching users:", error);
+    }
   };
 
   if (loading)
@@ -79,6 +93,34 @@ const Dashboard = () => {
   return (
     <div className="p-5">
       <h1 className="text-2xl font-bold">لوحة المعلومات</h1>
+
+      {/* Users Table */}
+      <h2 className="text-xl font-semibold mt-5">المستخدمين</h2>
+      <table className="w-full border mt-2">
+        <thead>
+          <tr className="bg-gray text-white">
+            <th className="p-2 border">الاسم</th>
+            <th className="p-2 border">البريد الإلكتروني</th>
+            <th className="p-2 border">الإجراءات</th>
+          </tr>
+        </thead>
+        <tbody>
+          {users.map((user) => (
+            <tr key={user.uid}>
+              <td className="p-2 border">{user.displayName}</td>
+              <td className="p-2 border">{user.email}</td>
+              <td className="p-2 border">
+                <Link
+                  href={`/admin/user/${user.uid}`}
+                  className="text-blue-500"
+                >
+                  إدارة
+                </Link>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
 
       {/* Services Table */}
       <h2 className="text-xl font-semibold mt-5">الخدمات</h2>

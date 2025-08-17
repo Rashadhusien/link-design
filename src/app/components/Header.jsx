@@ -59,6 +59,8 @@ function Header() {
     fetchUserRole();
   }, [user]);
 
+  console.log(navData);
+
   // Desktop Navigation List
   const renderDesktopNav = navData.map(({ text, href }) => (
     <li key={text}>
